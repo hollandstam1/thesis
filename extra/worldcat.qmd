@@ -1,0 +1,62 @@
+```{r pkg}
+library(robotstxt)
+library(rvest)
+library(xml2)
+library(tibble)
+paths_allowed("http://www.worldcat.org")
+```
+
+Worldcat brainstorm of how I want data to look when collected
+
+needed variables:
+
+artist_name \| year
+
+.name = holds title (associated with artist)
+
+.itemPublisher = holds year of publication
+
+I will then add just like I did for museum data:
+
+count \| count_to_date
+
+additional variables desired if it is simple to do so:
+
+author \| title
+
+```{r}
+base_url <- "https://www.worldcat.org/search?qt=worldcat_org_all&q=pablo+picasso"
+```
+
+```{r read}
+page <- read_html("https://www.worldcat.org/search?qt=worldcat_org_all&q=pablo+picasso")
+page
+
+```
+
+```{r type}
+typeof(page)
+```
+
+```{r class}
+class(page)
+```
+
+```{r title}
+title <- page %>%
+  html_nodes(".name")%>%
+  html_text()
+
+title
+
+```
+
+```{r publicationyear}
+year_of_publication <- page %>%
+  html_nodes(".itemPublisher")%>%
+  html_text() %>%
+ # str_remove("\\") %>% # remove (
+ #str_remove("\\)") # remove )
+
+year_of_publication
+```

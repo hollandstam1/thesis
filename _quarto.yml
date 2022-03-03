@@ -1,0 +1,26 @@
+project:
+  type: book
+
+book:
+  title: "holland-thesis"
+  author: "Jane Doe"
+  date: "`r Sys.Date()`"
+  chapters:
+    - index.qmd
+    - Chapter1/Chapter1.qmd
+    - Chapter2/Chapter2.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
+execute:
+  echo: false
+  warning: false
+

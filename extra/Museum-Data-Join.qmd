@@ -1,0 +1,630 @@
+---
+title: "Museum Data Join"
+name: "Holland Stam"
+date: "`r Sys.Date()`"
+format: pdf
+---
+
+```{r}
+#| label: load-pkg
+#| message: false
+
+library(tidyverse)
+library(tidymodels)
+library(knitr)
+library(janitor) # for the clean_names function
+library(reshape)
+library(ggplot2)
+library(dplyr)
+
+```
+
+# Data prep
+
+```{r}
+#| label: load-data
+#| message: false
+
+# load gardner
+gardner <- read_csv(here::here("Chapter1", "data/gardner.csv")) %>%
+  janitor::clean_names()
+
+# load janson
+janson <- read_csv(here::here("Chapter1", "data/janson.csv")) %>%
+  janitor::clean_names()
+
+# load MoMA
+moma <- read_csv(here::here("Chapter1", "data/moma.csv")) %>%
+  janitor::clean_names() %>%
+  filter(year != "MISSING YEAR") %>% 
+  mutate(year = as.numeric(year))
+
+# load CountMoMAExh
+#countmoma <- read_csv(here::here("Chapter1", "data/countmoma.csv")) %>%
+#  janitor::clean_names()
+
+# load Whitney
+whitney <- read_csv(here::here("Chapter1", "data/whitney.csv")) %>%
+  janitor::clean_names()
+```
+
+**NOTE: Moma data has some (very few) rows where the year is `MISSING YEAR`, check if those can be filled in.**
+
+Join `gardner` and `janson` with column = book, janson, gardner
+
+```{r janson}
+janson <- janson %>%
+  mutate(
+    artist_nationality_other =
+      case_when(
+        artist_nationality == "French" ~ "French",
+        artist_nationality == "British" ~ "British",
+        artist_nationality == "American" ~ "American",
+        artist_nationality == "Spanish" ~ "Spanish",
+        artist_nationality == "German" ~ "German",
+        TRUE ~ "Other"
+      )
+  ) %>%
+  select(
+    "artist_name",
+    "edition_number",
+    "year",
+    "artist_nationality",
+    "artist_nationality_other",
+    "artist_gender",
+    "artist_race",
+    "artist_ethnicity",
+    "book",
+    "space_ratio_per_page"
+  )
+```
+
+```{r gardner}
+gardner <- gardner %>%
+  mutate(
+    artist_nationality_other =
+      case_when(
+        artist_nationality == "French" ~ "French",
+        artist_nationality == "British" ~ "British",
+        artist_nationality == "American" ~ "American",
+        artist_nationality == "Spanish" ~ "Spanish",
+        artist_nationality == "German" ~ "German",
+        TRUE ~ "Other"
+      )
+  ) %>%
+  select(
+    "artist_name",
+    "edition_number",
+    "year",
+    "artist_nationality",
+    "artist_nationality_other",
+    "artist_gender",
+    "artist_race",
+    "artist_ethnicity",
+    "book",
+    "space_ratio_per_page"
+  )
+```
+
+```{r gardnerjanson}
+gardnerjanson <- gardner %>%
+  bind_rows(janson)
+
+sumgj <- gardnerjanson %>%
+  group_by(artist_name, year)%>%
+  summarize(space_ratio_per_page_total = sum(space_ratio_per_page))
+
+gardnerjanson <- gardnerjanson%>%
+  left_join(sumgj)%>%
+  select(-space_ratio_per_page)%>%
+  unique()
+  
+gardnerjanson <- gardnerjanson %>%
+  group_by(artist_name)%>%
+  mutate(artist_unique_id = cur_group_id())
+
+```
+
+------------------------------------------------------------------------
+
+Create moma with complete years
+
+```{r momaexh}
+moma_complete_years <- moma %>%
+  count(artist_name, year)%>%
+  mutate(count = 1)%>%
+  arrange(artist_name, year)%>%
+  group_by(artist_name)%>%
+  ungroup() %>%
+  complete(artist_name, year = c(min(year):max(year))) %>%
+  mutate(
+    moma_count = if_else(is.na(count), 0, count)
+    ) %>%
+  arrange(artist_name, year)%>%
+  group_by(artist_name)%>%
+  mutate(moma_count_to_date = cumsum(moma_count))%>%
+  ungroup()%>%
+  select(artist_name, year, moma_count, moma_count_to_date)
+```
+
+Create whitney with complete years
+
+```{r whitneyexh}
+whitney_complete_years <- whitney %>%
+  count(artist_name, year)%>%
+  mutate(count = 1)%>%
+  arrange(artist_name, year)%>%
+  group_by(artist_name)%>%
+  ungroup() %>%
+  complete(artist_name, year = c(min(year):max(year))) %>%
+  mutate(
+    whitney_count = if_else(is.na(count), 0, count)
+    ) %>%
+  arrange(artist_name, year)%>%
+  group_by(artist_name)%>%
+  mutate(whitney_count_to_date = cumsum(whitney_count))%>%
+  ungroup()%>%
+  select(artist_name, year, whitney_count, whitney_count_to_date)
+```
+
+```{r museum-join}
+gardnerjanson_museums <- gardnerjanson %>%
+  left_join(moma_complete_years, by = c("artist_name", "year")) %>%
+  left_join(whitney_complete_years, by = c("artist_name", "year"))
+```
+
+```{r NAtozero}
+gardnerjanson_museums[is.na(gardnerjanson_museums)] <- 0
+```
+
+potentially needed for heat map:
+
+```{r exhcatcolumnmoma}
+#gardnerjanson_museums <- gardnerjanson_museums %>%
+ # mutate(moma_cat = case_when(moma_count_to_date >= 1 ~ '1', 
+       #  TRUE ~ '0'))
+```
+
+```{r exhcatcolumnwhitney}
+#gardnerjanson_museums <- gardnerjanson_museums %>%
+ # mutate(whitney_cat = case_when(whitney_count_to_date >= 1 ~ '1', 
+    #     TRUE ~ '0'))
+
+```
+
+# Exploratory Data Analysis
+
+```{r jansonthroughtime}
+ggplot(gardnerjanson %>% filter(book == "janson"), aes(x = year))+
+  geom_bar()+
+  labs(title = "Overall Count of Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Count")
+  
+```
+
+```{r gardnerthroughtime}
+ggplot(gardnerjanson %>% filter(book == "gardner"), aes(x = year))+
+  geom_bar()+
+  labs(title = "Overall Count of Artists in Gardner's Art Through the Ages",
+       x = "Year of Publication",
+       y = "Count")
+  
+```
+
+```{r jansongenderthroughtime}
+ggplot(gardnerjanson %>% filter(book == "janson"), aes(x = year, fill = artist_gender))+
+  geom_bar(position = "fill")+
+  labs(title = "Gender of Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Gender")
+
+```
+
+```{r gardnergenderthroughtime}
+ggplot(gardnerjanson %>% filter(book == "gardner", artist_gender != "N/A"), aes(x = year, fill = artist_gender))+
+  geom_bar(position = "fill")+
+  labs(title = "Gender of Artists in Gardner's Art Through the Ages",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Gender")
+```
+
+```{r jansonracethroughtime}
+ggplot(gardnerjanson %>% filter(book == "janson"), aes(x = year, fill = artist_race))+
+  geom_bar(position = "fill")+
+  labs(title = "Race of Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Race")
+```
+
+```{r gardnerracethroughtime}
+ggplot(gardnerjanson %>% filter(book == "gardner", artist_race != "N/A"), aes(x = year, fill = artist_race))+
+  geom_bar(position = "fill")+
+  labs(title = "Race of Artists in Gardner's Art Through the Ages",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Race")
+
+```
+
+```{r jansonethnicitythroughtime}
+ggplot(gardnerjanson %>% filter(book == "janson"), aes(x = year, fill = artist_ethnicity))+
+  geom_bar(position = "fill")+
+  labs(title = "Ethnicity of Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Ethnicity")
+
+```
+
+```{r gardnerethnicitythroughtime}
+ggplot(gardnerjanson %>% filter(book == "gardner", artist_ethnicity != "N/A"), aes(x = year, fill = artist_ethnicity))+
+  geom_bar(position = "fill")+
+  labs(title = "Ethnicity of Artists in Gardner's Art Through the Ages",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Ethnicity")
+
+```
+
+```{r jansonnationalitythroughtime}
+ggplot(gardnerjanson %>% filter(book == "janson"), aes(x = year, fill = artist_nationality_other))+
+  geom_bar(position = "fill")+
+  labs(title = "Nationality of Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Nationality")
+
+```
+
+```{r gardnernationalitythroughtime}
+ggplot(gardnerjanson %>% filter(book == "gardner", artist_nationality_other != "N/A"), aes(x = year, fill = artist_nationality_other))+
+  geom_bar(position = "fill")+
+  labs(title = "Nationality of Artists in Gardner's Art Through the Ages",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Nationality")
+```
+
+## Bivariate Plots and MLR with `space_ratio_per_page_total`
+
+Janson:
+
+```{r countjanson}
+ggplot(gardnerjanson_museums %>% filter(book == "janson"), 
+       aes(x = space_ratio_per_page_total, fill = edition_number)) +
+  geom_histogram() +
+  labs(
+    title = "Distribution of Ratio of Space\nper Artist per Edition per Page in Janson",
+    x = "Ratio of Space per Page",
+    y = "Count"
+  )
+
+summary(janson$space_ratio_per_page)
+
+median <- median(janson$space_ratio_per_page)
+```
+
+The visualization above is right skewed, unimodal and assymetrical. Therefore, we would want to look at the median and IQR. The median of `space_ratio_per_page_total` in Janson is `r median`.
+
+space_ratio_per_page with Gender
+
+```{r genderjanson}
+ggplot(gardnerjanson_museums %>% filter(book == "janson"), 
+       aes(x = artist_gender, y = space_ratio_per_page_total)) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition\nin Janson by Gender",
+    x = "Gender",
+    y = "Ratio of Space per Page"
+  )
+```
+
+space_ratio_per_page with Race
+
+```{r racejanson}
+ggplot(gardnerjanson_museums %>% filter(book == "janson"), 
+       aes(x = artist_race, y = space_ratio_per_page_total)) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition\nin Janson by Race",
+    x = "Race",
+    y = "Ratio of Space per Page"
+  )
+```
+
+space_ratio_per_page with Ethnicity
+
+```{r jansonethnicity}
+ggplot(gardnerjanson_museums %>% filter(book == "janson"), 
+       aes(x = artist_ethnicity, y = space_ratio_per_page_total)) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition\nin Janson by Ethnicity",
+    x = "Ethnicity",
+    y = "Ratio of Space per Page"
+  )
+```
+
+space_ratio_per_page with Nationality
+
+```{r jansonnationality}
+ggplot(gardnerjanson_museums %>% filter(book == "janson"), 
+       aes(x = artist_nationality_other, y = space_ratio_per_page_total)) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition\nin Janson by Nationality",
+    x = "Nationality",
+    y = "Ratio of Space per Page"
+  )
+```
+
+MLR of Janson with Gender +Race + Nationality + Ethnicity \~ space_ratio_per_page
+
+```{r jansonMLR}
+jansonMLR <- lm(space_ratio_per_page_total ~ artist_race +
+  artist_ethnicity +
+  artist_gender +
+  artist_nationality_other +
+  moma_count_to_date +
+  whitney_count_to_date,
+  data = gardnerjanson_museums %>% filter(book == "janson")
+)
+summary(jansonMLR)
+```
+
+```{r jansonrsquared}
+glance(jansonMLR)$r.squared
+```
+
+```{r jansonadjrsquared}
+glance(jansonMLR)$adj.r.squared
+
+```
+
+Gardner:
+
+```{r countgardner}
+ggplot(
+  gardnerjanson_museums %>% filter(book == "gardner"),
+  aes(x = space_ratio_per_page_total)
+) +
+  geom_histogram() +
+  labs(
+    title = "Distribution of Ratio of Space\nper Artist per Edition per Page in Gardner",
+    x = "Ratio of Space per Page",
+    y = "Count"
+  )
+
+gardnerjanson_museums %>%
+  filter(book == "gardner") %>%
+  summarize(
+    min = min(space_ratio_per_page_total),
+    q1 = quantile(space_ratio_per_page_total, 0.25),
+    median = median(space_ratio_per_page_total),
+    mean = mean(space_ratio_per_page_total),
+    q3 = quantile(space_ratio_per_page_total, 0.75),
+    max = max(space_ratio_per_page_total)
+  )
+```
+
+space_ratio_per_page vs Gender
+
+```{r gardnergender}
+ggplot(gardnerjanson_museums %>% filter(book == "gardner"),
+  aes(x = artist_gender, y = space_ratio_per_page_total)
+) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition\nin Gardner by Gender",
+    x = "Gender",
+    y = "Ratio of Space per Page"
+  )
+```
+
+space_ratio_per_page vs Race
+
+```{r gardnerrace}
+ggplot(
+  gardnerjanson_museums %>% filter(book == "gardner"),
+  aes(x = artist_race, y = space_ratio_per_page_total)
+) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition\nin Gardner by Race",
+    x = "Race",
+    y = "Ratio of Space per Page"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, size = 5)) +
+  ylim(0, 2.0)
+```
+
+space_ratio_per_page vs Ethnicity
+
+```{r gardnerethnicity}
+ggplot(
+  gardnerjanson_museums %>% filter(book == "gardner"),
+  aes(x = artist_ethnicity, y = space_ratio_per_page_total)
+) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition\nin Gardner by Ethnicity",
+    x = "Ethnicity",
+    y = "Ratio of Space per Page"
+  )
+```
+
+space_ratio_per_page vs Nationality
+
+```{r gardnernationality}
+ggplot(
+  gardnerjanson_museums %>% filter(book == "gardner"),
+  aes(x = artist_nationality_other, y = space_ratio_per_page_total)
+) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition\nin Gardner by Nationality",
+    x = "Nationality",
+    y = "Ratio of Space per Page"
+  )
+```
+
+GardnerMLR Demographic
+
+```{r gardnerMLR}
+gardnerMLR <- lm(space_ratio_per_page_total ~ artist_race +
+  artist_ethnicity +
+  artist_gender +
+  artist_nationality_other +
+  moma_count_to_date +
+  whitney_count_to_date,
+data = gardnerjanson_museums %>% filter(book == "gardner")
+)
+summary(gardnerMLR)
+```
+
+```{r gardnerrsquared}
+glance(gardnerMLR)$r.squared
+```
+
+```{r gardneradjrsquared}
+glance(gardnerMLR)$adj.r.squared
+
+```
+
+MLR demograpic with jansongardner
+
+## Museums
+
+whitney eda
+
+```{r whitneycounttodate}
+ggplot(gardnerjanson_museums %>% filter(whitney_count_to_date != 0), 
+       aes(x = whitney_count_to_date)) +
+  geom_histogram(binwidth = 1) +
+  labs(
+    title = "Distribution of Whitney Exhibitions per Artist per Edition",
+    x = "Count to Date",
+    y = "Count"
+  )
+```
+
+```{r whitneyvisual}
+ggplot(gardnerjanson_museums %>% filter(whitney_count_to_date != 0), 
+       aes(x = whitney_count_to_date, y = space_ratio_per_page_total)) +
+  geom_point(position=position_jitter(h=0.1, w=0.1), alpha = 0.5, size = 1) +
+  geom_smooth(method = "lm", se = FALSE)+
+  labs(
+    title = "Ratio of Space Per Artist Per Edition by\nNumber of Exhibitions per Artist per Editions in the Whitney",
+    x = "Count to Date",
+    y = "Ratio of Space Per Artist Per Edition"
+  )
+
+#corr_coef
+  corr_coef_whitney <- cor(gardnerjanson_museums$whitney_count_to_date,     
+                           gardnerjanson_museums$space_ratio_per_page_total, 
+                           use = "complete.obs")
+```
+
+```{r whitneygardner}
+ggplot(gardnerjanson_museums %>% filter(book == "gardner") %>% filter(whitney_count_to_date != 0),
+       aes(x = whitney_count_to_date, y = space_ratio_per_page_total)) +
+  geom_point(position=position_jitter(h=0.1, w=0.1), alpha = 0.5, size = 1) +
+  geom_smooth(method = "lm", se = FALSE)+
+  labs(
+    title = "Ratio of Space Per Artist Per Edition in Gardner by\nNumber of Exhibitions per Artist per Editions in the Whitney",
+    x = "Count to Date",
+    y = "Ratio of Space Per Artist Per Edition"
+  )
+
+#corr_coef
+ 
+```
+
+```{r whitneyjanson}
+ggplot(gardnerjanson_museums %>% filter(book == "janson") %>% filter(whitney_count_to_date != 0), aes(x = whitney_count_to_date, y = space_ratio_per_page_total)) +
+  geom_point(position=position_jitter(h=0.1, w=0.1), alpha = 0.5, size = 1) +
+  geom_smooth(method = "lm", se = FALSE)+
+  labs(
+    title = "Ratio of Space Per Artist Per Edition in Janson by\nNumber of Exhibitions per Artist per Editions in the Whitney",
+    x = "Count to Date",
+    y = "Ratio of Space Per Artist Per Edition"
+  )
+
+```
+
+```{r whitneymomaheatmap}
+p <- ggplot(gardnerjanson_museums, aes(space_ratio_per_page_total,year)) + 
+    geom_tile(aes(fill = whitney_count_to_date), colour = "steelblue") + 
+    scale_fill_gradient(low = "steelblue",high = "red")
+p
+g <- ggplot(gardnerjanson_museums, aes(space_ratio_per_page_total,year)) + 
+    geom_tile(aes(fill = moma_count_to_date), colour = "steelblue") + 
+    scale_fill_gradient(low = "steelblue",high = "red")
+g
+```
+
+moma eda
+
+```{r momacounttodate}
+ggplot(gardnerjanson_museums %>% filter(moma_count_to_date != 0), aes(x = moma_count_to_date)) +
+  geom_histogram(binwidth = 1) +
+  labs(
+    title = "Distribution of MoMA Exhibitions per Artist per Edition",
+    x = "Count to Date",
+    y = "Count"
+  )
+```
+
+```{r momavisual}
+ggplot(gardnerjanson_museums, aes(x = moma_count_to_date, y = log(space_ratio_per_page_total))) +
+  geom_point(position=position_jitter(h=0.1, w=0.1), alpha = 0.5, size = 1) +
+  geom_smooth(method = "lm", se = FALSE)+
+  labs(
+    title = "Ratio of Space Per Artist Per Edition by\nNumber of Exhibitions per Artist per Editions in the MoMA",
+    x = "Count to Date",
+    y = "Ratio of Space Per Artist Per Edition"
+  )
+
+ corr_coef_moma <- cor(gardnerjanson_museums$moma_count_to_date,     
+                           gardnerjanson_museums$space_ratio_per_page_total, 
+                           use = "complete.obs")
+```
+
+```{r gardnerjansonMLR}
+gardnerjansonSLR <- lm(space_ratio_per_page_total ~ 
+  artist_race,
+data = gardnerjanson_museums
+)
+summary(gardnerjansonSLR)
+```
+
+```{r rsq}
+glance(gardnerjansonSLR)$r.squared
+```
+
+```{r momagardner}
+ggplot(gardnerjanson_museums %>% filter(book == "gardner") %>% filter(moma_count_to_date != 0), aes(x = moma_count_to_date, y = space_ratio_per_page_total)) +
+  geom_point(position=position_jitter(h=0.1, w=0.1), alpha = 0.5, size = 1) +
+  geom_smooth(method = "lm", se = FALSE)+
+  labs(
+    title = "Ratio of Space Per Artist Per Edition in Gardner by\nNumber of Exhibitions per Artist per Editions in the MoMA",
+    x = "Count to Date",
+    y = "Ratio of Space Per Artist Per Edition"
+  )
+
+```
+
+```{r momajanson}
+ggplot(gardnerjanson_museums %>% filter(book == "janson", moma_count_to_date != 0), aes(x = moma_count_to_date, y = space_ratio_per_page_total)) +
+  geom_point(position=position_jitter(h=0.1, w=0.1), alpha = 0.5, size = 1) +
+  geom_smooth(method = "lm", se = FALSE)+
+  labs(
+    title = "Ratio of Space Per Artist Per Edition in Janson by\nNumber of Exhibitions per Artist per Editions in the MoMA",
+    x = "Count to Date",
+    y = "Ratio of Space Per Artist Per Edition"
+  )
+```

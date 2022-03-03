@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-99.9.9">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>holland-thesis - 2&nbsp; Model Exploration</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="../site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="../site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="../">
+  <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="../site_libs/quarto-search/fuse.min.js"></script>
+  <script src="../site_libs/quarto-search/quarto-search.js"></script>
+  <link href="../Chapter1/Chapter1.html" rel="prev">
+  <script src="../site_libs/quarto-html/quarto.js"></script>
+  <script src="../site_libs/quarto-html/popper.min.js"></script>
+  <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="../site_libs/quarto-html/anchor.min.js"></script>
+  <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "sidebar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "start",
+    "type": "textbox",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Exploration</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">holland-thesis</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Chapter1/Chapter1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quantifying Art Historical Narratives, Chapter 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Chapter2/Chapter2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Exploration</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#model-exploration" class="nav-link active" data-scroll-target="#model-exploration"> <span class="header-section-number">3</span> Model Exploration:</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title d-none d-lg-block display-7"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Exploration</span></h1>
+</header>
+
+<div class="cell">
+<div class="cell-output-stderr">
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+✓ tibble  3.1.6     ✓ dplyr   1.0.7
+✓ tidyr   1.1.4     ✓ stringr 1.4.0
+✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'tune':
+  method                   from   
+  required_pkgs.model_spec parsnip</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>── Attaching packages ────────────────────────────────────── tidymodels 0.1.4 ──</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>✓ broom        0.7.11         ✓ rsample      0.1.1     
+✓ dials        0.0.10         ✓ tune         0.1.6     
+✓ infer        1.0.1.9000     ✓ workflows    0.2.4     
+✓ modeldata    0.1.1          ✓ workflowsets 0.1.0     
+✓ parsnip      0.1.7          ✓ yardstick    0.0.9     
+✓ recipes      0.1.17         </code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
+x scales::discard() masks purrr::discard()
+x dplyr::filter()   masks stats::filter()
+x recipes::fixed()  masks stringr::fixed()
+x dplyr::lag()      masks stats::lag()
+x yardstick::spec() masks readr::spec()
+x recipes::step()   masks stats::step()
+• Use tidymodels_prefer() to resolve common conflicts.</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>Loading required package: Matrix</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>
+Attaching package: 'Matrix'</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>The following objects are masked from 'package:tidyr':
+
+    expand, pack, unpack</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>
+Attaching package: 'MASS'</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    select</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>Loading required package: carData</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>
+Attaching package: 'car'</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>The following object is masked from 'package:dplyr':
+
+    recode</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    some</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>
+Attaching package: 'lmerTest'</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>The following object is masked from 'package:lme4':
+
+    lmer</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>The following object is masked from 'package:recipes':
+
+    step</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    step</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>New names:
+* `` -&gt; ...1</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>Rows: 3162 Columns: 16
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (7): artist_name, artist_nationality, artist_nationality_other, artist_g...
+dbl (9): ...1, artist_unique_id, edition_number, year, space_ratio_per_page_...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<section id="model-exploration" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Model Exploration:</h1>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>Linear mixed model fit by maximum likelihood . t-tests use Satterthwaite's
+  method [lmerModLmerTest]
+Formula: log(space_ratio_per_page_total) ~ artist_race + artist_ethnicity +  
+    artist_gender + artist_nationality_other + moma_count_to_date +  
+    whitney_count_to_date + (1 | artist_name)
+   Data: gardnerjanson_museums %&gt;% filter(book == "janson")
+
+     AIC      BIC   logLik deviance df.resid 
+  1943.6   2020.2   -956.8   1913.6     1204 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.7956 -0.5997 -0.1124  0.6755  2.5051 
+
+Random effects:
+ Groups      Name        Variance Std.Dev.
+ artist_name (Intercept) 0.2094   0.4576  
+ Residual                0.2002   0.4474  
+Number of obs: 1219, groups:  artist_name, 243
+
+Fixed effects:
+                                         Estimate Std. Error         df t value
+(Intercept)                             -0.795206   0.619802 336.280524  -1.283
+artist_raceAsian                        -0.174437   0.797908 350.326048  -0.219
+artist_raceBlack or African American    -0.077914   0.596763 341.155442  -0.131
+artist_raceWhite                        -0.064554   0.566537 349.522847  -0.114
+artist_ethnicityNot Hispanic or Latinx  -0.145735   0.273303 275.310445  -0.533
+artist_genderMale                        0.017756   0.108336 253.840228   0.164
+artist_nationality_otherBritish          0.053338   0.122371 256.739329   0.436
+artist_nationality_otherFrench           0.435508   0.100099 254.481867   4.351
+artist_nationality_otherGerman           0.005468   0.124415 264.926122   0.044
+artist_nationality_otherOther           -0.050234   0.099766 265.609139  -0.504
+artist_nationality_otherSpanish          0.672632   0.373165 241.628155   1.803
+moma_count_to_date                       0.014969   0.003716 553.236171   4.028
+whitney_count_to_date                    0.003260   0.007142 373.570767   0.456
+                                       Pr(&gt;|t|)    
+(Intercept)                              0.2004    
+artist_raceAsian                         0.8271    
+artist_raceBlack or African American     0.8962    
+artist_raceWhite                         0.9093    
+artist_ethnicityNot Hispanic or Latinx   0.5943    
+artist_genderMale                        0.8699    
+artist_nationality_otherBritish          0.6633    
+artist_nationality_otherFrench         1.97e-05 ***
+artist_nationality_otherGerman           0.9650    
+artist_nationality_otherOther            0.6150    
+artist_nationality_otherSpanish          0.0727 .  
+moma_count_to_date                     6.42e-05 ***
+whitney_count_to_date                    0.6484    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="cell-output-stderr">
+<pre><code>
+Correlation matrix not shown by default, as p = 13 &gt; 12.
+Use print(x, correlation=TRUE)  or
+    vcov(x)        if you need it</code></pre>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<p>the multiple of the number of degrees of freedom used for the penalty. Only k = 2 gives the genuine AIC: k = log(n) is sometimes referred to as BIC or SBC.</p>
+<div class="cell">
+
+</div>
+
+
+</section>
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Chapter1/Chapter1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quantifying Art Historical Narratives, Chapter 1</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+</body></html>
