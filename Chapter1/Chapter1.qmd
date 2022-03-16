@@ -194,13 +194,75 @@ janson_museums <- gardnerjanson_museums %>%
 
 ## Introduction and Context
 
-### Inspiration for Research: 
+### Inspiration for Research:
 
 Heading into the second semester of my junior year, I scheduled a zoom meeting with my now undergraduate thesis advisor, Prof. Hans van Miegroet, to ask a few questions about my aspirations after college. He had been my professor for his course, "History of Art Markets," a learning experience at Duke that has permanently altered my worldview. The meeting began with me expressing my enjoyment of the course, and the appreciation of the discussion of transparency in the buying and selling of art. I asked his opinion of whether I should stick to studying architectural history with hopes of going to architecture school, or pivot to do further research under him in his graduate course, "Arts and Markets" that I had enrolled in for that Spring. Towards the end of the meeting, he asked me what I found most interesting about art, to which I replied, "Ever since I took my first Art History course, I've always been curious as to why I am introduced to the works I am. Who is choosing what I study versus what I don't study?" I explained to him. I had initially learned the story of art through Marilyn Stokstad's, *Art History* my final year of high school. At the end of that school year, I inquired to my teacher, Carolyn Paczkowska, in a class discussion, "Why are we studying the works that we have?" The class discussed gatekeepers of art and information and later ended in the conclusion of uncertainty. Prof. van Miegroet looked at me through the computer screen and stated I had found my research question for my Undergraduate Honors Thesis, that I had found my why.
 
 My research began solely looking at how art history textbooks changed through time, then developed into looking at using a linear mixed effect model to infer which external variables would if at all work to predict the magnitude of space (of text and of figure of their work or works) given to an artist in a given book.
 
-### Why *Gardner's Art Through the Ages:* 
+### Why *Gardner's Art Through the Ages:*
+
+#### Discourse of Authorship:
+
+#### Literature Review:
+
+**(**Discourse of dominance through time of the text, find and add sources and if available sales information through time)
+
+REACH OUT FOR SALES DATA TO PUBLISHERS
+
+Britannica
+
+-   The lack of a [comprehensive](https://www.merriam-webster.com/dictionary/comprehensive) single-volume textbook on art history prompted Gardner to write one herself, and the resulting Art Through the Ages (1926) far surpassed other available works in readability, breadth of coverage, and wealth of illustration. It remained a widely used text for decades. In 1932 she published Understanding the Arts, aimed at a wide general audience. A second edition of Art Through the Ages, greatly expanded, appeared in 1936; **the first two editions sold more than 260,000 copies.** Gardner had been named an assistant professor in the Art Institute school in 1929, and in 1933 she became a professor and head of the department of art history. She retired from the Art Institute school in 1943. Despite declining health she managed to complete work on the manuscript of a third edition of Art Through the Ages (published in 1948).
+
+Sources Found to Looking Into:
+
+-   Franciscono, Marcel.
+    1977. "History, Textbooks, and Art: Reflections on a Half Century of Helen Gardner's "Art through the Ages"." Critical Inquiry 4 (2) (Winter): 285. https://login.proxy.lib.duke.edu/login?u rl=https://www.proquest.com/scholarly-journals/history-textbooks-art-reflections-on-half-century/docview/1297337757/se-2?a ccountid=10598.
+-   Jaffee, Barbara. "9. "Gardner" Variety Formalism: Helen Gardner and Art through the Ages" In Partisan Canons edited by Anna Brzyski, 203-224. New York, USA: Duke University Press, 2007. https://doi.org/10.1515/9780822390374-010.
+
+**Table 1:** Edition Number, Year of Publication, Title, Authorship, and Publisher Over Time of All Cataloged Editions of Gardner's Art Through the Ages.
+
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| Edition    | Year of Publication | Author(s)                                                                                       | Title                                                                 | Publisher (as listed per Edition)                       |
++============+=====================+=================================================================================================+=======================================================================+=========================================================+
+| 1          | 1926                | Helen Gardner                                                                                   | Art through the ages; an introduction to its history and significance | New York, Brace, Harcourt                               |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 2          | 1936                | Helen Gardner                                                                                   | Art through the ages; an introduction to its history and significance | New York, Brace, Harcourt                               |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 3          | 1948                | Helen Gardner                                                                                   | Art through the ages                                                  | New York, Brace, Harcourt                               |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 4          | 1959                | Helen Gardner; revised by Sumner M. Crosby and the Dept. of the History of Art, Yale University | Art through the ages                                                  | New York, Harcourt, Brace                               |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 5          | 1970                | Revised by Horst de la Croix, Richard G. Tansey                                                 | Gardner's art through the ages                                        | New York, Harcourt, Brace                               |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 6          | 1975                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's art through the ages                                        | New York: Harcourt Brace Jovanovich                     |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 7          | 1980                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's art through the ages                                        | Harcourt Brace Jovanovich, New York                     |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 8          | 1986                | Horst de la Croix, Richard G. Tansey                                                            | Gardner's art through the ages                                        | Harcourt Brace Jovanovich, San Diego, CA                |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 9          | 1991                | Horst de la Croix, Richard G. Tansey, Diane Kirkpatrick                                         | Gardner's art through the ages                                        | San Diego: Harcourt Brace Jovanovich                    |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 10         | 1996                | Richard G. Tansey, Fred S. Kleiner                                                              | Gardern's art through the ages                                        | Fort Worth, TX: Harcourt Brace                          |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 11         | 2001                | Fred S. Kleiner, Christin J. Mamiya, Richard G. Tansey                                          | Gardner's art through the ages                                        | Fort Worth TX: Harcourt College Publishers              |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 12         | 2005                | Fred S. Kleiner, Christin J. Mamiya                                                             | Gardner's art through the ages                                        | Thomson/Wadsworth, Belmont, CA                          |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 13         | 2009                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, Thomson/Wadsworth                               |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 14         | 2013                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Australia ; United States : Wadsworth, Cengage Learning |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 15         | 2016                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, MA : Cengage Learning                           |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 16         | 2020                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, MA, US : Cengage Learning                       |
++------------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+
+**Discourse of Authorship Through Editions: NEEDS TO BE ADDED**
+
+**Table 4:** Authors of Gardner's Art Through the Ages: NEEDS TO BE ADDED
+
+**Literature Review: NEEDS TO BE ADDED**
 
 ### Why *Janson's History of Art*:
 
@@ -234,7 +296,7 @@ After the sixth edition (2001) and the sixth edition revised (2004) the last wit
 
 [^chapter1-11]: "100 Best-Selling Art HIstory Books of All Time," Book Authority, https://bookauthority.org/books/best-selling-art-history-books.
 
-**Table 1:** Edition Number, Year of Publication, Title, Authorship, and Publisher Over Time of All Cataloged Editions of Janson's History of Art.
+**Table 2:** Edition Number, Year of Publication, Title, Authorship, and Publisher Over Time of All Cataloged Editions of Janson's History of Art.
 
 +--------------------------+---------------------+-------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
 | Edition Number           | Year of Publication | Authors                                                                                                     | Title                                                                                         | Publisher (as listed per Edition)[^chapter1-12]                                        |
@@ -268,7 +330,7 @@ After the sixth edition (2001) and the sixth edition revised (2004) the last wit
 
 [^chapter1-14]: Dora Jane Janson is only listed upon opening the book to the title page. She is not listed anywhere on the exterior of the Janson's History of Art across the first edition, second printing, first edition (revised and enlarged) fourteenth printing, nor the second edition.
 
-**Discourse of Authorship Through Editions:**
+#### **Discourse of Authorship Through Editions:**
 
 The primary author through the first six editions of Janson's History of Art is Horace Waldemar Janson (1913-1982), colloquially referred to as Peter. He was born in 1913 in St. Petersburg, Russia. His parents were of Swedish and Latvian descent. The family moved to Hamburg, Germany after the Russian Revolution. Janson studied at Munich and then at the University in Hamburg where he was a student of Erwin Panofsky, a prolific art historian known for his contributions to the studies of symbols and iconography in art. In 1935, at the suggestion of his advisor, Janson fled Germany under the sponsorship of Alfred Barr, director of the Museum of Modern Art in New York. Janson studied at Harvard between 1935 and 1942, completing a PhD in art history. His most significant professorial position began in 1949, where he was appointed professor and later chairman of the department of art at New York University. He remained in such a role for 25 years as he grew the department's prestige, solidifying its reputation as one of the most conservative art history programs in the country. A decade later, in 1959, Janson issued a book titled, Key Monuments of the History of Art, in efforts to aid his undergraduates in their study of art as the availability of good personal study images were not easily accessible. Such publication sparked Janson's History of Art released in 1962, a survey of art written with his wife, Dora Jane Janson.
 
@@ -287,7 +349,7 @@ The seventh and eighth editions were rewritten by a group of art historians acro
 
 [^chapter1-18]: Jeffrey Weidman, "Many are Culled but Few Are Chosen," 94.
 
-**Table 2:** Authors of the Seventh and Eighth Editions of Janson's History of Art.
+**Table 3:** Authors of the Seventh and Eighth Editions of Janson's History of Art.
 
 +--------------------------+-----------+-----------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Author                   | Gender    | Ethnicity | Nationality  | Description (As listed by Publisher)                                                                                                                                                                                                                                                                             |
@@ -307,7 +369,7 @@ The seventh and eighth editions were rewritten by a group of art historians acro
 | David L. Simon           | Male      | White     | American     | Jetté Professor of Art at Colby College where he received the Basset Teaching Award in 2005. Among his publications is the catalogue of Spanish and southern French Romanesque sculpture in the Metropolitan Museum of Art and The Cloisters.                                                                    |
 +--------------------------+-----------+-----------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**Literature Review:**
+#### **Literature Review:**
 
 Many are Culled but Few are Chosen: Janson's History of Art, Its Reception, Emulators, Legacy, and Current Demise
 
@@ -327,71 +389,11 @@ Art historian Paul E. Bolin discusses gender inequality through the first four e
 
 [^chapter1-21]: Paul E. Bolin, "Discussions and Depictions of Women in H. W. Janson's History of Art, Fourth Edition," Journal of Social Theory in Art Education, Vol. 15.(1996), pp. 146-159. https://core.ac.uk/download/pdf/51288476.pdf.
 
-**Gardner's Art Through the Ages:NEEDS TO BE ADDED**
-
-**(**Discourse of dominance through time of the text, find and add sources and if available sales information through time)
-
-REACH OUT FOR SALES DATA TO PUBLISHERS
-
-Britannica
-
--   The lack of a [comprehensive](https://www.merriam-webster.com/dictionary/comprehensive) single-volume textbook on art history prompted Gardner to write one herself, and the resulting Art Through the Ages (1926) far surpassed other available works in readability, breadth of coverage, and wealth of illustration. It remained a widely used text for decades. In 1932 she published Understanding the Arts, aimed at a wide general audience. A second edition of Art Through the Ages, greatly expanded, appeared in 1936; **the first two editions sold more than 260,000 copies.** Gardner had been named an assistant professor in the Art Institute school in 1929, and in 1933 she became a professor and head of the department of art history. She retired from the Art Institute school in 1943. Despite declining health she managed to complete work on the manuscript of a third edition of Art Through the Ages (published in 1948).
-
-Sources Found to Looking Into:
-
--   Franciscono, Marcel.
-    1977. "History, Textbooks, and Art: Reflections on a Half Century of Helen Gardner's "Art through the Ages"." Critical Inquiry 4 (2) (Winter): 285. https://login.proxy.lib.duke.edu/login?u rl=https://www.proquest.com/scholarly-journals/history-textbooks-art-reflections-on-half-century/docview/1297337757/se-2?a ccountid=10598.
--   Jaffee, Barbara. "9. "Gardner" Variety Formalism: Helen Gardner and Art through the Ages" In Partisan Canons edited by Anna Brzyski, 203-224. New York, USA: Duke University Press, 2007. https://doi.org/10.1515/9780822390374-010.
-
-**Table 3:** Edition Number, Year of Publication, Title, Authorship, and Publisher Over Time of All Cataloged Editions of Gardner's Art Through the Ages.
-
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| Edition   | Year of Publication | Author(s)                                                                                       | Title                                                                 | Publisher (as listed per Edition)                       |
-+===========+=====================+=================================================================================================+=======================================================================+=========================================================+
-| 1         | 1926                | Helen Gardner                                                                                   | Art through the ages; an introduction to its history and significance | New York, Brace, Harcourt                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 2         | 1936                | Helen Gardner                                                                                   | Art through the ages; an introduction to its history and significance | New York, Brace, Harcourt                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 3         | 1948                | Helen Gardner                                                                                   | Art through the ages                                                  | New York, Brace, Harcourt                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 4         | 1959                | Helen Gardner; revised by Sumner M. Crosby and the Dept. of the History of Art, Yale University | Art through the ages                                                  | New York, Harcourt, Brace                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 5         | 1970                | Revised by Horst de la Croix, Richard G. Tansey                                                 | Gardner's art through the ages                                        | New York, Harcourt, Brace                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 6         | 1975                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's art through the ages                                        | New York: Harcourt Brace Jovanovich                     |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 7         | 1980                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's art through the ages                                        | Harcourt Brace Jovanovich, New York                     |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 8         | 1986                | Horst de la Croix, Richard G. Tansey                                                            | Gardner's art through the ages                                        | Harcourt Brace Jovanovich, San Diego, CA                |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 9         | 1991                | Horst de la Croix, Richard G. Tansey, Diane Kirkpatrick                                         | Gardner's art through the ages                                        | San Diego: Harcourt Brace Jovanovich                    |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 10        | 1996                | Richard G. Tansey, Fred S. Kleiner                                                              | Gardern's art through the ages                                        | Fort Worth, TX: Harcourt Brace                          |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 11        | 2001                | Fred S. Kleiner, Christin J. Mamiya, Richard G. Tansey                                          | Gardner's art through the ages                                        | Fort Worth TX: Harcourt College Publishers              |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 12        | 2005                | Fred S. Kleiner, Christin J. Mamiya                                                             | Gardner's art through the ages                                        | Thomson/Wadsworth, Belmont, CA                          |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 13        | 2009                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, Thomson/Wadsworth                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 14        | 2013                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Australia ; United States : Wadsworth, Cengage Learning |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 15        | 2016                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, MA : Cengage Learning                           |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 16        | 2020                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, MA, US : Cengage Learning                       |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-
-**Discourse of Authorship Through Editions: NEEDS TO BE ADDED**
-
-**Table 4:** Authors of Gardner's Art Through the Ages: NEEDS TO BE ADDED
-
-**Literature Review: NEEDS TO BE ADDED**
-
 **Significance of Research:**
 
 There has not been research done in the aggregate, quantitatively analyzing the change over time in Janson's History of Art nor Gardner's Art Through the Ages. My research is significant as it efficiently shows the gaps of representation in terms of gender, nationality, race and ethnicity that have not been deeply touched on by previous scholars. Additionally, I am able to statistically display through a multiple linear regression which external variables are most impactful when it comes to an artist entering an art historical narrative.
 
-**Research Questions:**
+# **Research Questions:**
 
 1.  What are the demographics (Race, Gender, Ethnicity, Nationality) of artists included in each edition of Janson's History of Art (from 1962-2011) and Gardner's Art Through the Ages (from 1926-2020) looking at two-dimensional works after c. 1750?
 
@@ -399,15 +401,15 @@ There has not been research done in the aggregate, quantitatively analyzing the 
 
     Relevance and reasoning: Janson's History of Art and Gardner's Art Through the Ages being a widely-used art history textbook, serves as a proxy for the traditional art historical narrative in our project. Thus, I interpret inclusion in Janson's History of Art and Gardner's Art Through the Ages as inclusion in the traditional art historical narrative. I hypothesize that the inclusion of marginalized---specifically, female non-white, and Hispanic or Latinx artists---increased across editions of both texts because of the increasing prominence of these artists in art museums, art markets, and art media. However, I predict these improvements in coverage will not result in equal representation with white male artists, who have historically dominated all facets of the art world. I also hypothesize that ethnicity and race will be a greater barrier to representation than gender, as previous research indicates that institutions have generally favored white women artists over Hispanic and Latinx artists and artists of color. Hispanic or Latinx women and women of color will suffer most from the authors' biases, as they are subject to entrenched structures of both racial/ethnic and gender discrimination.
 
-2.  Which variables (gender, race, ethnicity, nationality, number of exhibitions at the MoMA or The Whitney, number of publications on WorldCar, and number of auction sales as recorded by the Blouin Art Sales Index) if any, predict the magnitude of an artist's inclusion in art history survey texts (Janson's History of Art and Gardner's Art Through the Ages)?
+2.  Which variables (gender, race, ethnicity, nationality, number of exhibitions at the MoMA or The Whitney) if any, predict the magnitude of an artist's inclusion in art history survey texts (*Janson's History of Art* and *Gardner's Art Through the Ages*)?
 
-    Hypothesis:
+    Hypothesis: I hypothesis demographic
 
     Relevance and reasoning:
 
-**Methodology: NEEDS TO BE ADDED**
+# **Methodology: NEEDS TO BE ADDED**
 
-**Data Dictionary:**
+## **Data Dictionary:**
 
 Outcome:
 
@@ -435,31 +437,57 @@ Other variables:
 
 `book` = Which book, either Janson or Gardner the particular artist at that particular time was included.
 
-## Exploratory Data Analysis: *Janson's History of Art* and *Gardner's Art Through the Ages* Through Editions
+`artist_unique_id` = A unique identifying number assigned to artists across books and editions denoted in alphabetical order.
+
+## Exploratory Data Analysis: *Gardner's Art Through the Ages* and *Janson's History of Art* Through Editions
 
 **Count Through Editions:**
-
-```{r}
-#| label: jansoncountthroughtime
-#| echo: false
-
-ggplot(gardnerjanson %>% filter(book == "janson"), aes(x = year))+
-  geom_bar()+
-  labs(title = "Overall Count of Artists in Janson's History of Art",
-       x = "Year of Publication",
-       y = "Count")
-```
 
 ```{r}
 #| label: gardnercountthroughtime
 #| echo: false
 
-ggplot(gardnerjanson %>% filter(book == "gardner"), aes(x = year))+
+ggplot(gardner_museums, aes(x = year))+
   geom_bar()+
   labs(title = "Overall Count of Artists in Gardner's Art Through the Ages",
        x = "Year of Publication",
-       y = "Count")
+       y = "Count")+
+  geom_text(aes(label = ..count..),
+            stat = "count", 
+            vjust = -1, 
+            colour = "black", 
+            size = 2.5)+
+  ylim(0, 200)
+
+gardner_museums %>%
+  filter(year == "2009")
 ```
+
+The shape of the overall count of works by artists in *Gardner's Art Through the Ages* is heavily left-skewed, multimodal, and asymmetrical. Such highlights how through time, more works are, on average, continually added to *Gardner's Art Through the Ages* that are two-dimensional and made after c. 1750. The first edition, published in 1926 by Helen Gardner, only has a a total of 21 works. Edition 15, published in 2016 as well as edition 16, published in 2020, have 182 works respectively, which is the maximum amount of works through all editions. There are some respective lulls and peaks through time, as in the fourth edition published in 1959, there are 87 works, while in the fifth published in 1970, there is a significant regression to 69 works. Such trend is evident as well in the seventh edition published in 1980, which has 115 works, while the eighth published in 1986 regresses to 109 works. There is yet another peak at edition eleven published in 2001, with 170 works. There is then a lull over the course of two editions, ending with edition thirteen published in 2009 having 164 works.
+
+```{r}
+#| label: jansoncountthroughtime
+#| echo: false
+
+ggplot(janson_museums, aes(x = year))+
+  geom_bar()+
+  labs(title = "Overall Count of Works by Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Count")+
+  geom_text(aes(label = ..count..),
+            stat = "count", 
+            vjust = -1, 
+            colour = "black", 
+            size = 4)+
+  ylim(0, 200)
+
+janson_museums%>%
+  filter(year == "2011")
+
+
+```
+
+The shape of the overall count of works by artists in *Janson's History of Art* is left-skewed, unimodal and asymmetrical. Such highlights how through time, more works are added to *Janson's History of Art* that are two-dimensional and made after c. 1750. There is then a drop-off of works included in the seventh (published in 2007 with 163 works) and eighth (published in 2011 with 153 works) editions, when new authorship took over. Within edition five (published 1995) and edition six (published in 2001), both written by Anthony Janson, there are the same number of works, the maximum amount included in the text throughout time, 185, as compared to the count of works in the first edition, first printing 62, and first edition, second printing, 76.
 
 **Gender Through Editions:**
 
