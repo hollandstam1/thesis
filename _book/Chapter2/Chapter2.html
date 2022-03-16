@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-99.9.9">
+  <meta name="generator" content="quarto-0.9.21">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>holland-thesis - 2&nbsp; Model Exploration</title>
   <style>
@@ -104,7 +104,18 @@
         <nav id="TOC" role="doc-toc">
 <h2 id="toc-title">Table of contents</h2>
 <ul>
-<li><a href="#model-exploration" class="nav-link active" data-scroll-target="#model-exploration"> <span class="header-section-number">3</span> Model Exploration:</a></li>
+<li><a href="#data-preparation-for-modeling" class="nav-link active" data-scroll-target="#data-preparation-for-modeling"> <span class="header-section-number">3</span> Data Preparation for Modeling:</a></li>
+<li><a href="#model-exploration" class="nav-link" data-scroll-target="#model-exploration"> <span class="header-section-number">4</span> Model Exploration:</a></li>
+<li><a href="#appendix" class="nav-link" data-scroll-target="#appendix"> <span class="header-section-number">5</span> Appendix:</a>
+<ul class="collapse">
+<li><a href="#assumptions" class="nav-link" data-scroll-target="#assumptions"> <span class="header-section-number">5.1</span> Assumptions:</a>
+<ul class="collapse">
+<li><a href="#residuals-and-constant-variance" class="nav-link" data-scroll-target="#residuals-and-constant-variance"> <span class="header-section-number">5.1.1</span> Residuals and Constant Variance:</a></li>
+<li><a href="#normality" class="nav-link" data-scroll-target="#normality"> <span class="header-section-number">5.1.2</span> Normality:</a></li>
+<li><a href="#linearity" class="nav-link" data-scroll-target="#linearity"> <span class="header-section-number">5.1.3</span> Linearity:</a></li>
+<li><a href="#independence" class="nav-link" data-scroll-target="#independence"> <span class="header-section-number">5.1.4</span> Independence:</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </nav>
     </div>
@@ -115,179 +126,108 @@
 </header>
 
 <div class="cell">
-<div class="cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>✓ ggplot2 3.3.5     ✓ purrr   0.3.4
-✓ tibble  3.1.6     ✓ dplyr   1.0.7
-✓ tidyr   1.1.4     ✓ stringr 1.4.0
-✓ readr   2.1.2     ✓ forcats 0.5.1</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>Registered S3 method overwritten by 'tune':
-  method                   from   
-  required_pkgs.model_spec parsnip</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>── Attaching packages ────────────────────────────────────── tidymodels 0.1.4 ──</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>✓ broom        0.7.11         ✓ rsample      0.1.1     
-✓ dials        0.0.10         ✓ tune         0.1.6     
-✓ infer        1.0.1.9000     ✓ workflows    0.2.4     
-✓ modeldata    0.1.1          ✓ workflowsets 0.1.0     
-✓ parsnip      0.1.7          ✓ yardstick    0.0.9     
-✓ recipes      0.1.17         </code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>── Conflicts ───────────────────────────────────────── tidymodels_conflicts() ──
-x scales::discard() masks purrr::discard()
-x dplyr::filter()   masks stats::filter()
-x recipes::fixed()  masks stringr::fixed()
-x dplyr::lag()      masks stats::lag()
-x yardstick::spec() masks readr::spec()
-x recipes::step()   masks stats::step()
-• Use tidymodels_prefer() to resolve common conflicts.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>Loading required package: Matrix</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>
-Attaching package: 'Matrix'</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>The following objects are masked from 'package:tidyr':
 
-    expand, pack, unpack</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>
-Attaching package: 'MASS'</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>The following object is masked from 'package:dplyr':
+<section id="data-preparation-for-modeling" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Data Preparation for Modeling:</h1>
+<div class="cell">
 
-    select</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>Loading required package: carData</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>
-Attaching package: 'car'</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>The following object is masked from 'package:dplyr':
-
-    recode</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>The following object is masked from 'package:purrr':
-
-    some</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>
-Attaching package: 'lmerTest'</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>The following object is masked from 'package:lme4':
-
-    lmer</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>The following object is masked from 'package:recipes':
-
-    step</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>The following object is masked from 'package:stats':
-
-    step</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>New names:
-* `` -&gt; ...1</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>Rows: 3162 Columns: 16
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (7): artist_name, artist_nationality, artist_nationality_other, artist_g...
-dbl (9): ...1, artist_unique_id, edition_number, year, space_ratio_per_page_...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-</div>
-<section id="model-exploration" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Model Exploration:</h1>
+</section>
+<section id="model-exploration" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Model Exploration:</h1>
 <div class="cell">
 <div class="cell-output-stdout">
 <pre><code>Linear mixed model fit by maximum likelihood . t-tests use Satterthwaite's
   method [lmerModLmerTest]
 Formula: log(space_ratio_per_page_total) ~ artist_race + artist_ethnicity +  
     artist_gender + artist_nationality_other + moma_count_to_date +  
-    whitney_count_to_date + (1 | artist_name)
-   Data: gardnerjanson_museums %&gt;% filter(book == "janson")
+    whitney_count_to_date + artist_gender * moma_count_to_date +  
+    artist_nationality_other * moma_count_to_date + (1 | artist_name)
+   Data: gardnerjanson_museums
 
      AIC      BIC   logLik deviance df.resid 
-  1943.6   2020.2   -956.8   1913.6     1204 
+  3907.9   4046.9  -1931.0   3861.9     3081 
 
 Scaled residuals: 
     Min      1Q  Median      3Q     Max 
--2.7956 -0.5997 -0.1124  0.6755  2.5051 
+-3.6310 -0.5872 -0.0783  0.6271  3.0678 
 
 Random effects:
  Groups      Name        Variance Std.Dev.
- artist_name (Intercept) 0.2094   0.4576  
- Residual                0.2002   0.4474  
-Number of obs: 1219, groups:  artist_name, 243
+ artist_name (Intercept) 0.1264   0.3556  
+ Residual                0.1649   0.4060  
+Number of obs: 3104, groups:  artist_name, 395
 
 Fixed effects:
-                                         Estimate Std. Error         df t value
-(Intercept)                             -0.795206   0.619802 336.280524  -1.283
-artist_raceAsian                        -0.174437   0.797908 350.326048  -0.219
-artist_raceBlack or African American    -0.077914   0.596763 341.155442  -0.131
-artist_raceWhite                        -0.064554   0.566537 349.522847  -0.114
-artist_ethnicityNot Hispanic or Latinx  -0.145735   0.273303 275.310445  -0.533
-artist_genderMale                        0.017756   0.108336 253.840228   0.164
-artist_nationality_otherBritish          0.053338   0.122371 256.739329   0.436
-artist_nationality_otherFrench           0.435508   0.100099 254.481867   4.351
-artist_nationality_otherGerman           0.005468   0.124415 264.926122   0.044
-artist_nationality_otherOther           -0.050234   0.099766 265.609139  -0.504
-artist_nationality_otherSpanish          0.672632   0.373165 241.628155   1.803
-moma_count_to_date                       0.014969   0.003716 553.236171   4.028
-whitney_count_to_date                    0.003260   0.007142 373.570767   0.456
-                                       Pr(&gt;|t|)    
-(Intercept)                              0.2004    
-artist_raceAsian                         0.8271    
-artist_raceBlack or African American     0.8962    
-artist_raceWhite                         0.9093    
-artist_ethnicityNot Hispanic or Latinx   0.5943    
-artist_genderMale                        0.8699    
-artist_nationality_otherBritish          0.6633    
-artist_nationality_otherFrench         1.97e-05 ***
-artist_nationality_otherGerman           0.9650    
-artist_nationality_otherOther            0.6150    
-artist_nationality_otherSpanish          0.0727 .  
-moma_count_to_date                     6.42e-05 ***
-whitney_count_to_date                    0.6484    
+                                                       Estimate Std. Error
+(Intercept)                                          -1.007e+00  3.495e-01
+artist_raceAsian                                     -9.882e-02  3.451e-01
+artist_raceBlack or African American                  4.443e-02  3.393e-01
+artist_raceN/A                                       -5.558e-02  4.671e-01
+artist_raceNative Hawaiian or Other Pacific Islander  2.022e-01  4.007e-01
+artist_raceWhite                                      2.414e-02  3.270e-01
+artist_ethnicityNot Hispanic or Latinx               -1.494e-02  1.316e-01
+artist_genderMale                                     7.891e-02  6.944e-02
+artist_nationality_otherBritish                       5.249e-03  8.311e-02
+artist_nationality_otherFrench                        2.637e-01  6.725e-02
+artist_nationality_otherGerman                       -6.458e-02  8.828e-02
+artist_nationality_otherOther                        -5.073e-02  6.631e-02
+artist_nationality_otherSpanish                       6.339e-01  2.409e-01
+moma_count_to_date                                   -1.073e-03  1.235e-02
+whitney_count_to_date                                 1.761e-03  3.768e-03
+artist_genderMale:moma_count_to_date                 -1.350e-02  1.429e-02
+artist_nationality_otherBritish:moma_count_to_date    1.371e-02  1.726e-02
+artist_nationality_otherFrench:moma_count_to_date     3.291e-02  9.191e-03
+artist_nationality_otherGerman:moma_count_to_date     2.825e-02  9.959e-03
+artist_nationality_otherOther:moma_count_to_date      1.929e-02  9.271e-03
+artist_nationality_otherSpanish:moma_count_to_date    3.959e-02  1.055e-02
+                                                             df t value
+(Intercept)                                           6.413e+02  -2.882
+artist_raceAsian                                      6.528e+02  -0.286
+artist_raceBlack or African American                  6.485e+02   0.131
+artist_raceN/A                                        6.773e+02  -0.119
+artist_raceNative Hawaiian or Other Pacific Islander  6.310e+02   0.505
+artist_raceWhite                                      6.680e+02   0.074
+artist_ethnicityNot Hispanic or Latinx                4.991e+02  -0.114
+artist_genderMale                                     4.449e+02   1.136
+artist_nationality_otherBritish                       4.575e+02   0.063
+artist_nationality_otherFrench                        4.635e+02   3.921
+artist_nationality_otherGerman                        4.846e+02  -0.732
+artist_nationality_otherOther                         5.244e+02  -0.765
+artist_nationality_otherSpanish                       4.018e+02   2.631
+moma_count_to_date                                    5.679e+02  -0.087
+whitney_count_to_date                                 9.689e+02   0.467
+artist_genderMale:moma_count_to_date                  6.475e+02  -0.944
+artist_nationality_otherBritish:moma_count_to_date    7.781e+02   0.795
+artist_nationality_otherFrench:moma_count_to_date     1.000e+03   3.580
+artist_nationality_otherGerman:moma_count_to_date     1.009e+03   2.837
+artist_nationality_otherOther:moma_count_to_date      8.612e+02   2.081
+artist_nationality_otherSpanish:moma_count_to_date    1.592e+03   3.753
+                                                     Pr(&gt;|t|)    
+(Intercept)                                          0.004080 ** 
+artist_raceAsian                                     0.774700    
+artist_raceBlack or African American                 0.895857    
+artist_raceN/A                                       0.905309    
+artist_raceNative Hawaiian or Other Pacific Islander 0.613965    
+artist_raceWhite                                     0.941172    
+artist_ethnicityNot Hispanic or Latinx               0.909657    
+artist_genderMale                                    0.256386    
+artist_nationality_otherBritish                      0.949669    
+artist_nationality_otherFrench                       0.000101 ***
+artist_nationality_otherGerman                       0.464776    
+artist_nationality_otherOther                        0.444524    
+artist_nationality_otherSpanish                      0.008838 ** 
+moma_count_to_date                                   0.930835    
+whitney_count_to_date                                0.640421    
+artist_genderMale:moma_count_to_date                 0.345469    
+artist_nationality_otherBritish:moma_count_to_date   0.427104    
+artist_nationality_otherFrench:moma_count_to_date    0.000360 ***
+artist_nationality_otherGerman:moma_count_to_date    0.004644 ** 
+artist_nationality_otherOther:moma_count_to_date     0.037702 *  
+artist_nationality_otherSpanish:moma_count_to_date   0.000181 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>
-Correlation matrix not shown by default, as p = 13 &gt; 12.
-Use print(x, correlation=TRUE)  or
-    vcov(x)        if you need it</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -297,8 +237,268 @@ Use print(x, correlation=TRUE)  or
 <div class="cell">
 
 </div>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>Linear mixed model fit by maximum likelihood . t-tests use Satterthwaite's
+  method [lmerModLmerTest]
+Formula: log(space_ratio_per_page_total) ~ artist_race + artist_ethnicity +  
+    artist_gender + artist_nationality_other + moma_count_to_date +  
+    whitney_count_to_date + artist_gender * moma_count_to_date +  
+    artist_nationality_other * moma_count_to_date + (1 | artist_name)
+   Data: gardnerjanson_museums
+
+     AIC      BIC   logLik deviance df.resid 
+  3907.9   4046.9  -1931.0   3861.9     3081 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.6310 -0.5872 -0.0783  0.6271  3.0678 
+
+Random effects:
+ Groups      Name        Variance Std.Dev.
+ artist_name (Intercept) 0.1264   0.3556  
+ Residual                0.1649   0.4060  
+Number of obs: 3104, groups:  artist_name, 395
+
+Fixed effects:
+                                                       Estimate Std. Error
+(Intercept)                                          -1.007e+00  3.495e-01
+artist_raceAsian                                     -9.882e-02  3.451e-01
+artist_raceBlack or African American                  4.443e-02  3.393e-01
+artist_raceN/A                                       -5.558e-02  4.671e-01
+artist_raceNative Hawaiian or Other Pacific Islander  2.022e-01  4.007e-01
+artist_raceWhite                                      2.414e-02  3.270e-01
+artist_ethnicityNot Hispanic or Latinx               -1.494e-02  1.316e-01
+artist_genderMale                                     7.891e-02  6.944e-02
+artist_nationality_otherBritish                       5.249e-03  8.311e-02
+artist_nationality_otherFrench                        2.637e-01  6.725e-02
+artist_nationality_otherGerman                       -6.458e-02  8.828e-02
+artist_nationality_otherOther                        -5.073e-02  6.631e-02
+artist_nationality_otherSpanish                       6.339e-01  2.409e-01
+moma_count_to_date                                   -1.073e-03  1.235e-02
+whitney_count_to_date                                 1.761e-03  3.768e-03
+artist_genderMale:moma_count_to_date                 -1.350e-02  1.429e-02
+artist_nationality_otherBritish:moma_count_to_date    1.371e-02  1.726e-02
+artist_nationality_otherFrench:moma_count_to_date     3.291e-02  9.191e-03
+artist_nationality_otherGerman:moma_count_to_date     2.825e-02  9.959e-03
+artist_nationality_otherOther:moma_count_to_date      1.929e-02  9.271e-03
+artist_nationality_otherSpanish:moma_count_to_date    3.959e-02  1.055e-02
+                                                             df t value
+(Intercept)                                           6.413e+02  -2.882
+artist_raceAsian                                      6.528e+02  -0.286
+artist_raceBlack or African American                  6.485e+02   0.131
+artist_raceN/A                                        6.773e+02  -0.119
+artist_raceNative Hawaiian or Other Pacific Islander  6.310e+02   0.505
+artist_raceWhite                                      6.680e+02   0.074
+artist_ethnicityNot Hispanic or Latinx                4.991e+02  -0.114
+artist_genderMale                                     4.449e+02   1.136
+artist_nationality_otherBritish                       4.575e+02   0.063
+artist_nationality_otherFrench                        4.635e+02   3.921
+artist_nationality_otherGerman                        4.846e+02  -0.732
+artist_nationality_otherOther                         5.244e+02  -0.765
+artist_nationality_otherSpanish                       4.018e+02   2.631
+moma_count_to_date                                    5.679e+02  -0.087
+whitney_count_to_date                                 9.689e+02   0.467
+artist_genderMale:moma_count_to_date                  6.475e+02  -0.944
+artist_nationality_otherBritish:moma_count_to_date    7.781e+02   0.795
+artist_nationality_otherFrench:moma_count_to_date     1.000e+03   3.580
+artist_nationality_otherGerman:moma_count_to_date     1.009e+03   2.837
+artist_nationality_otherOther:moma_count_to_date      8.612e+02   2.081
+artist_nationality_otherSpanish:moma_count_to_date    1.592e+03   3.753
+                                                     Pr(&gt;|t|)    
+(Intercept)                                          0.004080 ** 
+artist_raceAsian                                     0.774700    
+artist_raceBlack or African American                 0.895857    
+artist_raceN/A                                       0.905309    
+artist_raceNative Hawaiian or Other Pacific Islander 0.613965    
+artist_raceWhite                                     0.941172    
+artist_ethnicityNot Hispanic or Latinx               0.909657    
+artist_genderMale                                    0.256386    
+artist_nationality_otherBritish                      0.949669    
+artist_nationality_otherFrench                       0.000101 ***
+artist_nationality_otherGerman                       0.464776    
+artist_nationality_otherOther                        0.444524    
+artist_nationality_otherSpanish                      0.008838 ** 
+moma_count_to_date                                   0.930835    
+whitney_count_to_date                                0.640421    
+artist_genderMale:moma_count_to_date                 0.345469    
+artist_nationality_otherBritish:moma_count_to_date   0.427104    
+artist_nationality_otherFrench:moma_count_to_date    0.000360 ***
+artist_nationality_otherGerman:moma_count_to_date    0.004644 ** 
+artist_nationality_otherOther:moma_count_to_date     0.037702 *  
+artist_nationality_otherSpanish:moma_count_to_date   0.000181 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>                                                 GVIF Df GVIF^(1/(2*Df))
+artist_race                                  1.375255  5        1.032377
+artist_ethnicity                             1.609272  1        1.268571
+artist_gender                                1.310043  1        1.144571
+artist_nationality_other                     4.055801  5        1.150291
+moma_count_to_date                          31.944102  1        5.651911
+whitney_count_to_date                        1.232127  1        1.110012
+artist_gender:moma_count_to_date            41.927417  1        6.475138
+artist_nationality_other:moma_count_to_date 23.593720  5        1.371765</code></pre>
+</div>
+</div>
+<p>GET PVALUES FOR COEFFICIENTS - STATISTICALLY SIGNIFICANT - GO THROUGH INTERPRETATIONS WITH LOG TRANSFORMATION AND MIXED EFFECTS MODEL - CONFIRM MODEL DIAGNOSTICS - AIC / BIC FOR MIXED EFFECTS -</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>Linear mixed model fit by maximum likelihood . t-tests use Satterthwaite's
+  method [lmerModLmerTest]
+Formula: log(space_ratio_per_page_total) ~ artist_race + artist_ethnicity +  
+    artist_gender + artist_nationality_other + moma_count_to_date +  
+    whitney_count_to_date + artist_gender * moma_count_to_date +  
+    artist_nationality_other * moma_count_to_date + (1 | artist_name)
+   Data: gardnerjanson_museums
+
+     AIC      BIC   logLik deviance df.resid 
+  3907.9   4046.9  -1931.0   3861.9     3081 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.6310 -0.5872 -0.0783  0.6271  3.0678 
+
+Random effects:
+ Groups      Name        Variance Std.Dev.
+ artist_name (Intercept) 0.1264   0.3556  
+ Residual                0.1649   0.4060  
+Number of obs: 3104, groups:  artist_name, 395
+
+Fixed effects:
+                                                       Estimate Std. Error
+(Intercept)                                          -1.007e+00  3.495e-01
+artist_raceAsian                                     -9.882e-02  3.451e-01
+artist_raceBlack or African American                  4.443e-02  3.393e-01
+artist_raceN/A                                       -5.558e-02  4.671e-01
+artist_raceNative Hawaiian or Other Pacific Islander  2.022e-01  4.007e-01
+artist_raceWhite                                      2.414e-02  3.270e-01
+artist_ethnicityNot Hispanic or Latinx               -1.494e-02  1.316e-01
+artist_genderMale                                     7.891e-02  6.944e-02
+artist_nationality_otherBritish                       5.249e-03  8.311e-02
+artist_nationality_otherFrench                        2.637e-01  6.725e-02
+artist_nationality_otherGerman                       -6.458e-02  8.828e-02
+artist_nationality_otherOther                        -5.073e-02  6.631e-02
+artist_nationality_otherSpanish                       6.339e-01  2.409e-01
+moma_count_to_date                                   -1.073e-03  1.235e-02
+whitney_count_to_date                                 1.761e-03  3.768e-03
+artist_genderMale:moma_count_to_date                 -1.350e-02  1.429e-02
+artist_nationality_otherBritish:moma_count_to_date    1.371e-02  1.726e-02
+artist_nationality_otherFrench:moma_count_to_date     3.291e-02  9.191e-03
+artist_nationality_otherGerman:moma_count_to_date     2.825e-02  9.959e-03
+artist_nationality_otherOther:moma_count_to_date      1.929e-02  9.271e-03
+artist_nationality_otherSpanish:moma_count_to_date    3.959e-02  1.055e-02
+                                                             df t value
+(Intercept)                                           6.413e+02  -2.882
+artist_raceAsian                                      6.528e+02  -0.286
+artist_raceBlack or African American                  6.485e+02   0.131
+artist_raceN/A                                        6.773e+02  -0.119
+artist_raceNative Hawaiian or Other Pacific Islander  6.310e+02   0.505
+artist_raceWhite                                      6.680e+02   0.074
+artist_ethnicityNot Hispanic or Latinx                4.991e+02  -0.114
+artist_genderMale                                     4.449e+02   1.136
+artist_nationality_otherBritish                       4.575e+02   0.063
+artist_nationality_otherFrench                        4.635e+02   3.921
+artist_nationality_otherGerman                        4.846e+02  -0.732
+artist_nationality_otherOther                         5.244e+02  -0.765
+artist_nationality_otherSpanish                       4.018e+02   2.631
+moma_count_to_date                                    5.679e+02  -0.087
+whitney_count_to_date                                 9.689e+02   0.467
+artist_genderMale:moma_count_to_date                  6.475e+02  -0.944
+artist_nationality_otherBritish:moma_count_to_date    7.781e+02   0.795
+artist_nationality_otherFrench:moma_count_to_date     1.000e+03   3.580
+artist_nationality_otherGerman:moma_count_to_date     1.009e+03   2.837
+artist_nationality_otherOther:moma_count_to_date      8.612e+02   2.081
+artist_nationality_otherSpanish:moma_count_to_date    1.592e+03   3.753
+                                                     Pr(&gt;|t|)    
+(Intercept)                                          0.004080 ** 
+artist_raceAsian                                     0.774700    
+artist_raceBlack or African American                 0.895857    
+artist_raceN/A                                       0.905309    
+artist_raceNative Hawaiian or Other Pacific Islander 0.613965    
+artist_raceWhite                                     0.941172    
+artist_ethnicityNot Hispanic or Latinx               0.909657    
+artist_genderMale                                    0.256386    
+artist_nationality_otherBritish                      0.949669    
+artist_nationality_otherFrench                       0.000101 ***
+artist_nationality_otherGerman                       0.464776    
+artist_nationality_otherOther                        0.444524    
+artist_nationality_otherSpanish                      0.008838 ** 
+moma_count_to_date                                   0.930835    
+whitney_count_to_date                                0.640421    
+artist_genderMale:moma_count_to_date                 0.345469    
+artist_nationality_otherBritish:moma_count_to_date   0.427104    
+artist_nationality_otherFrench:moma_count_to_date    0.000360 ***
+artist_nationality_otherGerman:moma_count_to_date    0.004644 ** 
+artist_nationality_otherOther:moma_count_to_date     0.037702 *  
+artist_nationality_otherSpanish:moma_count_to_date   0.000181 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>           R2m       R2c
+[1,] 0.1733762 0.5321474</code></pre>
+</div>
+</div>
+<p>Marginal R2 provides the variance explained only by fixed effects and conditional R2 provides the variance explained by the entire model, i.e., both fixed effects and random effects.</p>
+<div class="cell">
+
+</div>
+<p>Model Diagnostics : Check for linearity, independence, residuals, normal distribution of the residuals - no pattern in residuals, constant variance</p>
+<p>RESOURCE: https://www.ssc.wisc.edu/sscc/pubs/MM/MM_DiagInfer.html</p>
+<p>Plotting : log transform some variables : Fitted v. Residuals</p>
+</section>
+<section id="appendix" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Appendix:</h1>
+<section id="assumptions" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">5.1</span> Assumptions:</h2>
+<section id="residuals-and-constant-variance" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="residuals-and-constant-variance"><span class="header-section-number">5.1.1</span> Residuals and Constant Variance:</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Chapter2_files/figure-html/diagnostics-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>before log transforming our outcome variable, the constant variance assumption was violated. Therefore, in order to pass the constant variance assumption, I performed a log transformation.</p>
+</section>
+<section id="normality" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="normality"><span class="header-section-number">5.1.2</span> Normality:</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Chapter2_files/figure-html/normal-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="linearity" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="linearity"><span class="header-section-number">5.1.3</span> Linearity:</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Chapter2_files/figure-html/linearitymoma-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Chapter2_files/figure-html/linearitywhitney-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Normality of random effect: Get the estimate of random effect (in your case random intercepts), and check them as check the residual. But it is not efficient because you just have 7 random intercepts.</p>
+</section>
+<section id="independence" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="independence"><span class="header-section-number">5.1.4</span> Independence:</h3>
+<p>Another assumption is the independence between subjects. No test, based on your judgement. Subject specific random intercept means the correlation between the response variable from the same subject are the same.</p>
+<p>all obervations of different artists are independent -</p>
+<p>log transforming predictors - interpretations change - variables weren’t changed - same idea, bit different</p>
+<p>INDEPENDENCE: DOUBLE CHECK - EMPIRICALLY ARGUE OR ?</p>
+<p>verbally argue the independence between artists - since we are using a mixed effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed effects model. Between artists, we expect the observations to be independent.</p>
 
 
+</section>
+</section>
 </section>
 </main> <!-- /main -->
 <script type="application/javascript">

@@ -4,16 +4,7 @@ title: "Quantifying Art Historical Narratives, Chapter 1"
 
 ## Abstract
 
-My project surveys the development of *Janson's History of Art* across its eight editions as well as *Gardner's Art Through the Ages* through its sixteen editions, looking particularly at the change in artist demographic through time.
-Additionally, this paper investigates which external variables such as artist gender, ethnicity, race, nationality, number of exhibitions at the Museum of Modern Art and The Whitney, and number of publications on WorldCat, if any, help predict the magnitude of an artist's inclusion in art historical survey texts.
-I conduct a data analysis to assess the demographic representation of artists through editions of *Janson's History of Art* and *Gardner's Art Through the Ages*, a proxy for the art historical survey.
-I compare artist demographics through editions of Janson and Gardner.
-My findings indicate that coverage of minority artists (defined as nonwhite and/or Hispanic or Latinx and/or female) increases across editions of *Janson's History of Art* and *Gardner's Art Through the Ages*, but remains negligible compared to white male non Hispanic or Latinx artists.
-Moreover, in *Janson's History of Art* through all editions, the percentage of artists who are white is 98.04%, the percentage of artists that are male is 92.47%, and the percentage of artists that are not Hispanic or Latinx is 92.04% (cite).
-In *Gardner's Art Through the Ages*, through all editions, the percentage of artists who are white is 92.76%, the percentage of artists that are male is 90.47%, and the percentage of artists that are not Hispanic or Latinx is 90.94% (see appendix).
-Both texts display a narrative of the history of art as being predominantly white, male, non Hispanic or Latinx.
-Regarding nationality, in Janson, 81.52% of the artists are American, British, French, German and Spanish, which is very similar to Gardner's 79.30% of those five same nationalities (see appendix).
-HERE I WILL ADD FINDINGS FROM REGRESSION AS WELL AS CONCISE CONCLUSIONS ONCE I FINISH THE STATISTICS SIDE OF MY RESEARCH.
+My project surveys the development of *Janson's History of Art* across its eight editions as well as *Gardner's Art Through the Ages* through its sixteen editions, looking particularly at the change in artist demographic through time. Additionally, this paper investigates which external variables such as artist gender, ethnicity, race, nationality, number of exhibitions at the Museum of Modern Art and The Whitney, and number of publications on WorldCat, if any, help predict the magnitude of an artist's inclusion in art historical survey texts. I conduct a data analysis to assess the demographic representation of artists through editions of *Janson's History of Art* and *Gardner's Art Through the Ages*, a proxy for the art historical survey. I compare artist demographics through editions of Janson and Gardner. My findings indicate that coverage of minority artists (defined as nonwhite and/or Hispanic or Latinx and/or female) increases across editions of *Janson's History of Art* and *Gardner's Art Through the Ages*, but remains negligible compared to white male non Hispanic or Latinx artists. Moreover, in *Janson's History of Art* through all editions, the percentage of artists who are white is 98.04%, the percentage of artists that are male is 92.47%, and the percentage of artists that are not Hispanic or Latinx is 92.04% (cite). In *Gardner's Art Through the Ages*, through all editions, the percentage of artists who are white is 92.76%, the percentage of artists that are male is 90.47%, and the percentage of artists that are not Hispanic or Latinx is 90.94% (see appendix). Both texts display a narrative of the history of art as being predominantly white, male, non Hispanic or Latinx. Regarding nationality, in Janson, 81.52% of the artists are American, British, French, German and Spanish, which is very similar to Gardner's 79.30% of those five same nationalities (see appendix). HERE I WILL ADD FINDINGS FROM REGRESSION AS WELL AS CONCISE CONCLUSIONS ONCE I FINISH THE STATISTICS SIDE OF MY RESEARCH.
 
 Data Preparation:
 
@@ -193,53 +184,30 @@ gardnerjanson_museums[is.na(gardnerjanson_museums)] <- 0
 
 ## Introduction and Context: Why *Janson's History of Art* and *Gardner's Art Through the Ages*?
 
-At the beginning of last year, Yale University announced its decision to eliminate its art history survey course over complaints that it prioritizes a white, western canon over other narratives.[^chapter1-1]
-These art historical surveys have cemented themselves at the core of art history programs for decades, but now are being rejected as the most important story to tell when educating future art historians.
-I chose to look at Janson's History of Art, first published in 1962 by H.
-W.
-"Peter" Janson with his wife, Dora Jane Janson (refer to Table 1), and Gardner's Art Through the Ages first published by Helen Gardner in 1926 (refer to Table 2) as my two exemplary art historical narratives.
- 
+At the beginning of last year, Yale University announced its decision to eliminate its art history survey course over complaints that it prioritizes a white, western canon over other narratives.[^chapter1-1] These art historical surveys have cemented themselves at the core of art history programs for decades, but now are being rejected as the most important story to tell when educating future art historians. I chose to look at Janson's History of Art, first published in 1962 by H. W. "Peter" Janson with his wife, Dora Jane Janson (refer to Table 1), and Gardner's Art Through the Ages first published by Helen Gardner in 1926 (refer to Table 2) as my two exemplary art historical narratives.  
 
 [^chapter1-1]: Taylor Dafoe, "Yale is Eliminating Its Art History Survey Course Over Complaints That It\
     Prioritizes a White, Western Canon Over Other Narratives," Artnet.com, (January 27,\
     2020), https://news.artnet.com/art-world/yale-art-history-eliminating-survey-\
     course-1763082.
 
-## Janson's History of Art:
+## *Janson's History of Art*:
 
-Such a text is claimed to be the most influential art history survey through time by myriad art historians such as Jeffery Wiedman, Zoë Ingalls, John Russell, Alexandra Peers, Elizabeth Sears and Charlotte Schoell-Glass to name a few.
-Alexandra Peers in her publication for ARTnews.com in February of 2006, claims that "it was Janson who, more than any other art historian, pioneers the 'in and out' celebrity model of art history. There were artists who matter, he argued, and those who didn't."[^chapter1-2] Janson's formation of his history of art is not only arguably the most dominant art history survey over time, but also he holds a reputation of being a gatekeeper of art history.
-He states at the end of his introduction in the first and second editions that after having read his text, one "shall have joined the active minority that participates directly in shaping the course of art in our time."[^chapter1-3] He recognizes his role as an individual who shapes the narrative of the history of art, while convincing the reader that after having read his text, one has the agency to be a gatekeeper alongside him
-. Such agency is only granted once one understands his digestion of the most important works and artists through time
-.
+Such a text is claimed to be the most influential art history survey through time by myriad art historians such as Jeffery Wiedman, Zoë Ingalls, John Russell, Alexandra Peers, Elizabeth Sears and Charlotte Schoell-Glass to name a few. Alexandra Peers in her publication for ARTnews.com in February of 2006, claims that "it was Janson who, more than any other art historian, pioneers the 'in and out' celebrity model of art history. There were artists who matter, he argued, and those who didn't."[^chapter1-2] Janson's formation of his history of art is not only arguably the most dominant art history survey over time, but also he holds a reputation of being a gatekeeper of art history. He states at the end of his introduction in the first and second editions that after having read his text, one "shall have joined the active minority that participates directly in shaping the course of art in our time."[^chapter1-3] He recognizes his role as an individual who shapes the narrative of the history of art, while convincing the reader that after having read his text, one has the agency to be a gatekeeper alongside him . Such agency is only granted once one understands his digestion of the most important works and artists through time .
 
 [^chapter1-2]: Alexandra Peers, "Canon Fodder," Artnews.com, (February 1, 2006), https://www.artnews.com/art-news/news/canon-fodder-135/.
 
 [^chapter1-3]: H. W. Janson and Dora Jane Janson, (1963),  History of Art: A Survey of the Major Visual Arts from the Dawn of History to the Present Day, First Edition, Second Printing, New York: Harry N. Abrams: 17.
 
-It would be most comprehensive if we were to have access to the total number of sales per edition of Janson's History of Art, to use as tangible data to show the relevance and importance of the text through time.
-Both publishers, Harry N. Abrams and Prentice-Hall (now Pearson Prentice-Hall) have declined sharing sales information in the aggregate.
-By leafing through various scholarly publications, there is imperfect data of sale information worth noting when discussing the dominance of Janson's History of Art through time.
-The text was at its height of sales between when it was initially released in 1962 through H.
-W.
-"Peter" Janson's death in 1982 (refer to Table 1 for complete information of each edition).
-Art historian, Patricia Hills cites in her publication in Artforum, "in 1973 the Janson text had 46% of the market, while Gardner's 5th edition had 24%, followed by Gombrich's, 8.5%, Cleaver with 3% and miscellaneous 'other' with 18.5%."[^chapter1-4] At the time such a report had been made, the first edition (1962), the first edition revised and enlarged (1969) had been released.
-Additionally, it was written by John Russell of the New York Times in October of 1982 that "well over two million copies have been sold."[^chapter1-5] Russell does not specify whether these sales numbers are solely the first edition of Janson's History of Art, or the first edition as well as the first edition revised and enlarged and the second edition (1977)
-. He also added that the text had been "translated in 14 languages and is widely regarded as both an essential teaching instrument and a book that can be read and looked at with continuous enjoyment."[^chapter1-6] Here, Russell perpetuates the significance of Janson's survey, as well as providing information about the breadth of Janson's text, reaching more than solely English-reading audience
-s.
+It would be most comprehensive if we were to have access to the total number of sales per edition of Janson's History of Art, to use as tangible data to show the relevance and importance of the text through time. Both publishers, Harry N. Abrams and Prentice-Hall (now Pearson Prentice-Hall) have declined sharing sales information in the aggregate. By leafing through various scholarly publications, there is imperfect data of sale information worth noting when discussing the dominance of Janson's History of Art through time. The text was at its height of sales between when it was initially released in 1962 through H. W. "Peter" Janson's death in 1982 (refer to Table 1 for complete information of each edition). Art historian, Patricia Hills cites in her publication in Artforum, "in 1973 the Janson text had 46% of the market, while Gardner's 5th edition had 24%, followed by Gombrich's, 8.5%, Cleaver with 3% and miscellaneous 'other' with 18.5%."[^chapter1-4] At the time such a report had been made, the first edition (1962), the first edition revised and enlarged (1969) had been released. Additionally, it was written by John Russell of the New York Times in October of 1982 that "well over two million copies have been sold."[^chapter1-5] Russell does not specify whether these sales numbers are solely the first edition of Janson's History of Art, or the first edition as well as the first edition revised and enlarged and the second edition (1977) . He also added that the text had been "translated in 14 languages and is widely regarded as both an essential teaching instrument and a book that can be read and looked at with continuous enjoyment."[^chapter1-6] Here, Russell perpetuates the significance of Janson's survey, as well as providing information about the breadth of Janson's text, reaching more than solely English-reading audience s.
 
-[^chapter1-4]: Market Research Report on Introductory Art History, dated March 15, 1972, prepared for McGraw-Hill College Textbook Division and Follow-up Report, dated Spring, 1973.
-    Citation from Patricia Hills, "Art History Textbooks: The Hidden Persuaders," Artforum, (Summer 1976), https://www.artforum.com/print/197606/art-history-textbooks-the-hidden-persuaders-69128.
+[^chapter1-4]: Market Research Report on Introductory Art History, dated March 15, 1972, prepared for McGraw-Hill College Textbook Division and Follow-up Report, dated Spring, 1973. Citation from Patricia Hills, "Art History Textbooks: The Hidden Persuaders," Artforum, (Summer 1976), https://www.artforum.com/print/197606/art-history-textbooks-the-hidden-persuaders-69128.
 
 [^chapter1-5]: John Russell, "Prof H. W Janson is Dead at 68; Wrote Best-Selling 'History of Art,'" The New York Times, (October 3, 1982), https://www.nytimes.com/1982/10/03/nyregion/prof-h-w-Janson-is-dead-at-68 -wrote-best-selling-history-of-art.html.
 
 [^chapter1-6]: John Russell, "Prof H. W Janson is Dead at 68; Wrote Best-Selling 'History of Art,'" The New York Times, (October 3, 1982), https://www.nytimes.com/1982/10/03/nyregion/prof-h-w-Janson-is-dead-at-68 -wrote-best-selling-history-of-art.html.
 
-Conversely, Zoë Ingalls in a publication in August of 1995 discussing Janson's relevance through time, cites that "the first edition sold more than a million copies."[^chapter1-7] Though there are informational discrepancies, it is clear that Janson's History of Art was prolific as a survey text of art for over 20 years.
-The narrative remained significant from the third (1986) through the fifth edition (1995), which were all revised by Anthony "Tony" F.
-Janson, son of Peter and Dora Jane.
-Ingalls states that "the fourth edition, published in 1991, sold 21,000 copies the first year and an average of 11,000 copies a year in the past four years. The new fifth edition, has sold more than 13,000 copies since its March release."[^chapter1-8] She continues, "Although its sales have been eclipsed over the last 10 years by another perennial favorite, R.H. Gardner's Art Through the Ages, Janson is still the standard in many people's minds."[^chapter1-9] Notably, she does not mention any total sales information about Gardner's survey text, just that over the past decade (1985-1995), its sales trumped that of Janson'
-s.
+Conversely, Zoë Ingalls in a publication in August of 1995 discussing Janson's relevance through time, cites that "the first edition sold more than a million copies."[^chapter1-7] Though there are informational discrepancies, it is clear that Janson's History of Art was prolific as a survey text of art for over 20 years. The narrative remained significant from the third (1986) through the fifth edition (1995), which were all revised by Anthony "Tony" F. Janson, son of Peter and Dora Jane. Ingalls states that "the fourth edition, published in 1991, sold 21,000 copies the first year and an average of 11,000 copies a year in the past four years. The new fifth edition, has sold more than 13,000 copies since its March release."[^chapter1-8] She continues, "Although its sales have been eclipsed over the last 10 years by another perennial favorite, R.H. Gardner's Art Through the Ages, Janson is still the standard in many people's minds."[^chapter1-9] Notably, she does not mention any total sales information about Gardner's survey text, just that over the past decade (1985-1995), its sales trumped that of Janson' s.
 
 [^chapter1-7]: Zoë Ingalls, "A Son Revises His Father's Classic Art-History Textbook," The Chronicle of Higher Education, (August 11, 1995), https://www.chronicle.com/article/a-son-revises-his-fathers-classic- art-history-textbook/.
 
@@ -247,18 +215,11 @@ s.
 
 [^chapter1-9]: Zoë Ingalls, "A Son Revises His Father's Classic Art-History Textbook," The Chronicle of Higher Education, (August 11, 1995), https://www.chronicle.com/article/a-son-revises-his-fathers-classic- art-history-textbook/.
 
-After the sixth edition (2001) and the sixth edition revised (2004) the last with authorship by Tony Janson, Harry N. Abrams and Prentice Hall were unsatisfied by the total sales, as well as the overall structure and content of the text as they were criticized for having lost touch with young readers.[^chapter1-10]
-At the same moment, Harry N. Abrams sold all rights to the newly formed Pearson Prentice Hall, who recruited new authorship of six various art historians across the United States: Penelope J. E. Davies, Walter B. Denny, Frima Fox Hofrichter, Joseph Jacobs, Ann M. Roberts, and David L. Simon (refer to Table 2).
-Such change was received negatively by art historians, which is reflected in the text's further decline in sales.
-[^chapter1-11] It has been estimated by Bookauthority.com (a cite whose source for this information is very unclear) that the eighth edition revised, published in 2015 has had 2,000 total copies sold, while competing art historical narratives such as Marilyn Stokstad and Micheal W. Cothren's History of Art Vol
-. 1 has had an estimated 10,000 copies sold since its release in 2017
-.[^chapter1-12] Such has left Janson's History of Art as a minor player in art historical narratives toda
-y.
+After the sixth edition (2001) and the sixth edition revised (2004) the last with authorship by Tony Janson, Harry N. Abrams and Prentice Hall were unsatisfied by the total sales, as well as the overall structure and content of the text as they were criticized for having lost touch with young readers.[^chapter1-10] At the same moment, Harry N. Abrams sold all rights to the newly formed Pearson Prentice Hall, who recruited new authorship of six various art historians across the United States: Penelope J. E. Davies, Walter B. Denny, Frima Fox Hofrichter, Joseph Jacobs, Ann M. Roberts, and David L. Simon (refer to Table 2). Such change was received negatively by art historians, which is reflected in the text's further decline in sales. [^chapter1-11] It has been estimated by Bookauthority.com (a cite whose source for this information is very unclear) that the eighth edition revised, published in 2015 has had 2,000 total copies sold, while competing art historical narratives such as Marilyn Stokstad and Micheal W. Cothren's History of Art Vol . 1 has had an estimated 10,000 copies sold since its release in 2017 .[^chapter1-12] Such has left Janson's History of Art as a minor player in art historical narratives toda y.
 
 [^chapter1-10]: Alexandra Peers, "Canon Fodder."
 
-[^chapter1-11]: Jeffrey Weidman, "Many Are Culled but Few Are Chosen: Janson's History of Art, Its Reception, Emulators, Legacy, and Current Demise." Journal of Scholarly Publishing 38, no. 2 (January 2007): 96.
-    https://muse.jhu.edu/article/209994/pdf.
+[^chapter1-11]: Jeffrey Weidman, "Many Are Culled but Few Are Chosen: Janson's History of Art, Its Reception, Emulators, Legacy, and Current Demise." Journal of Scholarly Publishing 38, no. 2 (January 2007): 96. https://muse.jhu.edu/article/209994/pdf.
 
 [^chapter1-12]: "100 Best-Selling Art HIstory Books of All Time," Book Authority, https://bookauthority.org/books/best-selling-art-history-books.
 
@@ -290,48 +251,20 @@ y.
 | 8                        | 2011                | Penelope J. E. Davies, Walter B. Denny, Frima Fox Hofrichter, Joseph Jacobs, Ann M. Roberts, David L. Simon | Janson's History of Art: The Western Tradition                                                | Pearson Prentice Hall, Upper Saddle River, New Jersey.                                 |
 +--------------------------+---------------------+-------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------+
 
-[^chapter1-13]: There are discrepancies through the first and sixth editions of only Harry N. Abrams being listed as the publisher on the book itself and Harry N. Abrams and Prentice-Hall both being listed.
-    Harry N. Abrams was the primary publisher through the first sixth editions as Prentice-Hall was their distributor.
+[^chapter1-13]: There are discrepancies through the first and sixth editions of only Harry N. Abrams being listed as the publisher on the book itself and Harry N. Abrams and Prentice-Hall both being listed. Harry N. Abrams was the primary publisher through the first sixth editions as Prentice-Hall was their distributor.
 
-[^chapter1-14]: I cataloged the first edition, second printing, published in 1963, but the first edition, first printing was published in 1962.
-    There is no different between printings.
+[^chapter1-14]: I cataloged the first edition, second printing, published in 1963, but the first edition, first printing was published in 1962. There is no different between printings.
 
-[^chapter1-15]: Dora Jane Janson is only listed upon opening the book to the title page.
-    She is not listed anywhere on the exterior of the Janson's History of Art across the first edition, second printing, first edition (revised and enlarged) fourteenth printing, nor the second edition.
+[^chapter1-15]: Dora Jane Janson is only listed upon opening the book to the title page. She is not listed anywhere on the exterior of the Janson's History of Art across the first edition, second printing, first edition (revised and enlarged) fourteenth printing, nor the second edition.
 
 **Discourse of Authorship Through Editions:**
 
-The primary author through the first six editions of Janson's History of Art is Horace Waldemar Janson (1913-1982), colloquially referred to as Peter.
-He was born in 1913 in St. Petersburg, Russia.
-His parents were of Swedish and Latvian descent.
-The family moved to Hamburg, Germany after the Russian Revolution.
-Janson studied at Munich and then at the University in Hamburg where he was a student of Erwin Panofsky, a prolific art historian known for his contributions to the studies of symbols and iconography in art.
-In 1935, at the suggestion of his advisor, Janson fled Germany under the sponsorship of Alfred Barr, director of the Museum of Modern Art in New York.
-Janson studied at Harvard between 1935 and 1942, completing a PhD in art history.
-His most significant professorial position began in 1949, where he was appointed professor and later chairman of the department of art at New York University.
-He remained in such a role for 25 years as he grew the department's prestige, solidifying its reputation as one of the most conservative art history programs in the country.
-A decade later, in 1959, Janson issued a book titled, Key Monuments of the History of Art, in efforts to aid his undergraduates in their study of art as the availability of good personal study images were not easily accessible.
-Such publication sparked Janson's History of Art released in 1962, a survey of art written with his wife, Dora Jane Janson.
+The primary author through the first six editions of Janson's History of Art is Horace Waldemar Janson (1913-1982), colloquially referred to as Peter. He was born in 1913 in St. Petersburg, Russia. His parents were of Swedish and Latvian descent. The family moved to Hamburg, Germany after the Russian Revolution. Janson studied at Munich and then at the University in Hamburg where he was a student of Erwin Panofsky, a prolific art historian known for his contributions to the studies of symbols and iconography in art. In 1935, at the suggestion of his advisor, Janson fled Germany under the sponsorship of Alfred Barr, director of the Museum of Modern Art in New York. Janson studied at Harvard between 1935 and 1942, completing a PhD in art history. His most significant professorial position began in 1949, where he was appointed professor and later chairman of the department of art at New York University. He remained in such a role for 25 years as he grew the department's prestige, solidifying its reputation as one of the most conservative art history programs in the country. A decade later, in 1959, Janson issued a book titled, Key Monuments of the History of Art, in efforts to aid his undergraduates in their study of art as the availability of good personal study images were not easily accessible. Such publication sparked Janson's History of Art released in 1962, a survey of art written with his wife, Dora Jane Janson.
 
 \
-Born Dora Jane Heineberg (1916-2002) in Philadelphia in 1916, she shared a passion for art with Peter.
-The two met in Cambridge, Massachusetts as she attended Radcliffe College as an undergraduate student while Janson was studying at Harvard.
-Dora Jane Janson worked with her husband on many publications, but her most notable achievement came in 1971 when she wrote an exhibition catalog for the Nasher Museum of Art at Duke on Art Nouveau jewelry, titled From Slave to Siren: The Victorian Woman and Her Jewelry from Neoclassic to Art Nouveau.
-Authorship of Janson's History of Art was handed over to one of the couple's four children, Anthony F. Janson, after the sudden passing of Peter Janson in 1982.
+Born Dora Jane Heineberg (1916-2002) in Philadelphia in 1916, she shared a passion for art with Peter. The two met in Cambridge, Massachusetts as she attended Radcliffe College as an undergraduate student while Janson was studying at Harvard. Dora Jane Janson worked with her husband on many publications, but her most notable achievement came in 1971 when she wrote an exhibition catalog for the Nasher Museum of Art at Duke on Art Nouveau jewelry, titled From Slave to Siren: The Victorian Woman and Her Jewelry from Neoclassic to Art Nouveau. Authorship of Janson's History of Art was handed over to one of the couple's four children, Anthony F. Janson, after the sudden passing of Peter Janson in 1982.
 
-Anthony Frederick "Tony" Janson was born March 30th, 1943 in St. Louis, Missouri.
-The Jansons moved to New York in 1949, and Tony Janson frequently visited the city's museums as a child and teenager.
-In 1954, the Jansons spent a year in Europe.
-In an interview, Tony Janson describes his attitude upon the family's return to New York as one of " total rebellion" eventually causing his parents to search for a school that would engage him better academically.[^chapter1-16]
-Janson details how he rediscovered a love for learning after enrolling at Riverdale Country School on a full scholarship, and it is at this time that he began to study art history.
-Janson experimented as an artist himself, and cited his early affection for photography as the reason he was the first to add that medium to a survey textbook of art history.
-[^chapter1-17] Educated at Columbia and Harvard, Janson was asked to continue the work of his father as author of Janson's History of Art
-. Unable to revise the entire textbook in time, Janson "added women, which was long overdue."[^chapter1-18] and photography to the textbook for the third editio
-n. After returning from the Vietnam War, Janson earned his PhD in art history from Harvard and went to teach at the College of Charleston before transitioning to a career as chief curator of the Indianapolis Museum of Ar
-t. In 1984 Janson moved to the Ringling Museum of Art in Sarasota, Florida, and then he was Chief Curator of the North Carolina Museum of Art from 1989 to 199
-3. Janson spent the rest of his career at UNC Wilmington and retired in 200
-2. The last edition of Janson's History of Art that he worked on was the sixth revised, and he viewed his revisions of Janson's History of Art as more in line with his father's approach than the rest of his own scholarshi
-p.
+Anthony Frederick "Tony" Janson was born March 30th, 1943 in St. Louis, Missouri. The Jansons moved to New York in 1949, and Tony Janson frequently visited the city's museums as a child and teenager. In 1954, the Jansons spent a year in Europe. In an interview, Tony Janson describes his attitude upon the family's return to New York as one of " total rebellion" eventually causing his parents to search for a school that would engage him better academically.[^chapter1-16] Janson details how he rediscovered a love for learning after enrolling at Riverdale Country School on a full scholarship, and it is at this time that he began to study art history. Janson experimented as an artist himself, and cited his early affection for photography as the reason he was the first to add that medium to a survey textbook of art history. [^chapter1-17] Educated at Columbia and Harvard, Janson was asked to continue the work of his father as author of Janson's History of Art . Unable to revise the entire textbook in time, Janson "added women, which was long overdue."[^chapter1-18] and photography to the textbook for the third editio n. After returning from the Vietnam War, Janson earned his PhD in art history from Harvard and went to teach at the College of Charleston before transitioning to a career as chief curator of the Indianapolis Museum of Ar t. In 1984 Janson moved to the Ringling Museum of Art in Sarasota, Florida, and then he was Chief Curator of the North Carolina Museum of Art from 1989 to 199 3. Janson spent the rest of his career at UNC Wilmington and retired in 200 2. The last edition of Janson's History of Art that he worked on was the sixth revised, and he viewed his revisions of Janson's History of Art as more in line with his father's approach than the rest of his own scholarshi p.
 
 [^chapter1-16]: Anthony Janson, interview by Sherman Hayes, University of North Carolina Wilmington Archives and Special Collections, (March 15-19, 2007): 11.
 
@@ -339,11 +272,7 @@ p.
 
 [^chapter1-18]: Anthony Janson, interview by Sherman Hayes, University of North Carolina Wilmington Archives and Special Collections, (March 15-19, 2007): 9.
 
-The seventh and eighth editions were rewritten by a group of art historians across the United States: Penelope J. E. Davies, Walter B. Denny, Frima Fox Hofrichter, Joseph Jacobs, Ann M. Roberts, and David L. Simon.
-In Table 2, each author's name, gender, ethnicity and nationality are listed, with question marks next to Frima Fox Hofrichter and Ann M. Roberts' nationality and Joseph Jacob's ethnicity as such information could not be found with full certainty.
-We observe here a desire to diversify authorship in efforts by the publisher to cater to young readership, and increase sales.
-Notably, there is gender diversity, with a fifty-fifty split of male to female authorship, though a complete lack of racial diversity, which is a notion reflected additionally in the text itself.
-Since the Janson name has left the book's authorship, the text has declined significantly from being the most dominant art historical survey.[^chapter1-19]
+The seventh and eighth editions were rewritten by a group of art historians across the United States: Penelope J. E. Davies, Walter B. Denny, Frima Fox Hofrichter, Joseph Jacobs, Ann M. Roberts, and David L. Simon. In Table 2, each author's name, gender, ethnicity and nationality are listed, with question marks next to Frima Fox Hofrichter and Ann M. Roberts' nationality and Joseph Jacob's ethnicity as such information could not be found with full certainty. We observe here a desire to diversify authorship in efforts by the publisher to cater to young readership, and increase sales. Notably, there is gender diversity, with a fifty-fifty split of male to female authorship, though a complete lack of racial diversity, which is a notion reflected additionally in the text itself. Since the Janson name has left the book's authorship, the text has declined significantly from being the most dominant art historical survey.[^chapter1-19]
 
 [^chapter1-19]: Jeffrey Weidman, "Many are Culled but Few Are Chosen," 94.
 
@@ -371,41 +300,21 @@ Since the Janson name has left the book's authorship, the text has declined sign
 
 Many are Culled but Few are Chosen: Janson's History of Art, Its Reception, Emulators, Legacy, and Current Demise
 
-The publication by art historian Jeffrey Weidman, released in January, 2007 in the Journal of Scholarly Publishing begins by reviewing in detail the lineage of English-language art history surveys in America, and the Jansons' text therein; discusses in detail the various reviews of the Jansons' and other survey texts, namely Helen Gardner's *Art Through the Ages*, and Marilyn Stokstad et al.'s *Art History.*[^chapter1-20] He concludes that Janson's History of Art functioned as the dominant art history survey through time.
-Secondly, Weidman discusses the changes of Janson's History of Art between the sixth edition revised, the last edition written by Peter and Tony Janson, and the seventh edition written by the six various art historians (Table 2).
-He believes that the seventh edition is a disgrace to Janson's text, and the beauty of Janson's analytically writing has been completely stripped in the seventh edition.
-He also discusses, yet only through a handful of examples, artists and works which were taken out as well as added between the sixth edition revised and the seventh (for a comprehensive understanding of artists taken out and added through time refer to Fig. \_\_).
-Notably, such publication does not discuss data in the aggregate when looking at who is included and excluded, and rather only looks in detail at the changes between the sixth edition revised and the seventh edition.
+The publication by art historian Jeffrey Weidman, released in January, 2007 in the Journal of Scholarly Publishing begins by reviewing in detail the lineage of English-language art history surveys in America, and the Jansons' text therein; discusses in detail the various reviews of the Jansons' and other survey texts, namely Helen Gardner's *Art Through the Ages*, and Marilyn Stokstad et al.'s *Art History.*[^chapter1-20] He concludes that Janson's History of Art functioned as the dominant art history survey through time. Secondly, Weidman discusses the changes of Janson's History of Art between the sixth edition revised, the last edition written by Peter and Tony Janson, and the seventh edition written by the six various art historians (Table 2). He believes that the seventh edition is a disgrace to Janson's text, and the beauty of Janson's analytically writing has been completely stripped in the seventh edition. He also discusses, yet only through a handful of examples, artists and works which were taken out as well as added between the sixth edition revised and the seventh (for a comprehensive understanding of artists taken out and added through time refer to Fig. \_\_). Notably, such publication does not discuss data in the aggregate when looking at who is included and excluded, and rather only looks in detail at the changes between the sixth edition revised and the seventh edition.
 
-[^chapter1-20]: Jeffrey Weidman, "Many Are Culled but Few Are Chosen: Janson's History of Art, Its Reception, Emulators, Legacy, and Current Demise." Journal of Scholarly Publishing 38, no. 2 (January 2007): 85-107.
-    https://muse.jhu.edu/article/209994/pdf.
+[^chapter1-20]: Jeffrey Weidman, "Many Are Culled but Few Are Chosen: Janson's History of Art, Its Reception, Emulators, Legacy, and Current Demise." Journal of Scholarly Publishing 38, no. 2 (January 2007): 85-107. https://muse.jhu.edu/article/209994/pdf.
 
 Revising Art History's Big Book: Who's In and Who Comes Out?
 
-This article published by Randy Kennedy in March of 2006 in the New York Times, also discusses the change between the sixth edition revised and the seventh edition of Janson's *History of Art*.[^chapter1-21]
-Kennedy looks at only a few artists and works who leave and are added, particularly baffled by the exclusion of James Abbot McNeill Whistler's Arrangement in Black and Gray: The Artist's Mother.
-He interviews Sarah Touburg, an editor of the seventh edition who claims that upwards of 25% of the book's content had been altered between the sixth edition revised and the seventh edition.
-Interestingly, Kennedy claims that the new book adds more women and it uses art much more as a way to discuss race, class and gender.
-Such an observation is not reflected in our data, which can be seen in figures \_\_, \_\_\_, and \_\_\_.
-This publication also discusses the dominance and influence that Janson's History of Art has had over time, as well as its decline as the best-selling art survey in recent years.
-Kennedy states that a shift in authorship was done in efforts to revitalize Janson's relevance to younger audiences.
-Though this publication discusses the change between two editions, Kennedy does not do so in the aggregate.
-\
+This article published by Randy Kennedy in March of 2006 in the New York Times, also discusses the change between the sixth edition revised and the seventh edition of Janson's *History of Art*.[^chapter1-21] Kennedy looks at only a few artists and works who leave and are added, particularly baffled by the exclusion of James Abbot McNeill Whistler's Arrangement in Black and Gray: The Artist's Mother. He interviews Sarah Touburg, an editor of the seventh edition who claims that upwards of 25% of the book's content had been altered between the sixth edition revised and the seventh edition. Interestingly, Kennedy claims that the new book adds more women and it uses art much more as a way to discuss race, class and gender. Such an observation is not reflected in our data, which can be seen in figures \_\_, \_\_\_, and \_\_\_. This publication also discusses the dominance and influence that Janson's History of Art has had over time, as well as its decline as the best-selling art survey in recent years. Kennedy states that a shift in authorship was done in efforts to revitalize Janson's relevance to younger audiences. Though this publication discusses the change between two editions, Kennedy does not do so in the aggregate.\
 
 [^chapter1-21]: Randy Kennedy, "Revising Art History's Big Book: Who's In and Who Comes Out?" New York Times, (March 7, 2006), https://www.nytimes.com/2006/03/07/arts/design/revising-art-historys-big-book- whos-in-and-who-comes-out.html.
 
-Discussions and Depictions of Women in H.
-W. Janson's History of Art, Fourth Edition
+Discussions and Depictions of Women in H. W. Janson's History of Art, Fourth Edition
 
-Art historian Paul E. Bolin discusses gender inequality through the first four editions of *Janson's History of Art.*[^chapter1-22] He states that a primary criticism of Janson's text is its lack of attention given to the importance of work of women artists.
-The first two editions did not include any women, then there was an influx of female artists when Tony Janson claimed primary authorship for the publication of the third edition in 1986.
-Bolin argues that even with the edition of female artists in the third and fourth editions, there is still not enough representation and that additionally the fashion in which Tony discusses female artists is apologetic and at times problematic.
-Bolin uses simple statistics in his discourse, having counted a total of 9 out of the 28 new artists added to the fourth edition as female.
-Bolin does not discuss racial discrimination, nor does he use complete data in the aggregate when looking gender discrimination.
+Art historian Paul E. Bolin discusses gender inequality through the first four editions of *Janson's History of Art.*[^chapter1-22] He states that a primary criticism of Janson's text is its lack of attention given to the importance of work of women artists. The first two editions did not include any women, then there was an influx of female artists when Tony Janson claimed primary authorship for the publication of the third edition in 1986. Bolin argues that even with the edition of female artists in the third and fourth editions, there is still not enough representation and that additionally the fashion in which Tony discusses female artists is apologetic and at times problematic. Bolin uses simple statistics in his discourse, having counted a total of 9 out of the 28 new artists added to the fourth edition as female. Bolin does not discuss racial discrimination, nor does he use complete data in the aggregate when looking gender discrimination.
 
-[^chapter1-22]: Paul E. Bolin, "Discussions and Depictions of Women in H. W. Janson's History of Art, Fourth Edition," Journal of Social Theory in Art Education, Vol.
-    15.(1996), pp. 146-159.
-    https://core.ac.uk/download/pdf/51288476.pdf.
+[^chapter1-22]: Paul E. Bolin, "Discussions and Depictions of Women in H. W. Janson's History of Art, Fourth Edition," Journal of Social Theory in Art Education, Vol. 15.(1996), pp. 146-159. https://core.ac.uk/download/pdf/51288476.pdf.
 
 **Gardner's Art Through the Ages:NEEDS TO BE ADDED**
 
@@ -425,41 +334,24 @@ Sources Found to Looking Into:
 
 **Table 3:** Edition Number, Year of Publication, Title, Authorship, and Publisher Over Time of All Cataloged Editions of Gardner's Art Through the Ages.
 
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| Edition   | Year of Publication | Author(s)                                                                                       | Title                                                                 | Publisher (as listed per Edition)                       |
-+===========+=====================+=================================================================================================+=======================================================================+=========================================================+
-| 1         | 1926                | Helen Gardner                                                                                   | Art through the ages; an introduction to its history and significance | New York, Brace, Harcourt                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 2         | 1936                | Helen Gardner                                                                                   | Art through the ages; an introduction to its history and significance | New York, Brace, Harcourt                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 3         | 1948                | Helen Gardner                                                                                   | Art through the ages                                                  | New York, Brace, Harcourt                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 4         | 1959                | Helen Gardner; revised by Sumner M. Crosby and the Dept. of the History of Art, Yale University | Art through the ages                                                  | New York, Harcourt, Brace                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 5         | 1970                | Revised by Horst de la Croix, Richard G. Tansey                                                 | Gardner's art through the ages                                        | New York, Harcourt, Brace                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 6         | 1975                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's art through the ages                                        | New York: Harcourt Brace Jovanovich                     |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 7         | 1980                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's art through the ages                                        | Harcourt Brace Jovanovich, New York                     |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 8         | 1986                | Horst de la Croix, Richard G. Tansey                                                            | Gardner's art through the ages                                        | Harcourt Brace Jovanovich, San Diego, CA                |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 9         | 1991                | Horst de la Croix, Richard G. Tansey, Diane Kirkpatrick                                         | Gardner's art through the ages                                        | San Diego: Harcourt Brace Jovanovich                    |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 10        | 1996                | Richard G. Tansey, Fred S. Kleiner                                                              | Gardern's art through the ages                                        | Fort Worth, TX: Harcourt Brace                          |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 11        | 2001                | Fred S. Kleiner, Christin J. Mamiya, Richard G. Tansey                                          | Gardner's art through the ages                                        | Fort Worth TX: Harcourt College Publishers              |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 12        | 2005                | Fred S. Kleiner, Christin J. Mamiya                                                             | Gardner's art through the ages                                        | Thomson/Wadsworth, Belmont, CA                          |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 13        | 2009                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, Thomson/Wadsworth                               |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 14        | 2013                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Australia ; United States : Wadsworth, Cengage Learning |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 15        | 2016                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, MA : Cengage Learning                           |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
-| 16        | 2020                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, MA, US : Cengage Learning                       |
-+-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| Edition | Year of Publication | Author(s)                                                                                       | Title                                                                 | Publisher (as listed per Edition)                       |
+|---------|---------------------|-------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|---------------------------------------------------------|
+| 1       | 1926                | Helen Gardner                                                                                   | Art through the ages; an introduction to its history and significance | New York, Brace, Harcourt                               |
+| 2       | 1936                | Helen Gardner                                                                                   | Art through the ages; an introduction to its history and significance | New York, Brace, Harcourt                               |
+| 3       | 1948                | Helen Gardner                                                                                   | Art through the ages                                                  | New York, Brace, Harcourt                               |
+| 4       | 1959                | Helen Gardner; revised by Sumner M. Crosby and the Dept. of the History of Art, Yale University | Art through the ages                                                  | New York, Harcourt, Brace                               |
+| 5       | 1970                | Revised by Horst de la Croix, Richard G. Tansey                                                 | Gardner's art through the ages                                        | New York, Harcourt, Brace                               |
+| 6       | 1975                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's art through the ages                                        | New York: Harcourt Brace Jovanovich                     |
+| 7       | 1980                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's art through the ages                                        | Harcourt Brace Jovanovich, New York                     |
+| 8       | 1986                | Horst de la Croix, Richard G. Tansey                                                            | Gardner's art through the ages                                        | Harcourt Brace Jovanovich, San Diego, CA                |
+| 9       | 1991                | Horst de la Croix, Richard G. Tansey, Diane Kirkpatrick                                         | Gardner's art through the ages                                        | San Diego: Harcourt Brace Jovanovich                    |
+| 10      | 1996                | Richard G. Tansey, Fred S. Kleiner                                                              | Gardern's art through the ages                                        | Fort Worth, TX: Harcourt Brace                          |
+| 11      | 2001                | Fred S. Kleiner, Christin J. Mamiya, Richard G. Tansey                                          | Gardner's art through the ages                                        | Fort Worth TX: Harcourt College Publishers              |
+| 12      | 2005                | Fred S. Kleiner, Christin J. Mamiya                                                             | Gardner's art through the ages                                        | Thomson/Wadsworth, Belmont, CA                          |
+| 13      | 2009                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, Thomson/Wadsworth                               |
+| 14      | 2013                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Australia ; United States : Wadsworth, Cengage Learning |
+| 15      | 2016                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, MA : Cengage Learning                           |
+| 16      | 2020                | Fred S. Kleiner                                                                                 | Gardner's art through the ages: a global history                      | Boston, MA, US : Cengage Learning                       |
 
 **Discourse of Authorship Through Editions: NEEDS TO BE ADDED**
 
@@ -469,24 +361,15 @@ Sources Found to Looking Into:
 
 **Significance of Research:**
 
-There has not been research done in the aggregate, quantitatively analyzing the change over time in Janson's History of Art nor Gardner's Art Through the Ages.
-My research is significant as it efficiently shows the gaps of representation in terms of gender, nationality, race and ethnicity that have not been deeply touched on by previous scholars.
-Additionally, I am able to statistically display through a multiple linear regression which external variables are most impactful when it comes to an artist entering an art historical narrative.
+There has not been research done in the aggregate, quantitatively analyzing the change over time in Janson's History of Art nor Gardner's Art Through the Ages. My research is significant as it efficiently shows the gaps of representation in terms of gender, nationality, race and ethnicity that have not been deeply touched on by previous scholars. Additionally, I am able to statistically display through a multiple linear regression which external variables are most impactful when it comes to an artist entering an art historical narrative.
 
 **Research Questions:**
 
-1.  What are the demographics (Race, Gender, Ethnicity, Nationality) of artists included in each edition of Janson's History of Art (from 1962-2011) and Gardner's Art Through the Ages (from 1926-2020) looking at two-dimensional works after c.
-    1750?
+1.  What are the demographics (Race, Gender, Ethnicity, Nationality) of artists included in each edition of Janson's History of Art (from 1962-2011) and Gardner's Art Through the Ages (from 1926-2020) looking at two-dimensional works after c. 1750?
 
-    Hypothesis: Janson's History of Art and Gardner's Art Through the Ages will include more female, nonwhite, Hispanic or Latinx artists over time; however, these artists will still be dramatically underrepresented compared to white male artists.
-    Moreover, race and ethnicity will be more of a limiting factor than gender.
+    Hypothesis: Janson's History of Art and Gardner's Art Through the Ages will include more female, nonwhite, Hispanic or Latinx artists over time; however, these artists will still be dramatically underrepresented compared to white male artists. Moreover, race and ethnicity will be more of a limiting factor than gender.
 
-    Relevance and reasoning: Janson's History of Art and Gardner's Art Through the Ages being a widely-used art history textbook, serves as a proxy for the traditional art historical narrative in our project.
-    Thus, I interpret inclusion in Janson's History of Art and Gardner's Art Through the Ages as inclusion in the traditional art historical narrative.
-    I hypothesize that the inclusion of marginalized---specifically, female non-white, and Hispanic or Latinx artists---increased across editions of both texts because of the increasing prominence of these artists in art museums, art markets, and art media.
-    However, I predict these improvements in coverage will not result in equal representation with white male artists, who have historically dominated all facets of the art world.
-    I also hypothesize that ethnicity and race will be a greater barrier to representation than gender, as previous research indicates that institutions have generally favored white women artists over Hispanic and Latinx artists and artists of color.
-    Hispanic or Latinx women and women of color will suffer most from the authors' biases, as they are subject to entrenched structures of both racial/ethnic and gender discrimination.
+    Relevance and reasoning: Janson's History of Art and Gardner's Art Through the Ages being a widely-used art history textbook, serves as a proxy for the traditional art historical narrative in our project. Thus, I interpret inclusion in Janson's History of Art and Gardner's Art Through the Ages as inclusion in the traditional art historical narrative. I hypothesize that the inclusion of marginalized---specifically, female non-white, and Hispanic or Latinx artists---increased across editions of both texts because of the increasing prominence of these artists in art museums, art markets, and art media. However, I predict these improvements in coverage will not result in equal representation with white male artists, who have historically dominated all facets of the art world. I also hypothesize that ethnicity and race will be a greater barrier to representation than gender, as previous research indicates that institutions have generally favored white women artists over Hispanic and Latinx artists and artists of color. Hispanic or Latinx women and women of color will suffer most from the authors' biases, as they are subject to entrenched structures of both racial/ethnic and gender discrimination.
 
 2.  Which variables (gender, race, ethnicity, nationality, number of exhibitions at the MoMA or The Whitney, number of publications on WorldCar, and number of auction sales as recorded by the Blouin Art Sales Index) if any, predict the magnitude of an artist's inclusion in art history survey texts (Janson's History of Art and Gardner's Art Through the Ages)?
 
@@ -504,29 +387,25 @@ Outcome:
 
 Potential Predictors:
 
-`ArtistGender` = The gender of the artist.
+`artist_gender` = The gender of the artist.
 
-`ArtistRace` = The race of the artist.
+`artist_race` = The race of the artist.
 
-`ArtistEthnicity` = The ethnicity of the artist.
+`artist_ethnicity` = The ethnicity of the artist.
 
-`ArtistNationalityOther` = The nationality of the artist.
-Roughly 80% of of the total count of artists through all editions of Janson account for French, Spanish, British, American and German.
-Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other.
+`artist_nationality_other` = The nationality of the artist. Roughly 80% of of the total count of artists through all editions of Janson account for French, Spanish, British, American and German. Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other.
 
-`WhitneyCount` = The count of exhibitions held by The Whitney of a particular artist at a particular moment of time, as highlighted by `Year`.
+`whitney_count_to_date` = The count of exhibitions held by The Whitney of a particular artist at a particular moment of time, as highlighted by `year`.
 
-`MoMACount` = The count of exhibitions held by the Museum of Modern Art (MoMA) of a particular artist at a particular moment of time, as highlighted by `Year`.
+`moma_count_to_date` = The count of exhibitions held by the Museum of Modern Art (MoMA) of a particular artist at a particular moment of time, as highlighted by `year`.
 
-`WorldCatCount` = The count of publications of a particular artist at a particular moment of time, as highlighted by `Year`.
+`year` = The year of publication for a given edition of Janson or Gardner.
 
 Other variables:
 
-`Year` = The year of publication for a given edition of Janson or Gardner.
+`edition_number` = The Edition Number of the textbook of their Janson or Gardner.
 
-`EditionNumber` = The Edition Number of the textbook of their Janson or Gardner.
-
-`Book` = Which book, either Janson or Gardner the particular artist at that particular time was included.
+`book` = Which book, either Janson or Gardner the particular artist at that particular time was included.
 
 ## Exploratory Data Analysis: *Janson's History of Art* and *Gardner's Art Through the Ages* Through Editions
 
@@ -689,11 +568,26 @@ ggplot(gardnerjanson_museums %>% filter(book == "janson"),
        x = "Ratio of Space per Page",
        y = "Count")
 
-summary(janson$space_ratio_per_page_total)
+ 
 
-median(janson$space_ratio_per_page_total)
+gardnerjanson_museums %>%
+  filter(book == "janson")%>%
+  median(space_ratio_per_page_total)
+```
 
-IQR(janson$space_ratio_per_page_total)
+The visualization above is right skewed, unimodal and assymetrical. Therefore, we would want to look at the median to understand its center and IQR to understand its spread. The median is
+
+```{r}
+#| label: jansoncountlog
+#| echo: false
+
+ggplot(gardnerjanson_museums %>% filter(book == "janson"),
+       aes(x = log(space_ratio_per_page_total)))+
+  geom_histogram(binwidth = .1)+
+  labs(title = "Distribution of Ratio of Space 
+       per Artist per Edition per Page in Janson",
+       x = "Ratio of Space per Page",
+       y = "Count")
 ```
 
 ```{r}
@@ -712,10 +606,7 @@ head(janson_space, 10)
 
 ```
 
-The visualization above is right skewed, unimodal and assymetrical.
-Therefore, we would want to look at the median to understand its center and IQR to understand its spread.
-
-[deleted text]
+The visualization above is right skewed, unimodal and assymetrical. Therefore, we would want to look at the median to understand its center and IQR to understand its spread.
 
 `space_ratio_per_page_total` vs. `artist_gender`
 
@@ -753,8 +644,7 @@ median(janson_male$space_ratio_per_page_total)
 
 ```
 
-Interestingly enough, the median `space_ratio_per_page_total` for female artists is `r round(median(janson_female$space_ratio_per_page_total), 3)`, not far below the median `space_ratio_per_page_total` for male artists, `r round(median(janson_male$space_ratio_per_page_total), 3)` in *Janson's History of Art.* This indicates that even though the number of female artists per edition included is far fewer, `r nrow(janson_female)`, the median amount of space given to women is similar to that as the median amount of space given to male artists per edition, `r nrow(janson_male)`.
-The only female artist that comes close to being larger than 1 for SpaceRatioPerPage is Hannah Hoch, as seen by the table above.
+Interestingly enough, the median `space_ratio_per_page_total` for female artists is `r round(median(janson_female$space_ratio_per_page_total), 3)`, not far below the median `space_ratio_per_page_total` for male artists, `r round(median(janson_male$space_ratio_per_page_total), 3)` in *Janson's History of Art.* This indicates that even though the number of female artists per edition included is far fewer, `r nrow(janson_female)`, the median amount of space given to women is similar to that as the median amount of space given to male artists per edition, `r nrow(janson_male)`. The only female artist that comes close to being larger than 1 for SpaceRatioPerPage is Hannah Hoch, as seen by the table above.
 
 `space_ratio_per_page_total` vs. `artist_race`
 
@@ -808,9 +698,7 @@ janson_white <- gardnerjanson_museums %>% filter(book == "janson")%>%
   arrange(desc(space_ratio_per_page_total))
 ```
 
-Regarding race, there is only artist for American Indian or Alaska Native, which is Kay Walkingstick in the 5th and 6th Editions and one artist for Asian, Ando Hiroshige in the 7th and 8th Editions.
-Additionally, there is only one Black or African American artist who has a `space_ratio_per_page_total` that is over .75, William T. Williams in the 3rd Edition.
-There are myriad white artists per work per edition, `r nrow(janson_white)`, and their space trumps that of the space allotted to nonwhite artists.
+Regarding race, there is only artist for American Indian or Alaska Native, which is Kay Walkingstick in the 5th and 6th Editions and one artist for Asian, Ando Hiroshige in the 7th and 8th Editions. Additionally, there is only one Black or African American artist who has a `space_ratio_per_page_total` that is over .75, William T. Williams in the 3rd Edition. There are myriad white artists per work per edition, `r nrow(janson_white)`, and their space trumps that of the space allotted to nonwhite artists.
 
 `space_ratio_per_page_total` vs. `artist_ethnicity`
 
@@ -835,9 +723,7 @@ janson_NHL <- gardnerjanson_museums %>% filter(book == "janson") %>%
 median(janson_NHL$space_ratio_per_page_total)
 ```
 
-Interestingly, the median `space_ratio_per_page_total` for artists who are Hispanic or Latinx, `r round(median(janson_HL$space_ratio_per_page_total), 3)` is higher than those who are Not Hispanic or Latinx, `r round(median(janson_NHL$space_ratio_per_page_total), 3)`.
-There are `r nrow(janson_HL)` observations of artists per edition who are Hispanic and Latinx and there are `r nrow(janson_NHL)` observations of artists per edition who are not Hispanic or Latinx.
-Picasso plays a large role in such, as he is Hispanic or Latinx and is accounting for the outlyingly larger observations for `space_ratio_per_page_total`.
+Interestingly, the median `space_ratio_per_page_total` for artists who are Hispanic or Latinx, `r round(median(janson_HL$space_ratio_per_page_total), 3)` is higher than those who are Not Hispanic or Latinx, `r round(median(janson_NHL$space_ratio_per_page_total), 3)`. There are `r nrow(janson_HL)` observations of artists per edition who are Hispanic and Latinx and there are `r nrow(janson_NHL)` observations of artists per edition who are not Hispanic or Latinx. Picasso plays a large role in such, as he is Hispanic or Latinx and is accounting for the outlyingly larger observations for `space_ratio_per_page_total`.
 
 `space_ratio_per_page_total` vs. `artist_nationality_other`
 
@@ -879,10 +765,7 @@ gardnerjanson_museums %>%
   filter(space_ratio_per_page_total >= 2)
 ```
 
-The visualization above is right skewed, unimodal and assymetrical.
-Therefore, we would want to look at the median to understand its center and IQR to understand its spread.
-There are potential outliers that are over 2.0, meaning the amount of space, area of text and area of figure in text combined is more than just the area of a single page within the respective book of *Gardner's Art Through the Ages.* It is obvious to observe that Spanish painter, Pablo Picasso dominates space through Gardner's, similarly as he did in *Janson's History of Art,* but he has more company this time around.
-French painters such as Delacroix and Jacques-Louis David also occupy substantial space, particularly in the 10th edition.
+The visualization above is right skewed, unimodal and assymetrical. Therefore, we would want to look at the median to understand its center and IQR to understand its spread. There are potential outliers that are over 2.0, meaning the amount of space, area of text and area of figure in text combined is more than just the area of a single page within the respective book of *Gardner's Art Through the Ages.* It is obvious to observe that Spanish painter, Pablo Picasso dominates space through Gardner's, similarly as he did in *Janson's History of Art,* but he has more company this time around. French painters such as Delacroix and Jacques-Louis David also occupy substantial space, particularly in the 10th edition.
 
 `space_ratio_per_page_total` vs. `artist_gender`
 
@@ -934,9 +817,7 @@ median(gardner_NAgender$space_ratio_per_page_total)
 
 ```
 
-The median `space_ratio_per_page_total` for female artists is `r round(median(janson_female$space_ratio_per_page_total), 3)` is below the median for artists whose gender is unknown, `r median(gardner_NAgender$space_ratio_per_page_total)`, as well as the median for male artists `r round(median(gardner_male$space_ratio_per_page_total), 3)` in *Gardner's Art Through the Ages.* The number of artists whose gender is unknown has the fewest observations, `r nrow(gardner_NAgender)`, the number of female artists is slightly greater, `r nrow(gardner_female)`, and the amount of male artists through editions is, `r nrow(gardner_male)`.
-The only female artist that comes close to being larger than 1 for `space_ratio_per_page_total` is again Hannah Hoch, as seen by the table above.
-Male artists have a dramatic amount of outlying artists through editions over a `space_ratio_per_page_total` of 1, `r nrow(gardner_male1)`.
+The median `space_ratio_per_page_total` for female artists is `r round(median(janson_female$space_ratio_per_page_total), 3)` is below the median for artists whose gender is unknown, `r median(gardner_NAgender$space_ratio_per_page_total)`, as well as the median for male artists `r round(median(gardner_male$space_ratio_per_page_total), 3)` in *Gardner's Art Through the Ages.* The number of artists whose gender is unknown has the fewest observations, `r nrow(gardner_NAgender)`, the number of female artists is slightly greater, `r nrow(gardner_female)`, and the amount of male artists through editions is, `r nrow(gardner_male)`. The only female artist that comes close to being larger than 1 for `space_ratio_per_page_total` is again Hannah Hoch, as seen by the table above. Male artists have a dramatic amount of outlying artists through editions over a `space_ratio_per_page_total` of 1, `r nrow(gardner_male1)`.
 
 `space_ratio_per_page_total` vs. `artist_race`
 
@@ -959,9 +840,7 @@ gardner_NAA <- gardner%>%
 median(gardner_NAA$space_ratio_per_page_total)
 ```
 
-What sticks out like a sore thumb in the visualization above is the significant number of outlying white artists.
-The only artists that have a `space_ratio_per_page_total` of 1 or more are white.
-Though all the medians of race range between .25 and .6, the highest median is that of American Indian or Alaska Native artists,  median(gardner_NAA$space_ratio_per_page_total) .
+What sticks out like a sore thumb in the visualization above is the significant number of outlying white artists. The only artists that have a `space_ratio_per_page_total` of 1 or more are white. Though all the medians of race range between .25 and .6, the highest median is that of American Indian or Alaska Native artists, median(gardner_NAA\$space_ratio_per_page_total) .
 
 `space_ratio_per_page_total` vs. `artist_ethnicity`
 
@@ -977,8 +856,7 @@ ggplot(gardner, aes(x=artist_ethnicity, y=space_ratio_per_page_total))+
        y = "Ratio of Space per Page")
 ```
 
-Across all three categories, Hispanic or Latinx, Not Hispanic or Latinx and N/A, the medians remain relatively similar.
-The tail for Hispanic or Latinx are comparable to the tail for Not Hispanic or Latinx, just simply the number of observations are far fewer.
+Across all three categories, Hispanic or Latinx, Not Hispanic or Latinx and N/A, the medians remain relatively similar. The tail for Hispanic or Latinx are comparable to the tail for Not Hispanic or Latinx, just simply the number of observations are far fewer.
 
 `space_ratio_per_page_total` vs. `artist_nationality_other`
 
