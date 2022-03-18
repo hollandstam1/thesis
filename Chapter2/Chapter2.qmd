@@ -13,6 +13,7 @@ library(MuMIn)
 library(lmerTest)
 library(ggplot2)
 library(dplyr)
+library(broom.mixed)
 
 # load gardnerjanson_museums
 gardnerjanson_museums <- read_csv("gardnerjanson_museums.csv")
@@ -27,33 +28,46 @@ gardnerjanson_museums <- gardnerjanson_museums %>%
   mutate(artist_gender = if_else(artist_name == "Mele Sitani", "Female", artist_gender))
 ```
 
+RELEVEL VARIABLES
+
 # Model Exploration:
 
-```{r model}
-lmm_model <- lmer(log(space_ratio_per_page_total) ~ artist_race
+```{r fixedeffects}
+model <- lm(log(space_ratio_per_page_total) ~ artist_race_nwi
                        + artist_ethnicity 
                        + artist_gender 
                        + artist_nationality_other
                        + moma_count_to_date
-                       + whitney_count_to_date
-                       + artist_gender*moma_count_to_date
-                       + artist_nationality_other*moma_count_to_date +
-                         (1 | artist_name),
-            data = gardnerjanson_museums,
-    REML = FALSE)
-summary(lmm_model)
+                       + whitney_count_to_date, 
+            data = gardnerjanson_museums)
 ```
 
-```{r AICnewmodel}
-#newmodel<- stepAIC(lmm_model, scope=list(upper= ~artist_gender*artist_race*artist_nationality_other*artist_ethnicity*moma_count_to_date*whitney_count_to_date*year, lower= ~1))
+pick a handful of interest
+
+visualization : confidence intervals for each on of the slopes
+
+predictors on the y axis -
+
+bar plots of the pvalues another option
+
+nationality discourse for significance
+
+log transformation on the y variable -
+
+stepwise model selection
+
+```{r newmodel}
+#newmodel<- stats::step(model)
+
+newmodel<- stepAIC(model, scope=list(upper= ~artist_gender*artist_race_nwi*artist_nationality_other*artist_ethnicity*moma_count_to_date*whitney_count_to_date, lower= ~1))
 ```
 
 the multiple of the number of degrees of freedom used for the penalty. Only k = 2 gives the genuine AIC: k = log(n) is sometimes referred to as BIC or SBC.
 
 ```{r BICnewmodel}
-#n <- nrow(gardnerjanson_museums)
+n <- nrow(gardnerjanson_museums)
 
-#newmodel<- stepAIC(lmm_model, k = log(n), scope=list(upper= ~artist_gender*artist_race*artist_nationality_other*artist_ethnicity*moma_count_to_date*whitney_count_to_date*year, lower= ~1))
+newmodel<- stepAIC(model, k = log(n), scope=list(upper= ~artist_gender*artist_race_nwi*artist_nationality_other*artist_ethnicity*moma_count_to_date*whitney_count_to_date, lower= ~1))
 
 ```
 
@@ -119,9 +133,30 @@ Plotting : log transform some variables : Fitted v. Residuals
 plot(resid(lmm_model, type = "pearson") ~ fitted(lmm_model))
 ```
 
+for the very low values of the predicted have very low variability for residuals - the rest varied
+
+the a bulk of the data there is constant variability in the residuals
+
 before log transforming our outcome variable, the constant variance assumption was violated. Therefore, in order to pass the constant variance assumption, I performed a log transformation.
 
 ### Normality:
+
+normal histogram = density plot overlayed -
+
+```{r}
+#| label: density-histogram
+
+#lmm_model_aug <- augment(lmm_model$fit)
+
+#ggplot(lmm_model_aug, aes(x = .resid))+
+ # geom_histogram(binwidth = 50, aes(y = after_stat(density)))+
+ # theme_minimal()+ 
+ # stat_function(fun = dnorm,
+  #              args = list(mean = mean(lmm_model_aug$.resid),
+  #                          sd = sd(lmm_model_aug$.resid)),
+  #              color = "red",
+  #              size = 2)
+```
 
 ```{r normal}
 
@@ -131,6 +166,10 @@ qqline(resid(lmm_model, type = "pearson"))
 ```
 
 ### Linearity:
+
+residuals v quantitative predictors
+
+no pattern is left behind
 
 ```{r linearitymoma}
 
@@ -165,8 +204,14 @@ Another assumption is the independence between subjects. No test, based on your 
 
 all obervations of different artists are independent -
 
+fitting a mixed model - i dont believe that each piece by each artist is independence - at the artist level we have independence
+
 log transforming predictors - interpretations change - variables weren't changed - same idea, bit different
 
 INDEPENDENCE: DOUBLE CHECK - EMPIRICALLY ARGUE OR ?
+
+check for time series - residuals v. order of data points
+
+irrelevant - based on how the sample was collected.
 
 verbally argue the independence between artists - since we are using a mixed effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed effects model. Between artists, we expect the observations to be independent.
