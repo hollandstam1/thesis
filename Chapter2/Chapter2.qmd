@@ -14,6 +14,7 @@ library(lmerTest)
 library(ggplot2)
 library(dplyr)
 library(broom.mixed)
+library(forcats)
 
 # load gardnerjanson_museums
 gardnerjanson_museums <- read_csv("gardnerjanson_museums.csv")
@@ -21,25 +22,80 @@ gardnerjanson_museums <- read_csv("gardnerjanson_museums.csv")
 
 # Data Preparation for Modeling:
 
-```{r raceprep}
+```{r}
+#| label: lmm_prep
+#| echo: false
+
 gardnerjanson_museums <- gardnerjanson_museums %>%
-  mutate(artist_race_nwi = if_else(artist_race == "White", "white", "non-white"))%>%
-  filter(!startsWith(artist_name, "N/A")) %>%
-  mutate(artist_gender = if_else(artist_name == "Mele Sitani", "Female", artist_gender))
+  filter(!startsWith(artist_name, "N/A"))%>%
+  mutate(artist_race_nwi = if_else(artist_race == "White", "White", "Non-White")) %>%
+  mutate(artist_nationality_other = fct_relevel(artist_nationality_other, c("American", 
+                                                                            "French", 
+                                                                            "Other", 
+                                                                            "British", 
+                                                                            "German", 
+                                                                            "Spanish")), 
+         artist_race_nwi = fct_relevel(artist_race_nwi, c("White", "Non-White")),
+         artist_ethnicity = fct_relevel(artist_ethnicity, c("Not Hispanic or Latinx",
+                                                            "Hispanic or Latinx")),
+         artist_gender = fct_relevel(artist_gender, c("Male", "Female")))
+
 ```
 
-RELEVEL VARIABLES
+```{r}
+#| label: nationality_tally
+#| echo: false
+gardnerjanson_museums%>%
+   group_by(artist_nationality_other) %>%
+   tally()
+```
 
 # Model Exploration:
 
-```{r fixedeffects}
-model <- lm(log(space_ratio_per_page_total) ~ artist_race_nwi
+```{r}
+#| label: lmm_full
+#| echo: false
+
+lmm_full <- lmer(log(space_ratio_per_page_total) ~ artist_race_nwi
                        + artist_ethnicity 
                        + artist_gender 
                        + artist_nationality_other
                        + moma_count_to_date
-                       + whitney_count_to_date, 
-            data = gardnerjanson_museums)
+                       + whitney_count_to_date +
+                         (1 | artist_name),
+            data = gardnerjanson_museums,
+    REML = FALSE)
+```
+
+    ddf="Satterthwaite"
+
+Satterthwaite test, more flexible, looking directly at p-values - non-parametric test - uses different error term, similar to a two same t-test, similar to ANOVA - analysis of variance - checking between different groups -
+
+```{r}
+#| label: lmm_test
+#| echo: false
+
+lmm <- lmer(log(space_ratio_per_page_total) ~ artist_race_nwi
+                       + artist_ethnicity 
+                       + artist_gender 
+                       + artist_nationality_other
+                       + moma_count_to_date
+                       + whitney_count_to_date
+                       + artist_nationality_other*moma_count_to_date
+                       + artist_race_nwi*moma_count_to_date
+                       + artist_ethnicity*moma_count_to_date
+                       + artist_race_nwi*whitney_count_to_date
+                       + artist_ethnicity*whitney_count_to_date
+                  + (1 | artist_name),
+            data = gardnerjanson_museums,
+    REML = FALSE)
+```
+
+```{r}
+#| label: lmm_step
+#| echo: false
+
+lmerTest::step(lmm)
 ```
 
 pick a handful of interest
@@ -56,65 +112,35 @@ log transformation on the y variable -
 
 stepwise model selection
 
-```{r newmodel}
-#newmodel<- stats::step(model)
-
-newmodel<- stepAIC(model, scope=list(upper= ~artist_gender*artist_race_nwi*artist_nationality_other*artist_ethnicity*moma_count_to_date*whitney_count_to_date, lower= ~1))
-```
-
 the multiple of the number of degrees of freedom used for the penalty. Only k = 2 gives the genuine AIC: k = log(n) is sometimes referred to as BIC or SBC.
 
-```{r BICnewmodel}
-n <- nrow(gardnerjanson_museums)
+```{r}
+#| label: lmm
+#| echo: false
 
-newmodel<- stepAIC(model, k = log(n), scope=list(upper= ~artist_gender*artist_race_nwi*artist_nationality_other*artist_ethnicity*moma_count_to_date*whitney_count_to_date, lower= ~1))
-
-```
-
-```{r lowestAIC}
-lmm_model <- lmer(log(space_ratio_per_page_total) ~ artist_race
-                       + artist_ethnicity 
-                       + artist_gender 
-                       + artist_nationality_other
+lmm <- lmer(log(space_ratio_per_page_total) ~ artist_nationality_other
                        + moma_count_to_date
-                       + whitney_count_to_date
-                       + artist_gender*moma_count_to_date
-                       + artist_nationality_other*moma_count_to_date +
-                         (1 | artist_name),
+                       + artist_nationality_other*moma_count_to_date
+                        + (1 | artist_name),
             data = gardnerjanson_museums,
     REML = FALSE)
-summary(lmm_model)
-
+summary(lmm)
 ```
 
-```{r collinearity}
-vif(lmm_model)
+```{r}
+#| label: collinearity
+#| echo: false
+
+vif(lmm)
 ```
 
 GET PVALUES FOR COEFFICIENTS - STATISTICALLY SIGNIFICANT - GO THROUGH INTERPRETATIONS WITH LOG TRANSFORMATION AND MIXED EFFECTS MODEL - CONFIRM MODEL DIAGNOSTICS - AIC / BIC FOR MIXED EFFECTS -
 
-```{r lmerTest}
-
-summary(lmm_model, ddf = "Satterthwaite")
-
-```
-
 ```{r rsq}
-r.squaredGLMM(lmm_model)
+r.squaredGLMM(lmm)
 ```
 
 Marginal R2 provides the variance explained only by fixed effects and conditional R2 provides the variance explained by the entire model, i.e., both fixed effects and random effects.
-
-```{r}
-#create vector of VIF values
-#vif_values <- vif(lmm_model)$`GVIF^(1/(2*Df))`
-
-#create horizontal bar chart to display each VIF value
-#barplot(vif_values, main = "VIF Values", horiz = TRUE, col = "steelblue")
-
-#add vertical line at 5
-#abline(v = 5, lwd = 3, lty = 2)
-```
 
 Model Diagnostics : Check for linearity, independence, residuals, normal distribution of the residuals - no pattern in residuals, constant variance
 
@@ -130,7 +156,7 @@ Plotting : log transform some variables : Fitted v. Residuals
 
 ```{r diagnostics}
 
-plot(resid(lmm_model, type = "pearson") ~ fitted(lmm_model))
+plot(resid(lmm, type = "pearson") ~ fitted(lmm))
 ```
 
 for the very low values of the predicted have very low variability for residuals - the rest varied
@@ -160,9 +186,8 @@ normal histogram = density plot overlayed -
 
 ```{r normal}
 
-qqnorm(resid(lmm_model, type = "pearson"))
-qqline(resid(lmm_model, type = "pearson"))
-
+qqnorm(resid(lmm, type = "pearson"))
+qqline(resid(lmm, type = "pearson"))
 ```
 
 ### Linearity:
@@ -204,7 +229,7 @@ Another assumption is the independence between subjects. No test, based on your 
 
 all obervations of different artists are independent -
 
-fitting a mixed model - i dont believe that each piece by each artist is independence - at the artist level we have independence
+fitting a mixed model - i do not believe that pieces by each artist is independence - at the artist level we have independence
 
 log transforming predictors - interpretations change - variables weren't changed - same idea, bit different
 
@@ -215,3 +240,35 @@ check for time series - residuals v. order of data points
 irrelevant - based on how the sample was collected.
 
 verbally argue the independence between artists - since we are using a mixed effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed effects model. Between artists, we expect the observations to be independent.
+
+## **Data Dictionary:**
+
+Outcome:
+
+`space_ratio_per_page_total` = The area in centimeters squared of both the text and the figure of a particular artist in a given edition of *Janson's History of Art* divided by the area in centimeters squared of a single page of the respective edition.
+
+Potential Predictors:
+
+`artist_gender` = The gender of the artist.
+
+`artist_race` = The race of the artist.
+
+`artist_race_nwi` = The non-white indicator for artist race, meaning if an artist's race is denoted as either white or non-white.
+
+`artist_ethnicity` = The ethnicity of the artist.
+
+`artist_nationality_other` = The nationality of the artist. Roughly 80% of of the total count of artists through all editions of Janson account for French, Spanish, British, American and German. Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other.
+
+`whitney_count_to_date` = The count of exhibitions held by The Whitney of a particular artist at a particular moment of time, as highlighted by `year`.
+
+`moma_count_to_date` = The count of exhibitions held by the Museum of Modern Art (MoMA) of a particular artist at a particular moment of time, as highlighted by `year`.
+
+`year` = The year of publication for a given edition of Janson or Gardner.
+
+Other variables:
+
+`edition_number` = The edition number of the textbook from either Janson's History of Art or Gardner's Art Through the Ages.
+
+`book` = Which book, either Janson or Gardner the particular artist at that particular time was included.
+
+`artist_unique_id` = A unique identifying number assigned to artists across books and editions denoted in alphabetical order.
