@@ -15,6 +15,7 @@ library(ggplot2)
 library(dplyr)
 library(broom.mixed)
 library(forcats)
+library(sjPlot)
 
 # load gardnerjanson_museums
 gardnerjanson_museums <- read_csv("gardnerjanson_museums.csv")
@@ -128,6 +129,26 @@ summary(lmm)
 ```
 
 ```{r}
+#| label: sjplot
+#| echo: false
+
+sjPlot::plot_model(lmm, 
+                   axis.labels=c("Spanish x MoMA Count to Date",
+                                 "German x MoMA Count to Date",
+                                 "British x MoMA Count to Date",
+                                 "Other x MoMA Count to Date", 
+                                 "French x MoMA Count to Date",
+                                 "MoMA Count to Date",
+                                 "Spanish",
+                                 "German",
+                                 "British",
+                                 "Nationality Other",
+                                 "French"),
+                   show.values=TRUE, show.p=TRUE,
+                   title="Effect of Artist Nationality and the Number of Exhibitions Held at the MoMA per Artist per Edition on the Total Space Ratio per Page")
+```
+
+```{r}
 #| label: collinearity
 #| echo: false
 
@@ -169,10 +190,12 @@ before log transforming our outcome variable, the constant variance assumption w
 
 normal histogram = density plot overlayed -
 
+Struggling to understand how to do this with a mixed-effects model
+
 ```{r}
 #| label: density-histogram
 
-#lmm_model_aug <- augment(lmm_model$fit)
+#lmm_aug <- augment(lmm$fit)
 
 #ggplot(lmm_model_aug, aes(x = .resid))+
  # geom_histogram(binwidth = 50, aes(y = after_stat(density)))+
@@ -193,6 +216,8 @@ qqline(resid(lmm, type = "pearson"))
 ### Linearity:
 
 residuals v quantitative predictors
+
+once i figure out how to augment the data and get the .resid I can make this visualization as well
 
 no pattern is left behind
 
