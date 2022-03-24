@@ -27,9 +27,11 @@ gardnerjanson_museums <- read_csv("gardnerjanson_museums.csv")
 #| label: lmm_prep
 #| echo: false
 
-gardnerjanson_museums <- gardnerjanson_museums %>%
+gardnerjanson_museums_mod <- gardnerjanson_museums %>%
   filter(!startsWith(artist_name, "N/A"))%>%
-  mutate(artist_race_nwi = if_else(artist_race == "White", "White", "Non-White")) %>%
+  mutate(artist_race_nwi = if_else(artist_race == "White", "White", "Non-White"))
+
+gardnerjanson_museums_mod <- gardnerjanson_museums_mod %>%
   mutate(artist_nationality_other = fct_relevel(artist_nationality_other, c("American", 
                                                                             "French", 
                                                                             "Other", 
@@ -39,16 +41,9 @@ gardnerjanson_museums <- gardnerjanson_museums %>%
          artist_race_nwi = fct_relevel(artist_race_nwi, c("White", "Non-White")),
          artist_ethnicity = fct_relevel(artist_ethnicity, c("Not Hispanic or Latinx",
                                                             "Hispanic or Latinx")),
-         artist_gender = fct_relevel(artist_gender, c("Male", "Female")))
+         artist_gender = fct_relevel(artist_gender, c("Male", "Female")))%>%
+  dplyr::select(-"...1", "moma_count", "whitney_count")
 
-```
-
-```{r}
-#| label: nationality_tally
-#| echo: false
-gardnerjanson_museums%>%
-   group_by(artist_nationality_other) %>%
-   tally()
 ```
 
 # Model Exploration:
@@ -64,7 +59,7 @@ lmm_full <- lmer(log(space_ratio_per_page_total) ~ artist_race_nwi
                        + moma_count_to_date
                        + whitney_count_to_date +
                          (1 | artist_name),
-            data = gardnerjanson_museums,
+            data = gardnerjanson_museums_mod,
     REML = FALSE)
 ```
 
@@ -88,7 +83,7 @@ lmm <- lmer(log(space_ratio_per_page_total) ~ artist_race_nwi
                        + artist_race_nwi*whitney_count_to_date
                        + artist_ethnicity*whitney_count_to_date
                   + (1 | artist_name),
-            data = gardnerjanson_museums,
+            data = gardnerjanson_museums_mod,
     REML = FALSE)
 ```
 
@@ -123,10 +118,12 @@ lmm <- lmer(log(space_ratio_per_page_total) ~ artist_nationality_other
                        + moma_count_to_date
                        + artist_nationality_other*moma_count_to_date
                         + (1 | artist_name),
-            data = gardnerjanson_museums,
+            data = gardnerjanson_museums_mod,
     REML = FALSE)
 summary(lmm)
 ```
+
+# 7.0 Results
 
 ```{r}
 #| label: sjplot
@@ -169,11 +166,15 @@ RESOURCE: https://www.ssc.wisc.edu/sscc/pubs/MM/MM_DiagInfer.html
 
 Plotting : log transform some variables : Fitted v. Residuals
 
-# Appendix:
+# 8.0 Discussion:
 
-## Assumptions:
+# 9.0 Limitations and Next Steps:
 
-### Residuals and Constant Variance:
+# 10.0 Appendix:
+
+## 10.1 Assumptions:
+
+### 10.1.1 Residuals and Constant Variance:
 
 ```{r diagnostics}
 
@@ -186,7 +187,7 @@ the a bulk of the data there is constant variability in the residuals
 
 before log transforming our outcome variable, the constant variance assumption was violated. Therefore, in order to pass the constant variance assumption, I performed a log transformation.
 
-### Normality:
+### 10.1.2 Normality:
 
 normal histogram = density plot overlayed -
 
@@ -213,7 +214,7 @@ qqnorm(resid(lmm, type = "pearson"))
 qqline(resid(lmm, type = "pearson"))
 ```
 
-### Linearity:
+### 10.1.3 Linearity:
 
 residuals v quantitative predictors
 
@@ -248,7 +249,7 @@ ggplot(gardnerjanson_museums, aes(x = whitney_count_to_date, y = log(space_ratio
 
 Normality of random effect: Get the estimate of random effect (in your case random intercepts), and check them as check the residual. But it is not efficient because you just have 7 random intercepts.
 
-### Independence:
+### 10.1.4 Independence:
 
 Another assumption is the independence between subjects. No test, based on your judgement. Subject specific random intercept means the correlation between the response variable from the same subject are the same.
 
@@ -266,7 +267,7 @@ irrelevant - based on how the sample was collected.
 
 verbally argue the independence between artists - since we are using a mixed effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed effects model. Between artists, we expect the observations to be independent.
 
-## **Data Dictionary:**
+## **10.2 Data Dictionary:**
 
 Outcome:
 
@@ -282,7 +283,7 @@ Potential Predictors:
 
 `artist_ethnicity` = The ethnicity of the artist.
 
-`artist_nationality_other` = The nationality of the artist. Roughly 80% of of the total count of artists through all editions of Janson account for French, Spanish, British, American and German. Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other.
+`artist_nationality_other` = The nationality of the artist. Of the total count of artists through all editions of *Gardner's Art Through the Ages* and *Janson's History of Art*, 77.32% account for French, Spanish, British, American and German. Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other.
 
 `whitney_count_to_date` = The count of exhibitions held by The Whitney of a particular artist at a particular moment of time, as highlighted by `year`.
 

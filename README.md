@@ -7,7 +7,7 @@ edition_number  | The edition number of the textbook from either Janson's Histor
 of Art or Gardner's Art Through the Ages. | Categorical
 year | The year of publication for a given edition of Janson or Gardner. | Categorical
 artist_nationality | The nationality of a given artist. | Categorical
-artist_nationality_other | The nationality of the artist. Roughly 80% of of the total count of artists through all editions of Janson's History of Art and Gardner's Art Through the Ages account for French, Spanish, British, American and German. Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other| Categorical
+artist_nationality_other | The nationality of the artist. Of the total count of artists through all editions of Janson's History of Art and Gardner's Art Through the Ages, 77.32% account for French, Spanish, British, American and German. Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other| Categorical
 artist_gender | The gender of the artist.| Categorical
 artist_race | The race of the artist | Categorical
 artist_race_nwi | The non-white indicator for artist race, meaning if an
