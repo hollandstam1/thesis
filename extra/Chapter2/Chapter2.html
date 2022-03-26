@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.21">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>holland-thesis - 2&nbsp; Model Exploration</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="../site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="../site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="../">
+  <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="../site_libs/quarto-search/fuse.min.js"></script>
+  <script src="../site_libs/quarto-search/quarto-search.js"></script>
+  <link href="../Chapter1/Chapter1.html" rel="prev">
+  <script src="../site_libs/quarto-html/quarto.js"></script>
+  <script src="../site_libs/quarto-html/popper.min.js"></script>
+  <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="../site_libs/quarto-html/anchor.min.js"></script>
+  <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "sidebar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "start",
+    "type": "textbox",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Exploration</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">holland-thesis</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Chapter1/Chapter1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quantifying Art Historical Narratives</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Chapter2/Chapter2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Exploration</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#data-preparation-for-modeling" class="nav-link active" data-scroll-target="#data-preparation-for-modeling"> <span class="header-section-number">3</span> Data Preparation for Modeling:</a></li>
+<li><a href="#model-exploration" class="nav-link" data-scroll-target="#model-exploration"> <span class="header-section-number">4</span> Model Exploration:</a></li>
+<li><a href="#results" class="nav-link" data-scroll-target="#results"> <span class="header-section-number">5</span> 7.0 Results</a></li>
+<li><a href="#discussion" class="nav-link" data-scroll-target="#discussion"> <span class="header-section-number">6</span> 8.0 Discussion:</a></li>
+<li><a href="#limitations-and-next-steps" class="nav-link" data-scroll-target="#limitations-and-next-steps"> <span class="header-section-number">7</span> 9.0 Limitations and Next Steps:</a></li>
+<li><a href="#appendix" class="nav-link" data-scroll-target="#appendix"> <span class="header-section-number">8</span> 10.0 Appendix:</a>
+<ul class="collapse">
+<li><a href="#assumptions" class="nav-link" data-scroll-target="#assumptions"> <span class="header-section-number">8.1</span> 10.1 Assumptions:</a>
+<ul class="collapse">
+<li><a href="#residuals-and-constant-variance" class="nav-link" data-scroll-target="#residuals-and-constant-variance"> <span class="header-section-number">8.1.1</span> 10.1.1 Residuals and Constant Variance:</a></li>
+<li><a href="#normality" class="nav-link" data-scroll-target="#normality"> <span class="header-section-number">8.1.2</span> 10.1.2 Normality:</a></li>
+<li><a href="#linearity" class="nav-link" data-scroll-target="#linearity"> <span class="header-section-number">8.1.3</span> 10.1.3 Linearity:</a></li>
+<li><a href="#independence" class="nav-link" data-scroll-target="#independence"> <span class="header-section-number">8.1.4</span> 10.1.4 Independence:</a></li>
+</ul></li>
+<li><a href="#data-dictionary" class="nav-link" data-scroll-target="#data-dictionary"> <span class="header-section-number">8.2</span> <strong>10.2 Data Dictionary:</strong></a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title d-none d-lg-block display-7"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Model Exploration</span></h1>
+</header>
+
+<div class="cell">
+
+</div>
+<section id="data-preparation-for-modeling" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Data Preparation for Modeling:</h1>
+<div class="cell">
+
+</div>
+</section>
+<section id="model-exploration" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Model Exploration:</h1>
+<div class="cell">
+
+</div>
+<pre><code>ddf="Satterthwaite"</code></pre>
+<p>Satterthwaite test, more flexible, looking directly at p-values - non-parametric test - uses different error term, similar to a two same t-test, similar to ANOVA - analysis of variance - checking between different groups -</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>Backward reduced random-effect table:
+
+                  Eliminated npar  logLik    AIC    LRT Df Pr(&gt;Chisq)    
+&lt;none&gt;                         23 -1930.6 3907.2                         
+(1 | artist_name)          0   22 -2606.4 5256.9 1351.7  1  &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Backward reduced fixed-effect table:
+Degrees of freedom method: Satterthwaite 
+
+                                            Eliminated Sum Sq Mean Sq NumDF
+artist_race_nwi:moma_count_to_date                   1 0.0015 0.00151     1
+artist_ethnicity:whitney_count_to_date               2 0.0092 0.00922     1
+artist_ethnicity:moma_count_to_date                  3 0.1130 0.11296     1
+artist_ethnicity                                     4 0.0057 0.00574     1
+artist_gender                                        5 0.3801 0.19006     2
+artist_race_nwi:whitney_count_to_date                6 0.1548 0.15478     1
+whitney_count_to_date                                7 0.0232 0.02319     1
+artist_race_nwi                                      8 0.0426 0.04263     1
+artist_nationality_other:moma_count_to_date          0 3.3446 0.66892     5
+                                              DenDF F value   Pr(&gt;F)   
+artist_race_nwi:moma_count_to_date           539.28  0.0091 0.923923   
+artist_ethnicity:whitney_count_to_date      1970.66  0.0559 0.813065   
+artist_ethnicity:moma_count_to_date          731.38  0.6850 0.408150   
+artist_ethnicity                             505.76  0.0348 0.852153   
+artist_gender                                401.31  1.1522 0.316977   
+artist_race_nwi:whitney_count_to_date        480.27  0.9384 0.333175   
+whitney_count_to_date                        984.87  0.1406 0.707781   
+artist_race_nwi                              510.52  0.2585 0.611386   
+artist_nationality_other:moma_count_to_date 1221.63  4.0556 0.001178 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Model found:
+log(space_ratio_per_page_total) ~ artist_nationality_other + moma_count_to_date + (1 | artist_name) + artist_nationality_other:moma_count_to_date</code></pre>
+</div>
+</div>
+<p>pick a handful of interest</p>
+<p>visualization : confidence intervals for each on of the slopes</p>
+<p>predictors on the y axis -</p>
+<p>bar plots of the pvalues another option</p>
+<p>nationality discourse for significance</p>
+<p>log transformation on the y variable -</p>
+<p>stepwise model selection</p>
+<p>the multiple of the number of degrees of freedom used for the penalty. Only k = 2 gives the genuine AIC: k = log(n) is sometimes referred to as BIC or SBC.</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>Linear mixed model fit by maximum likelihood . t-tests use Satterthwaite's
+  method [lmerModLmerTest]
+Formula: log(space_ratio_per_page_total) ~ artist_nationality_other +  
+    moma_count_to_date + artist_nationality_other * moma_count_to_date +  
+    (1 | artist_name)
+   Data: gardnerjanson_museums_mod
+
+     AIC      BIC   logLik deviance df.resid 
+  3893.6   3978.2  -1932.8   3865.6     3090 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.6304 -0.5820 -0.0716  0.6203  3.0709 
+
+Random effects:
+ Groups      Name        Variance Std.Dev.
+ artist_name (Intercept) 0.1274   0.3569  
+ Residual                0.1649   0.4061  
+Number of obs: 3104, groups:  artist_name, 395
+
+Fixed effects:
+                                                     Estimate Std. Error
+(Intercept)                                        -9.291e-01  4.017e-02
+artist_nationality_otherFrench                      2.681e-01  6.377e-02
+artist_nationality_otherOther                      -6.192e-02  5.836e-02
+artist_nationality_otherBritish                     1.044e-02  8.093e-02
+artist_nationality_otherGerman                     -6.204e-02  8.653e-02
+artist_nationality_otherSpanish                     6.589e-01  2.002e-01
+moma_count_to_date                                 -1.026e-02  6.948e-03
+artist_nationality_otherFrench:moma_count_to_date   2.872e-02  7.962e-03
+artist_nationality_otherOther:moma_count_to_date    1.580e-02  8.077e-03
+artist_nationality_otherBritish:moma_count_to_date  1.011e-02  1.689e-02
+artist_nationality_otherGerman:moma_count_to_date   2.433e-02  8.943e-03
+artist_nationality_otherSpanish:moma_count_to_date  3.528e-02  9.481e-03
+                                                           df t value Pr(&gt;|t|)
+(Intercept)                                         4.979e+02 -23.131  &lt; 2e-16
+artist_nationality_otherFrench                      4.367e+02   4.205 3.17e-05
+artist_nationality_otherOther                       5.139e+02  -1.061 0.289240
+artist_nationality_otherBritish                     4.405e+02   0.129 0.897407
+artist_nationality_otherGerman                      4.758e+02  -0.717 0.473735
+artist_nationality_otherSpanish                     3.689e+02   3.291 0.001096
+moma_count_to_date                                  8.440e+02  -1.477 0.140001
+artist_nationality_otherFrench:moma_count_to_date   1.037e+03   3.607 0.000324
+artist_nationality_otherOther:moma_count_to_date    8.326e+02   1.956 0.050764
+artist_nationality_otherBritish:moma_count_to_date  7.812e+02   0.599 0.549598
+artist_nationality_otherGerman:moma_count_to_date   1.031e+03   2.721 0.006617
+artist_nationality_otherSpanish:moma_count_to_date  1.819e+03   3.721 0.000205
+                                                      
+(Intercept)                                        ***
+artist_nationality_otherFrench                     ***
+artist_nationality_otherOther                         
+artist_nationality_otherBritish                       
+artist_nationality_otherGerman                        
+artist_nationality_otherSpanish                    ** 
+moma_count_to_date                                    
+artist_nationality_otherFrench:moma_count_to_date  ***
+artist_nationality_otherOther:moma_count_to_date   .  
+artist_nationality_otherBritish:moma_count_to_date    
+artist_nationality_otherGerman:moma_count_to_date  ** 
+artist_nationality_otherSpanish:moma_count_to_date ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation of Fixed Effects:
+            (Intr) art__F art__O art__B art__G art__S mm_c__ a__F:_ a__O:_
+artst_ntn_F -0.630                                                        
+artst_ntn_O -0.688  0.434                                                 
+artst_ntn_B -0.496  0.313  0.342                                          
+artst_ntn_G -0.464  0.292  0.319  0.230                                   
+artst_ntn_S -0.201  0.126  0.138  0.100  0.093                            
+mm_cnt_t_dt -0.458  0.288  0.315  0.227  0.213  0.092                     
+arts__F:___  0.400 -0.356 -0.275 -0.198 -0.185 -0.080 -0.873              
+arts__O:___  0.394 -0.248 -0.399 -0.195 -0.183 -0.079 -0.860  0.751       
+arts__B:___  0.188 -0.119 -0.130 -0.366 -0.087 -0.038 -0.411  0.359  0.354
+arts__G:___  0.356 -0.224 -0.245 -0.177 -0.349 -0.071 -0.777  0.678  0.668
+arts__S:___  0.336 -0.211 -0.231 -0.167 -0.156 -0.305 -0.733  0.640  0.630
+            a__B:_ a__G:_
+artst_ntn_F              
+artst_ntn_O              
+artst_ntn_B              
+artst_ntn_G              
+artst_ntn_S              
+mm_cnt_t_dt              
+arts__F:___              
+arts__O:___              
+arts__B:___              
+arts__G:___  0.320       
+arts__S:___  0.302  0.569</code></pre>
+</div>
+</div>
+</section>
+<section id="results" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 7.0 Results</h1>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Chapter2_files/figure-html/sjplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>                                                GVIF Df GVIF^(1/(2*Df))
+artist_nationality_other                     1.94725  5        1.068913
+moma_count_to_date                          10.07286  1        3.173778
+artist_nationality_other:moma_count_to_date 16.54427  5        1.323929</code></pre>
+</div>
+</div>
+<p>GET PVALUES FOR COEFFICIENTS - STATISTICALLY SIGNIFICANT - GO THROUGH INTERPRETATIONS WITH LOG TRANSFORMATION AND MIXED EFFECTS MODEL - CONFIRM MODEL DIAGNOSTICS - AIC / BIC FOR MIXED EFFECTS -</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>          R2m       R2c
+[1,] 0.171159 0.5323004</code></pre>
+</div>
+</div>
+<p>Marginal R2 provides the variance explained only by fixed effects and conditional R2 provides the variance explained by the entire model, i.e., both fixed effects and random effects.</p>
+<p>Model Diagnostics : Check for linearity, independence, residuals, normal distribution of the residuals - no pattern in residuals, constant variance</p>
+<p>RESOURCE: https://www.ssc.wisc.edu/sscc/pubs/MM/MM_DiagInfer.html</p>
+<p>Plotting : log transform some variables : Fitted v. Residuals</p>
+</section>
+<section id="discussion" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> 8.0 Discussion:</h1>
+</section>
+<section id="limitations-and-next-steps" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> 9.0 Limitations and Next Steps:</h1>
+</section>
+<section id="appendix" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> 10.0 Appendix:</h1>
+<section id="assumptions" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">8.1</span> 10.1 Assumptions:</h2>
+<section id="residuals-and-constant-variance" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="residuals-and-constant-variance"><span class="header-section-number">8.1.1</span> 10.1.1 Residuals and Constant Variance:</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Chapter2_files/figure-html/diagnostics-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>for the very low values of the predicted have very low variability for residuals - the rest varied</p>
+<p>the a bulk of the data there is constant variability in the residuals</p>
+<p>before log transforming our outcome variable, the constant variance assumption was violated. Therefore, in order to pass the constant variance assumption, I performed a log transformation.</p>
+</section>
+<section id="normality" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="normality"><span class="header-section-number">8.1.2</span> 10.1.2 Normality:</h3>
+<p>normal histogram = density plot overlayed -</p>
+<p>Struggling to understand how to do this with a mixed-effects model</p>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Chapter2_files/figure-html/normal-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="linearity" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="linearity"><span class="header-section-number">8.1.3</span> 10.1.3 Linearity:</h3>
+<p>residuals v quantitative predictors</p>
+<p>once i figure out how to augment the data and get the .resid I can make this visualization as well</p>
+<p>no pattern is left behind</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Chapter2_files/figure-html/linearitymoma-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Chapter2_files/figure-html/linearitywhitney-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Normality of random effect: Get the estimate of random effect (in your case random intercepts), and check them as check the residual. But it is not efficient because you just have 7 random intercepts.</p>
+</section>
+<section id="independence" class="level3" data-number="8.1.4">
+<h3 data-number="8.1.4" class="anchored" data-anchor-id="independence"><span class="header-section-number">8.1.4</span> 10.1.4 Independence:</h3>
+<p>Another assumption is the independence between subjects. No test, based on your judgement. Subject specific random intercept means the correlation between the response variable from the same subject are the same.</p>
+<p>all obervations of different artists are independent -</p>
+<p>fitting a mixed model - i do not believe that pieces by each artist is independence - at the artist level we have independence</p>
+<p>log transforming predictors - interpretations change - variables weren’t changed - same idea, bit different</p>
+<p>INDEPENDENCE: DOUBLE CHECK - EMPIRICALLY ARGUE OR ?</p>
+<p>check for time series - residuals v. order of data points</p>
+<p>irrelevant - based on how the sample was collected.</p>
+<p>verbally argue the independence between artists - since we are using a mixed effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed effects model. Between artists, we expect the observations to be independent.</p>
+</section>
+</section>
+<section id="data-dictionary" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="data-dictionary"><span class="header-section-number">8.2</span> <strong>10.2 Data Dictionary:</strong></h2>
+<p>Outcome:</p>
+<p><code>space_ratio_per_page_total</code> = The area in centimeters squared of both the text and the figure of a particular artist in a given edition of <em>Janson’s History of Art</em> divided by the area in centimeters squared of a single page of the respective edition.</p>
+<p>Potential Predictors:</p>
+<p><code>artist_gender</code> = The gender of the artist.</p>
+<p><code>artist_race</code> = The race of the artist.</p>
+<p><code>artist_race_nwi</code> = The non-white indicator for artist race, meaning if an artist’s race is denoted as either white or non-white.</p>
+<p><code>artist_ethnicity</code> = The ethnicity of the artist.</p>
+<p><code>artist_nationality_other</code> = The nationality of the artist. Of the total count of artists through all editions of <em>Gardner’s Art Through the Ages</em> and <em>Janson’s History of Art</em>, 77.32% account for French, Spanish, British, American and German. Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other.</p>
+<p><code>whitney_count_to_date</code> = The count of exhibitions held by The Whitney of a particular artist at a particular moment of time, as highlighted by <code>year</code>.</p>
+<p><code>moma_count_to_date</code> = The count of exhibitions held by the Museum of Modern Art (MoMA) of a particular artist at a particular moment of time, as highlighted by <code>year</code>.</p>
+<p><code>year</code> = The year of publication for a given edition of Janson or Gardner.</p>
+<p>Other variables:</p>
+<p><code>edition_number</code> = The edition number of the textbook from either Janson’s History of Art or Gardner’s Art Through the Ages.</p>
+<p><code>book</code> = Which book, either Janson or Gardner the particular artist at that particular time was included.</p>
+<p><code>artist_unique_id</code> = A unique identifying number assigned to artists across books and editions denoted in alphabetical order.</p>
+
+
+</section>
+</section>
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Chapter1/Chapter1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quantifying Art Historical Narratives</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+</body></html>
