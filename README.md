@@ -18,8 +18,8 @@ particular time was included.| Categorical
 space_ratio_per_page_total | The area in centimeters squared of both the text and the figure of a particular artist in a given edition of Janson's History of Art divided by the area in centimeters squared of a single page of the respective edition.| Numeric
 artist_unique_id | The unique identifying number assigned to artists across
 books denoted in alphabetical order. | String
-moma_count_to_date | The total count of exhibitions ever held by the Museum of Modern Art (MoMA) of a particular artist at a given year of publication.| Numeric
-whitney_count_to_date | The count of exhibitions held by The Whitney of a particular artist at a particular moment of time, as highlighted by year. | Quantitative
+moma_count_to_year | The total count of exhibitions ever held by the Museum of Modern Art (MoMA) of a particular artist at a given year of publication.| Numeric
+whitney_count_to_year | The count of exhibitions held by The Whitney of a particular artist at a particular moment of time, as highlighted by year. | Quantitative
 
 
 

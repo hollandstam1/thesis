@@ -1207,17 +1207,9 @@ There are myriad next steps for such research going forward. Firstly, it would b
 plot(resid(lmm, type = "pearson") ~ fitted(lmm))
 ```
 
-for the very low values of the predicted have very low variability for residuals - the rest varied
-
-the a bulk of the data there is constant variability in the residuals
-
-before log transforming our outcome variable, the constant variance assumption was violated. Therefore, in order to pass the constant variance assumption, I performed a log transformation.
+The very low values of the predicted values have very low variability for residuals but for the bulk of the data, there is constant variability in the residuals.
 
 ### Normality
-
-normal histogram = density plot overlayed -
-
-Struggling to understand how to do this with a mixed-effects model
 
 ```{r}
 #| label: density-histogram
@@ -1235,11 +1227,7 @@ ggplot(lmm_aug, aes(x = .resid))+
                 size = 2)
 ```
 
-```{r normal}
-
-qqnorm(resid(lmm, type = "pearson"))
-qqline(resid(lmm, type = "pearson"))
-```
+The distribution of the residuals is approximately normal.
 
 ### Linearity
 
@@ -1257,25 +1245,11 @@ ggplot(lmm_aug, aes(x = moma_count_to_year, y = .resid)) +
   )
 ```
 
-There is no pattern left behind therefore linearity is satisfied.
+There is no pattern left behind therefore linearity is satisfied. There is a linear relationship between the response and predictor variables. (not sure if this is correct)
 
 ### Independence
 
-Another assumption is the independence between subjects. No test, based on your judgement. Subject specific random intercept means the correlation between the response variable from the same subject are the same.
-
-all obervations of different artists are independent -
-
-fitting a mixed model - i do not believe that pieces by each artist is independence - at the artist level we have independence
-
-log transforming predictors - interpretations change - variables weren't changed - same idea, bit different
-
-INDEPENDENCE: DOUBLE CHECK - EMPIRICALLY ARGUE OR ?
-
-check for time series - residuals v. order of data points
-
-irrelevant - based on how the sample was collected.
-
-verbally argue the independence between artists - since we are using a mixed effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed effects model. Between artists, we expect the observations to be independent.
+Since we are using a mixed-effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed effects model. Between artists, we expect the observations to be independent.
 
 ## Data Dictionary
 

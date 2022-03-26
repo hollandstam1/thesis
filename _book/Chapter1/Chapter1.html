@@ -1146,24 +1146,16 @@ artist_nationality_other:moma_count_to_year 10.843105  5        1.269157</code><
 <p><img src="Chapter1_files/figure-html/diagnostics-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>for the very low values of the predicted have very low variability for residuals - the rest varied</p>
-<p>the a bulk of the data there is constant variability in the residuals</p>
-<p>before log transforming our outcome variable, the constant variance assumption was violated. Therefore, in order to pass the constant variance assumption, I performed a log transformation.</p>
+<p>The very low values of the predicted values have very low variability for residuals but for the bulk of the data, there is constant variability in the residuals.</p>
 </section>
 <section id="normality" class="level3" data-number="11.1.2">
 <h3 data-number="11.1.2" class="anchored" data-anchor-id="normality"><span class="header-section-number">11.1.2</span> Normality</h3>
-<p>normal histogram = density plot overlayed -</p>
-<p>Struggling to understand how to do this with a mixed-effects model</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Chapter1_files/figure-html/density-histogram-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="Chapter1_files/figure-html/normal-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
+<p>The distribution of the residuals is approximately normal.</p>
 </section>
 <section id="linearity" class="level3" data-number="11.1.3">
 <h3 data-number="11.1.3" class="anchored" data-anchor-id="linearity"><span class="header-section-number">11.1.3</span> Linearity</h3>
@@ -1172,18 +1164,11 @@ artist_nationality_other:moma_count_to_year 10.843105  5        1.269157</code><
 <p><img src="Chapter1_files/figure-html/linearitymoma-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>There is no pattern left behind therefore linearity is satisfied.</p>
+<p>There is no pattern left behind therefore linearity is satisfied. There is a linear relationship between the response and predictor variables. (not sure if this is correct)</p>
 </section>
 <section id="independence" class="level3" data-number="11.1.4">
 <h3 data-number="11.1.4" class="anchored" data-anchor-id="independence"><span class="header-section-number">11.1.4</span> Independence</h3>
-<p>Another assumption is the independence between subjects. No test, based on your judgement. Subject specific random intercept means the correlation between the response variable from the same subject are the same.</p>
-<p>all obervations of different artists are independent -</p>
-<p>fitting a mixed model - i do not believe that pieces by each artist is independence - at the artist level we have independence</p>
-<p>log transforming predictors - interpretations change - variables weren’t changed - same idea, bit different</p>
-<p>INDEPENDENCE: DOUBLE CHECK - EMPIRICALLY ARGUE OR ?</p>
-<p>check for time series - residuals v. order of data points</p>
-<p>irrelevant - based on how the sample was collected.</p>
-<p>verbally argue the independence between artists - since we are using a mixed effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed effects model. Between artists, we expect the observations to be independent.</p>
+<p>Since we are using a mixed-effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed effects model. Between artists, we expect the observations to be independent.</p>
 </section>
 </section>
 <section id="data-dictionary" class="level2" data-number="11.2">
