@@ -175,23 +175,23 @@ To learn more about Quarto books visit
 [1] 2
 \end{verbatim}
 
-\hypertarget{quantifying-art-historical-narratives-chapter-1}{%
-\chapter{Quantifying Art Historical Narratives, Chapter
-1}\label{quantifying-art-historical-narratives-chapter-1}}
+\hypertarget{quantifying-art-historical-narratives}{%
+\chapter{Quantifying Art Historical
+Narratives}\label{quantifying-art-historical-narratives}}
 
 \hypertarget{abstract}{%
-\section{Abstract}\label{abstract}}
+\chapter{Abstract}\label{abstract}}
 
 My project surveys the development of \emph{Janson's History of Art}
 across its eight editions as well as \emph{Gardner's Art Through the
 Ages} through its sixteen editions, looking particularly at the change
 in artist demographic through time. Additionally, this paper
 investigates which external variables such as artist gender, ethnicity,
-race, nationality, number of exhibitions at the Museum of Modern Art and
-The Whitney, and number of publications on WorldCat, if any, help
-predict the magnitude of an artist's inclusion in art history survey
-texts. I conduct data analysis to assess the demographic representation
-of artists through editions of \emph{Janson's History of Art} and
+race, nationality, number of exhibitions at the Museum of Modern Art,
+and number of exhibitions at The Whitney if any, help predict the
+magnitude of an artist's inclusion in art history survey texts. I
+conduct data analysis to assess the demographic representation of
+artists through editions of \emph{Janson's History of Art} and
 \emph{Gardner's Art Through the Ages}, a proxy for the art history
 survey. I compare artist demographics through editions of Janson and
 Gardner. My findings indicate that coverage of minority artists (defined
@@ -200,33 +200,34 @@ editions of \emph{Janson's History of Art} and \emph{Gardner's Art
 Through the Ages}, but remains negligible compared to white male
 non-Hispanic or Latinx artists. Moreover, in \emph{Janson's History of
 Art} through all editions, the percentage of artists who are white is
-98.04\%, the percentage of artists that are male is 92.47\%, and the
-percentage of artists that are not Hispanic or Latinx is 92.04\%. In
+97.37\%, the percentage of artists that are male is 89.99\%, and the
+percentage of artists that are not Hispanic or Latinx is 95.82\%. In
 \emph{Gardner's Art Through the Ages}, through all editions, the
-percentage of artists who are white is 92.76\%, the percentage of
-artists that are male is 90.47\%, and the percentage of artists that are
-not Hispanic or Latinx is 90.94\%. Both texts display a narrative of the
+percentage of artists who are white is 90.02\%, the percentage of
+artists that are male is 85.69\%, and the percentage of artists that are
+not Hispanic or Latinx is 91.51\%. Both texts display a narrative of the
 history of art as being predominantly white, male, non-Hispanic or
-Latinx. Regarding nationality, in Janson, 81.52\% of the artists are
+Latinx. Regarding nationality, in Janson, 78.51\% of the artists are
 American, British, French, German, and Spanish, which is very similar to
-Gardner's 79.30\% of those five same nationalities. I have chosen to run
-a linear mixed-effects model with a random effect of
-\texttt{artist\_name}, to infer the magnitude of the ratio of space
-given to a particular artist, \texttt{space\_ratio\_per\_page\_total} in
-\emph{Janson's History of Art} and \emph{Gardner's Art Through the
-Ages,} using the potential predictor variables: \texttt{artist\_race},
-\texttt{artist\_gender} , \texttt{artist\_ethnicity} ,
-\texttt{artist\_nationality\_other} , \texttt{moma\_count\_to\_date} ,
-\texttt{whitney\_count\_to\_date}, and the two interaction variables of
-\texttt{artist\_gender*moma\_count\_to\_date} and
-\texttt{artist\_nationality\_other*moma\_count\_to\_date}. With a log
-transformation applied to the outcome variable,
-\texttt{space\_ratio\_per\_page\_total} as it is heavily right-skewed,
-my linear mixed-effects model yields a conditional r squared of 53.23\%.
-Such denotes that 53.21\% total variance of the outcome variable,
-\texttt{space\_ratio\_per\_page\_total} is explained through the fixed
-predictor variables as listed above and the random effect of
-\texttt{artist\_name}.
+Gardner's 76.58\% of those five same nationalities. I have chosen to run
+a linear mixed-effects model with a random effect of the artist's name,
+to infer the magnitude of the space given to a particular artist divided
+by the area of the page of the given edition (total space ratio per
+page), in \emph{Janson's History of Art} and \emph{Gardner's Art Through
+the Ages,} using the potential predictor variables: Artist Race, Artist
+Gender, Artist Ethnicity, Artist Nationality, the count through time of
+the number of exhibitions an artist has at the MoMA, and the count
+through time of the number of exhibitions an artist has at The Whitney.
+The model that best explains the variance in the total space ratio per
+page per artist per edition uses artist nationality and the count
+through time of the number of exhibitions an artist has in the MoMA as
+well as the interaction between those two variables. With a log
+transformation applied to the outcome variable of the as it is heavily
+right-skewed, my linear mixed-effects model yields a conditional r
+squared of 53.23\%. Such denotes that 53.23\% of the variance of total
+space ratio per page given to an artist in a given edition can be
+explained by the artist's nationality and the count through time of the
+number of exhibitions an artist has at the MoMA.
 
 JEL Numbers: C80, Y10, Z11
 
@@ -235,11 +236,166 @@ Data Collection Methodology, Linear Mixed-Effects Modeling.
 
 Data Preparation:
 
+ddf=``Satterthwaite''¶
+
+Satterthwaite test, more flexible, looking directly at p-values -
+non-parametric test - uses different error term, similar to a two same
+t-test, similar to ANOVA - analysis of variance - checking between
+different groups -
+
+\begin{verbatim}
+Backward reduced random-effect table:
+
+                  Eliminated npar  logLik    AIC    LRT Df Pr(>Chisq)    
+<none>                         22 -1407.2 2858.3                         
+(1 | artist_name)          0   21 -2255.3 4552.6 1696.2  1  < 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Backward reduced fixed-effect table:
+Degrees of freedom method: Satterthwaite 
+
+                                            Eliminated  Sum Sq Mean Sq NumDF
+artist_race_nwi:moma_count_to_year                   1 0.00575 0.00575     1
+artist_ethnicity:whitney_count_to_year               2 0.00836 0.00836     1
+artist_race_nwi:whitney_count_to_year                3 0.06087 0.06087     1
+artist_race_nwi                                      4 0.01434 0.01434     1
+artist_gender                                        5 0.08807 0.08807     1
+artist_ethnicity:moma_count_to_year                  6 0.09505 0.09505     1
+artist_ethnicity                                     7 0.01452 0.01452     1
+whitney_count_to_year                                0 0.94957 0.94957     1
+artist_nationality_other:moma_count_to_year          0 2.56307 0.51261     5
+                                              DenDF F value    Pr(>F)    
+artist_race_nwi:moma_count_to_year           533.82  0.0499 0.8232618    
+artist_ethnicity:whitney_count_to_year      2174.81  0.0726 0.7876537    
+artist_race_nwi:whitney_count_to_year        497.70  0.5282 0.4677161    
+artist_race_nwi                              484.81  0.1244 0.7244730    
+artist_gender                                415.45  0.7640 0.3825716    
+artist_ethnicity:moma_count_to_year          675.27  0.8247 0.3641252    
+artist_ethnicity                             486.16  0.1259 0.7228281    
+whitney_count_to_year                       1091.60  8.2366 0.0041846 ** 
+artist_nationality_other:moma_count_to_year 1425.16  4.4464 0.0005048 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Model found:
+log(space_ratio_per_page_total) ~ artist_nationality_other + moma_count_to_year + whitney_count_to_year + (1 | artist_name) + artist_nationality_other:moma_count_to_year
+\end{verbatim}
+
+pick a handful of interest
+
+visualization : confidence intervals for each on of the slopes
+
+predictors on the y axis -
+
+bar plots of the pvalues another option
+
+nationality discourse for significance
+
+log transformation on the y variable -
+
+stepwise model selection
+
+the multiple of the number of degrees of freedom used for the penalty.
+Only k = 2 gives the genuine AIC: k = log(n) is sometimes referred to as
+BIC or SBC.
+
+\begin{verbatim}
+Linear mixed model fit by maximum likelihood . t-tests use Satterthwaite's
+  method [lmerModLmerTest]
+Formula: log(space_ratio_per_page_total) ~ artist_nationality_other +  
+    moma_count_to_year + artist_nationality_other * moma_count_to_year +  
+    (1 | artist_name)
+   Data: gardnerjanson_museums_mod
+
+     AIC      BIC   logLik deviance df.resid 
+  2853.1   2937.6  -1412.5   2825.1     3090 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.8692 -0.5597 -0.0344  0.5743  3.6926 
+
+Random effects:
+ Groups      Name        Variance Std.Dev.
+ artist_name (Intercept) 0.1105   0.3324  
+ Residual                0.1156   0.3400  
+Number of obs: 3104, groups:  artist_name, 394
+
+Fixed effects:
+                                                      Estimate Std. Error
+(Intercept)                                         -1.066e+00  6.950e-02
+artist_nationality_otherAmerican                     7.793e-02  7.843e-02
+artist_nationality_otherFrench                       3.108e-01  8.291e-02
+artist_nationality_otherOther                        1.954e-02  7.943e-02
+artist_nationality_otherBritish                      6.277e-02  9.446e-02
+artist_nationality_otherSpanish                      6.485e-01  1.928e-01
+moma_count_to_year                                   1.101e-02  4.905e-03
+artist_nationality_otherAmerican:moma_count_to_year -2.203e-02  7.874e-03
+artist_nationality_otherFrench:moma_count_to_year    1.106e-03  5.939e-03
+artist_nationality_otherOther:moma_count_to_year    -6.692e-03  6.115e-03
+artist_nationality_otherBritish:moma_count_to_year  -8.244e-03  1.452e-02
+artist_nationality_otherSpanish:moma_count_to_year   9.606e-03  7.324e-03
+                                                            df t value Pr(>|t|)
+(Intercept)                                          4.588e+02 -15.331  < 2e-16
+artist_nationality_otherAmerican                     4.651e+02   0.994 0.320904
+artist_nationality_otherFrench                       4.396e+02   3.748 0.000202
+artist_nationality_otherOther                        4.714e+02   0.246 0.805742
+artist_nationality_otherBritish                      4.403e+02   0.665 0.506703
+artist_nationality_otherSpanish                      3.713e+02   3.364 0.000847
+moma_count_to_year                                   1.647e+03   2.245 0.024928
+artist_nationality_otherAmerican:moma_count_to_year  1.125e+03  -2.798 0.005228
+artist_nationality_otherFrench:moma_count_to_year    1.866e+03   0.186 0.852305
+artist_nationality_otherOther:moma_count_to_year     1.325e+03  -1.094 0.274068
+artist_nationality_otherBritish:moma_count_to_year   9.461e+02  -0.568 0.570410
+artist_nationality_otherSpanish:moma_count_to_year   2.773e+03   1.312 0.189784
+                                                       
+(Intercept)                                         ***
+artist_nationality_otherAmerican                       
+artist_nationality_otherFrench                      ***
+artist_nationality_otherOther                          
+artist_nationality_otherBritish                        
+artist_nationality_otherSpanish                     ***
+moma_count_to_year                                  *  
+artist_nationality_otherAmerican:moma_count_to_year ** 
+artist_nationality_otherFrench:moma_count_to_year      
+artist_nationality_otherOther:moma_count_to_year       
+artist_nationality_otherBritish:moma_count_to_year     
+artist_nationality_otherSpanish:moma_count_to_year     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Correlation of Fixed Effects:
+            (Intr) art__A art__F art__O art__B art__S mm_c__ a__A:_ a__F:_
+artst_ntn_A -0.886                                                        
+artst_ntn_F -0.838  0.743                                                 
+artst_ntn_O -0.875  0.775  0.734                                          
+artst_ntn_B -0.736  0.652  0.617  0.644                                   
+artst_ntn_S -0.361  0.320  0.302  0.316  0.265                            
+mm_cnt_t_yr -0.311  0.276  0.261  0.272  0.229  0.112                     
+arts__A:___  0.194 -0.334 -0.163 -0.170 -0.143 -0.070 -0.623              
+arts__F:___  0.257 -0.228 -0.294 -0.225 -0.189 -0.093 -0.826  0.514       
+arts__O:___  0.250 -0.221 -0.209 -0.315 -0.184 -0.090 -0.802  0.500  0.662
+arts__B:___  0.105 -0.093 -0.088 -0.092 -0.289 -0.038 -0.338  0.210  0.279
+arts__S:___  0.208 -0.185 -0.175 -0.182 -0.153 -0.302 -0.670  0.417  0.553
+            a__O:_ a__B:_
+artst_ntn_A              
+artst_ntn_F              
+artst_ntn_O              
+artst_ntn_B              
+artst_ntn_S              
+mm_cnt_t_yr              
+arts__A:___              
+arts__F:___              
+arts__O:___              
+arts__B:___  0.271       
+arts__S:___  0.537  0.226
+\end{verbatim}
+
 \hypertarget{introduction-and-context}{%
-\section{Introduction and Context}\label{introduction-and-context}}
+\chapter{Introduction and Context}\label{introduction-and-context}}
 
 \hypertarget{inspiration-for-research}{%
-\subsection{Inspiration for Research:}\label{inspiration-for-research}}
+\section{Inspiration for Research:}\label{inspiration-for-research}}
 
 Heading into the second semester of my junior year, I scheduled a zoom
 meeting with my now undergraduate thesis advisor, Prof.~Hans van
@@ -273,14 +429,14 @@ space (of text and of the figure of their work or works) given to an
 artist in a given book.
 
 \hypertarget{why-gardners-art-through-the-ages}{%
-\subsection{\texorpdfstring{Why \emph{Gardner's Art Through the
+\section{\texorpdfstring{Why \emph{Gardner's Art Through the
 Ages:}}{Why Gardner's Art Through the Ages:}}\label{why-gardners-art-through-the-ages}}
 
 \hypertarget{discourse-of-authorship}{%
-\subsubsection{Discourse of Authorship:}\label{discourse-of-authorship}}
+\subsection{Discourse of Authorship:}\label{discourse-of-authorship}}
 
 \hypertarget{literature-review}{%
-\subsubsection{Literature Review:}\label{literature-review}}
+\subsection{Literature Review:}\label{literature-review}}
 
 \textbf{(}Discourse of dominance through time of the text, find and add
 sources and if available sales information through time)
@@ -339,11 +495,11 @@ Authorship, and Publisher Over Time of All Cataloged Editions of
 Gardner's Art Through the Ages.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0458}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0840}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3740}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2748}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2214}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0353}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0824}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3804}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2784}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2235}}@{}}
 \toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 Edition
@@ -358,50 +514,87 @@ Publisher (as listed per Edition)
 \end{minipage} \\
 \midrule
 \endhead
-1 & 1926 & Helen Gardner & Art through the ages; an introduction to its
-history and significance & New York, Brace, Harcourt \\
-2 & 1936 & Helen Gardner & Art through the ages; an introduction to its
-history and significance & New York, Brace, Harcourt \\
-3 & 1948 & Helen Gardner & Art through the ages & New York, Brace,
+1 & 1926 & Helen Gardner & Art Through the Ages; An Introduction to Its
+History and Significance & New York, Brace, Harcourt \\
+2 & 1936 & Helen Gardner & Art Through the Ages; An Introduction to Its
+History and Significance & New York, Brace, Harcourt \\
+3 & 1948 & Helen Gardner & Art Through the Ages & New York, Brace,
 Harcourt \\
 4 & 1959 & Helen Gardner; revised by Sumner M. Crosby and the Dept. of
-the History of Art, Yale University & Art through the ages & New York,
+the History of Art, Yale University & Art Through the Ages & New York,
 Harcourt, Brace \\
 5 & 1970 & Revised by Horst de la Croix, Richard G. Tansey & Gardner's
-art through the ages & New York, Harcourt, Brace \\
+Art Through the Ages & New York, Harcourt, Brace \\
 6 & 1975 & Helen Gardner; revised by Horst de la Croix, Richard G.
-Tansey & Gardner's art through the ages & New York: Harcourt Brace
+Tansey & Gardner's Art Through the Ages & New York: Harcourt Brace
 Jovanovich \\
 7 & 1980 & Helen Gardner; revised by Horst de la Croix, Richard G.
-Tansey & Gardner's art through the ages & Harcourt Brace Jovanovich, New
+Tansey & Gardner's Art Through the Ages & Harcourt Brace Jovanovich, New
 York \\
-8 & 1986 & Horst de la Croix, Richard G. Tansey & Gardner's art through
-the ages & Harcourt Brace Jovanovich, San Diego, CA \\
+8 & 1986 & Horst de la Croix, Richard G. Tansey & Gardner's Art Through
+the Ages & Harcourt Brace Jovanovich, San Diego, CA \\
 9 & 1991 & Horst de la Croix, Richard G. Tansey, Diane Kirkpatrick &
-Gardner's art through the ages & San Diego: Harcourt Brace Jovanovich \\
-10 & 1996 & Richard G. Tansey, Fred S. Kleiner & Gardern's art through
-the ages & Fort Worth, TX: Harcourt Brace \\
+Gardner's Art Through the Ages & San Diego: Harcourt Brace Jovanovich \\
+10 & 1996 & Richard G. Tansey, Fred S. Kleiner & Gardner's Art Through
+the Ages & Fort Worth, TX: Harcourt Brace \\
 11 & 2001 & Fred S. Kleiner, Christin J. Mamiya, Richard G. Tansey &
-Gardner's art through the ages & Fort Worth TX: Harcourt College
+Gardner's Art Through the Ages & Fort Worth TX: Harcourt College
 Publishers \\
-12 & 2005 & Fred S. Kleiner, Christin J. Mamiya & Gardner's art through
-the ages & Thomson/Wadsworth, Belmont, CA \\
-13 & 2009 & Fred S. Kleiner & Gardner's art through the ages: a global
-history & Boston, Thomson/Wadsworth \\
-14 & 2013 & Fred S. Kleiner & Gardner's art through the ages: a global
-history & Australia ; United States : Wadsworth, Cengage Learning \\
-15 & 2016 & Fred S. Kleiner & Gardner's art through the ages: a global
-history & Boston, MA : Cengage Learning \\
-16 & 2020 & Fred S. Kleiner & Gardner's art through the ages: a global
-history & Boston, MA, US : Cengage Learning \\
+12 & 2005 & Fred S. Kleiner, Christin J. Mamiya & Gardner's Art Through
+the Ages & Thomson/Wadsworth, Belmont, CA \\
+13 & 2009 & Fred S. Kleiner & Gardner's Art Through the Ages: A Global
+History & Boston, Thomson/Wadsworth \\
+14 & 2013 & Fred S. Kleiner & Gardner's Art Through the Ages: A Global
+History & Australia ; United States : Wadsworth, Cengage Learning \\
+15 & 2016 & Fred S. Kleiner & Gardner's Art Through the Ages: A Global
+History & Boston, MA : Cengage Learning \\
+16 & 2020 & Fred S. Kleiner & Gardner's Art Through the Ages: A Global
+History & Boston, MA, US : Cengage Learning \\
 \bottomrule
 \end{longtable}
 
 \textbf{Table 4:} Authors of Gardner's Art Through the Ages: NEEDS TO BE
 ADDED
 
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1034}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2213}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6753}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Author Name
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Edition Number (Year)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule
+\endhead
+Sumner McKnight Crosby (1909-1982) & 4 (1959) & Sumner McKnight Crosby
+was an American Medievalist architectural historian. He was the
+principal scholar of St-Denis and chair of the Department of Art
+History, Yale University, 1947-1953.\footnote{https://arthistorians.info/crosbys} \\
+Horst de la Croix & 5 (1970), 6 (1975), 7 (1980), 8 (1986), 9 (1991) &
+An Art Historian and professor at San Jose State
+University.\footnote{Little to no information available about Horst de
+  la Croix} \\
+Richard G. Tansey (1919-1998) & 5 (1970), 6 (1975), 7 (1980), 8 (1986),
+9 (1991), 10 (1995) & An Art Historian and professor at San Jose State
+University from 1947-1961. He then taught at UCLA for a year, only to
+return to San Jose State University from 1962-1980. He recieved his BA,
+MA, and Ph.D.~from Harvard.\footnote{https://scholarworks.sjsu.edu/erfa\_bios/240/} \\
+Diane Kirkpatrick (1933 - present) & 9 (1991) & She received her BA from
+Vassar College in 1955, her MA and Ph.D.~in Art Hhistory from the
+University of Michigan in 1965 and 1969. She joined the faculty at the
+University of Michican in 1968 and retired in May of 2000.\footnote{http://faculty-history.dc.umich.edu/faculty/diane-m-kirkpatrick/memoir} \\
+Fred S. Kleiner & 10 (1995), 11 (2001), 12 (2005), 13 (2009), 14 (2013),
+15 (2016), 16 (2020) & \\
+Christin J. Mamiya & 11 (2001), 12 (2005) & \\
+\bottomrule
+\end{longtable}
+
 \hypertarget{why-jansons-history-of-art}{%
-\subsection{\texorpdfstring{Why \emph{Janson's History of
+\section{\texorpdfstring{Why \emph{Janson's History of
 Art}:}{Why Janson's History of Art:}}\label{why-jansons-history-of-art}}
 
 Such a text is claimed to be the most influential art history survey
@@ -604,7 +797,7 @@ Jersey. \\
 \end{longtable}
 
 \hypertarget{discourse-of-authorship-through-editions}{%
-\subsubsection{\texorpdfstring{\textbf{Discourse of Authorship Through
+\subsection{\texorpdfstring{\textbf{Discourse of Authorship Through
 Editions:}}{Discourse of Authorship Through Editions:}}\label{discourse-of-authorship-through-editions}}
 
 The primary author through the first six editions of Janson's History of
@@ -694,66 +887,54 @@ historical survey.\footnote{Jeffrey Weidman, ``Many are Culled but Few
 History of Art.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0724}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0322}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0322}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0402}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.8231}}@{}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.0725}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.9275}}@{}}
 \toprule
 \begin{minipage}[b]{\linewidth}\raggedright
 Author
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Gender
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Ethnicity
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Nationality
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
 Description (As listed by Publisher)
 \end{minipage} \\
 \midrule
 \endhead
 \begin{minipage}[t]{\linewidth}\raggedright
-Penelope J. E. Davies \textbar{}
+Penelope J. E. Davies
 
 \hfill\break
 \strut
-\end{minipage} & Female \textbar{} & White \textbar{} & American
-\textbar{} & Associate Professor at the University of Texas, Austin. She
-is a scholar of Greek and Roman art and architecture as well as a field
-archaeologist. She is an author of Death and the Emperor: Roman Imperial
-Funerary Monuments from Augustus to Marcus Aurelius, and winner of the
-Vasari Award. \\
-Walter B. Denny & Male & White & American & Professor of Art History at
-the University of Massachusetts at Amherst. In addition to exhibition
-catalogues, his publications include books on Ottoman Turkish carpets,
-textiles, and ceramics, and articles on miniature painting, architecture
-and architectural decoration. \\
-Frima Fox Hofrichter & Female & White & Dutch (?) & Professor and former
-Chair of the History of Art and Design department at Pratt Institute.
-She is the author of Judith Leyster, A Dutch Artist in Holland's Golden
-Age, which received CAA's Millard Meiss Publication Fund Award. \\
-Joseph Jacobs & Male & White (?) & American \textbar{} & An independent
-scholar, critic, and art historian of modern art in New York City. He
-was the curator of modern art at the John and Mable Ringling Museum of
-Art in Sarasota, Florida, director of the Oklahoma City Art Museum, and
-curator of American art at The Newark Museum, Newark, New Jersey. \\
-Ann M. Roberts & Female & White & American (?) & Professor of Art at
-Lake Forest College, she has published essays, articles and reviews on
-both Northern and Italian Renaissance topics. Her research focuses on
-women in the Renaissance, and her most recent publication is entitled
-Dominican Women and Renaissance Art: The Convent of San Domenico of
-Pisa. \\
-David L. Simon & Male & White & American & Jetté Professor of Art at
-Colby College where he received the Basset Teaching Award in 2005. Among
-his publications is the catalogue of Spanish and southern French
-Romanesque sculpture in the Metropolitan Museum of Art and The
-Cloisters. \\
+\end{minipage} & Associate Professor at the University of Texas, Austin.
+She is a scholar of Greek and Roman art and architecture as well as a
+field archaeologist. She is an author of Death and the Emperor: Roman
+Imperial Funerary Monuments from Augustus to Marcus Aurelius, and winner
+of the Vasari Award. \\
+Walter B. Denny & Professor of Art History at the University of
+Massachusetts at Amherst. In addition to exhibition catalogues, his
+publications include books on Ottoman Turkish carpets, textiles, and
+ceramics, and articles on miniature painting, architecture and
+architectural decoration. \\
+Frima Fox Hofrichter & Professor and former Chair of the History of Art
+and Design department at Pratt Institute. She is the author of Judith
+Leyster, A Dutch Artist in Holland's Golden Age, which received CAA's
+Millard Meiss Publication Fund Award. \\
+Joseph Jacobs & An independent scholar, critic, and art historian of
+modern art in New York City. He was the curator of modern art at the
+John and Mable Ringling Museum of Art in Sarasota, Florida, director of
+the Oklahoma City Art Museum, and curator of American art at The Newark
+Museum, Newark, New Jersey. \\
+Ann M. Roberts & Professor of Art at Lake Forest College, she has
+published essays, articles and reviews on both Northern and Italian
+Renaissance topics. Her research focuses on women in the Renaissance,
+and her most recent publication is entitled Dominican Women and
+Renaissance Art: The Convent of San Domenico of Pisa. \\
+David L. Simon & Jetté Professor of Art at Colby College where he
+received the Basset Teaching Award in 2005. Among his publications is
+the catalogue of Spanish and southern French Romanesque sculpture in the
+Metropolitan Museum of Art and The Cloisters. \\
 \bottomrule
 \end{longtable}
 
 \hypertarget{literature-review-1}{%
-\subsubsection{\texorpdfstring{\textbf{Literature
+\subsection{\texorpdfstring{\textbf{Literature
 Review:}}{Literature Review:}}\label{literature-review-1}}
 
 Many are Culled but Few are Chosen: Janson's History of Art, Its
@@ -836,15 +1017,52 @@ aggregate when looking gender discrimination.
 \chapter{\texorpdfstring{\textbf{Significance of
 Research:}}{Significance of Research:}}\label{significance-of-research}}
 
-There has not been research done in the aggregate, quantitatively
-analyzing the change over time in \emph{Janson's History of Art} nor
-\emph{Gardner's Art Through the Ages}. My research is significant as it
-efficiently shows the gaps of representation in terms of gender,
-nationality, race and ethnicity that have not been deeply touched on by
-previous scholars. Additionally, I am able to explain 53.73\% of the
-outcome variable, \texttt{space\_ratio\_per\_total} linear mixed effects
-model with a log transformation on the outcome variable,
-\texttt{space\_ratio\_per\_page\_total}, that
+As far as I am aware, there has not been research done in the aggregate,
+quantitatively analyzing the change over time specifically regarding
+artist demographic in \emph{Janson's History of Art} nor \emph{Gardner's
+Art Through the Ages}. My research is significant as it efficiently
+shows the gaps of representation in terms of gender, nationality, race,
+and ethnicity that have not been deeply touched on by previous scholars.
+As mentioned in my literature review of publications that discuss
+\emph{Gardner's Art Through the Ages,} the closest research I have found
+to my own was published by The University of Chicago Press Journals in
+2020 in which two professors and library assistant out of Purdue
+University, randomly selected and cataloged information from the first,
+fifth, twelfth and sixteenth edition. They were focused on how the
+length of the book changes through time, the type of image changed
+through time, how the percent of color images change through time, and
+how the number of suggested readings changes through time. My research
+has more breadth, as I scraped information from all 16 editions of
+\emph{Gardner's Art Through the Ages,} as well as \emph{Janson's History
+of Art} and working less with how the book itself was changing, but more
+so how the artist's included changes through time.
+
+Secondly, my research looks at how the area given to particular artists
+changes through time and which, if any, external variables can help
+account for the variance of such. As mentioned in my abstract, I use a
+linear mixed-effects model with a random effect of the artist's name, to
+infer the magnitude of the space given to a particular artist divided by
+the area of the page of the given edition (total space ratio per page),
+in \emph{Janson's History of Art} and \emph{Gardner's Art Through the
+Ages,} using the potential predictor variables: Artist Race, Artist
+Gender, Artist Ethnicity, Artist Nationality, the count through time of
+the number of exhibitions an artist has at the MoMA, and the count
+through time of the number of exhibitions an artist has at The Whitney.
+The model that best explains the variance in the total space ratio per
+page per artist per edition uses artist nationality and the count
+through time of the number of exhibitions an artist has in the MoMA as
+well as the interaction between those two variables. With a log
+transformation applied to the outcome variable of the as it is heavily
+right-skewed, my linear mixed-effects model yields a conditional r
+squared of 53.23\%. Such denotes that 53.23\% of the variance of total
+space ratio per page given to an artist in a given edition can be
+explained by the artist's nationality and the count through time of the
+number of exhibitions an artist has at the MoMA. This type of
+statistical analysis as far as I am aware has not been done in regards
+to looking at how art historical survey texts evolve. My research works
+to explain how the authors of \emph{Janson's History of Art} and
+\emph{Gardner's Art Through the Ages,} operate while choosing which
+artists are given any particular amount of space in their publications.
 
 \hypertarget{research-questions}{%
 \chapter{\texorpdfstring{\textbf{Research
@@ -901,7 +1119,7 @@ scope allowed me to collect information more quickly to understand how
 the books were changing over time. Across all 25 books, there are a
 total of 3162 observations, which is the sum of the count of artists in
 every book. In the finalized, gardnerjanson\_museums data set, there are
-15 different variables cataloged (for further information about each
+14 different variables cataloged (for further information about each
 variable, reference the Data Dictionary). There are a total of 414
 unique artists.
 
@@ -934,14 +1152,20 @@ would do a quick google search to further research their gender. If I
 couldn't find their gender, I listed such as N/A.
 
 \texttt{artist\_race} = I recorded the race of the artist as listed by
-the text. In the case the race of the artist was not listed, I would do
-a quick google search to further research their race. If I couldn't find
-their race, I listed such as N/A.
+the text. I categorized race based on the guidelines of the US
+Census.\footnote{https://www.census.gov/topics/population/race/about.html.
+
+  https://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bureau-Definitions-of-Race-and-Ethnicity.pdf\#:\textasciitilde:text=Definition\%3A\%20The\%20U.S.\%20Census\%20Bureau\%20adheres\%20to\%20the,Hispanics\%20and\%20Latinos\%20may\%20be\%20of\%20any\%20race.}
+In the case the race of the artist was not listed, I would do a quick
+google search to further research their race. If I couldn't find their
+race, I listed such as N/A.
 
 \texttt{artist\_ethnicity} = I recorded the ethnicity of the artist as
-listed by the text. In the case the ethnicity of the artist was not
-listed, I would do a quick google search to further research their
-ethnicity. If I couldn't find their ethnicity, I listed such as N/A.
+listed by the text. Similarly to race, I categorized ethnicity based on
+the guidelines of the US Census.\footnote{https://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bureau-Definitions-of-Race-and-Ethnicity.pdf\#:\textasciitilde:text=Definition\%3A\%20The\%20U.S.\%20Census\%20Bureau\%20adheres\%20to\%20the,Hispanics\%20and\%20Latinos\%20may\%20be\%20of\%20any\%20race.}
+In the case the ethnicity of the artist was not listed, I would do a
+quick google search to further research their ethnicity. If I couldn't
+find their ethnicity, I listed such as N/A.
 
 Identifying Variables:
 
@@ -1030,16 +1254,16 @@ centimeters squared.
 Pivoting to joining The Whitney's catalog history and the MoMA's catalog
 history with the data set I just created with both Janson and Gardner
 observations, I had to create a variable called
-\texttt{whitney\_count\_to\_date} and \texttt{moma\_count\_to\_date}
+\texttt{whitney\_count\_to\_year} and \texttt{moma\_count\_to\_year}
 respectively. This is because as the publication year of books changes
 through time, the amount of exhibitions that are given to an artist has
 the possibility to change through time as well.
 
-\texttt{whitney\_count\_to\_date} = The count of exhibitions held by The
+\texttt{whitney\_count\_to\_year} = The count of exhibitions held by The
 Whitney of a particular artist at a particular moment of time, as
 highlighted by \texttt{year}.
 
-\texttt{moma\_count\_to\_date} = The count of exhibitions held by the
+\texttt{moma\_count\_to\_year} = The count of exhibitions held by the
 Museum of Modern Art (MoMA) of a particular artist at a particular
 moment of time, as highlighted by \texttt{year}.
 
@@ -1051,16 +1275,16 @@ moment of time, as highlighted by \texttt{year}.
 Purposes:}\label{data-preparation-for-modeling-purposes}}
 
 In order to prepare my data further for the purposes of regression, I
-had to recategorize the variable of \texttt{artist\_nationality} and
+had to re-categorize the variable of \texttt{artist\_nationality} and
 \texttt{artist\_race}. Firstly, since there are myriad nationalities
 recorded through all 25 books, I had to condense
 \texttt{artist\_nationality} to \texttt{artist\_nationality\_other} such
 that I would only receive five varying betas rather than more than
 thirty.
 
-\texttt{artist\_nationality\_other} = The nationality of the artist.
-Roughly 80\% of of the total count of artists through all editions of
-\emph{Janson's History of Art} and \emph{Gardner's Art Through the Ages}
+\texttt{artist\_nationality\_other} = The nationality of the artist. Of
+the total count of artists through all editions of \emph{Janson's
+History of Art} and \emph{Gardner's Art Through the Ages,} 77.32\%
 account for French, Spanish, British, American and German. Therefore,
 the categorical strings of this variable are French, Spanish, British,
 American, German and Other.
@@ -1104,7 +1328,7 @@ t-test, similar to ANOVA - analysis of variance - checking between
 different groups -
 
 \hypertarget{exploratory-data-analysis-gardners-art-through-the-ages-and-jansons-history-of-art-through-editions}{%
-\section{\texorpdfstring{Exploratory Data Analysis: \emph{Gardner's Art
+\chapter{\texorpdfstring{Exploratory Data Analysis: \emph{Gardner's Art
 Through the Ages} and \emph{Janson's History of Art} Through
 Editions}{Exploratory Data Analysis: Gardner's Art Through the Ages and Janson's History of Art Through Editions}}\label{exploratory-data-analysis-gardners-art-through-the-ages-and-jansons-history-of-art-through-editions}}
 
@@ -1121,7 +1345,7 @@ Editions:}}{Count Through Editions:}}\label{count-through-editions}}
 \end{figure}
 
 \begin{verbatim}
-# A tibble: 164 x 15
+# A tibble: 164 x 14
 # Groups:   artist_name [164]
    artist_name            edition_number  year artist_national~ artist_national~
    <chr>                           <dbl> <dbl> <chr>            <chr>           
@@ -1135,10 +1359,11 @@ Editions:}}{Count Through Editions:}}\label{count-through-editions}}
  8 Angelica Kauffmann                 13  2009 Swiss            Other           
  9 Anne Louis Girodet Tr~             13  2009 French           French          
 10 Anselm Kiefer                      13  2009 German           German          
-# ... with 154 more rows, and 10 more variables: artist_gender <chr>,
+# ... with 154 more rows, and 9 more variables: artist_gender <chr>,
 #   artist_race <chr>, artist_ethnicity <chr>, book <chr>,
-#   space_ratio_per_page_total <dbl>, artist_unique_id <int>, moma_count <dbl>,
-#   moma_count_to_date <dbl>, whitney_count <dbl>, whitney_count_to_date <dbl>
+#   space_ratio_per_page_total <dbl>, artist_unique_id <int>,
+#   moma_count_to_year <dbl>, whitney_count_to_year <dbl>,
+#   artist_race_nwi <chr>
 \end{verbatim}
 
 The shape of the overall count of works by artists in \emph{Gardner's
@@ -1154,7 +1379,7 @@ editions.
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/jansoncountthroughtime-1.pdf}
 
 \begin{verbatim}
-# A tibble: 153 x 15
+# A tibble: 153 x 14
 # Groups:   artist_name [153]
    artist_name            edition_number  year artist_national~ artist_national~
    <chr>                           <dbl> <dbl> <chr>            <chr>           
@@ -1168,10 +1393,11 @@ editions.
  8 Angelica Kauffmann                  8  2011 Swiss            Other           
  9 Anne Louis Girodet Tr~              8  2011 French           French          
 10 Anselm Kiefer                       8  2011 German           German          
-# ... with 143 more rows, and 10 more variables: artist_gender <chr>,
+# ... with 143 more rows, and 9 more variables: artist_gender <chr>,
 #   artist_race <chr>, artist_ethnicity <chr>, book <chr>,
-#   space_ratio_per_page_total <dbl>, artist_unique_id <int>, moma_count <dbl>,
-#   moma_count_to_date <dbl>, whitney_count <dbl>, whitney_count_to_date <dbl>
+#   space_ratio_per_page_total <dbl>, artist_unique_id <int>,
+#   moma_count_to_year <dbl>, whitney_count_to_year <dbl>,
+#   artist_race_nwi <chr>
 \end{verbatim}
 
 The shape of the overall count of works by artists in \emph{Janson's
@@ -1192,10 +1418,6 @@ Editions:}}{Gender Through Editions:}}\label{gender-through-editions}}
 
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/jansongenderthroughtime-1.pdf}
 
-\begin{verbatim}
-[1] 0.899918
-\end{verbatim}
-
 The breakdown of artists' gender through editions of \emph{Janson's
 History of Art,} has never dipped below 86\% male, which is what the
 horizontal line denotes. Additionally, this visualization shows that the
@@ -1204,16 +1426,12 @@ printing, edition 1, second printing, and edition 2), that were written
 my H. W. Janson and Dora Jane Janson, contains no women. Anthony Janson,
 who took over authorship for the third edition in 1986, began including
 women. Notably, he was extremely proud of himself for diversifying his
-family's art history survey text.
+family's art history survey text.\footnote{anthony janson interview}
 
 The overall percentage of male artists through all books of
 \emph{Janson's History of Art} is 89.99\%.
 
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/gardnergenderthroughtime-1.pdf}
-
-\begin{verbatim}
-[1] 0.8569223
-\end{verbatim}
 
 The breakdown of artists' gender through editions of \emph{Gardner's Art
 Through the Ages,} is marginally more diverse in regard to gender, as
@@ -1235,7 +1453,25 @@ Editions:}}{Race Through Editions:}}\label{race-through-editions}}
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/jansonracethroughtime-1.pdf}
 
 \begin{verbatim}
-[1] 0.973749
+# A tibble: 28 x 14
+# Groups:   artist_name [8]
+   artist_name         edition_number  year artist_nationality artist_nationali~
+   <chr>                        <dbl> <dbl> <chr>              <chr>            
+ 1 Augustus Washington              7  2007 American           American         
+ 2 Augustus Washington              8  2011 American           American         
+ 3 Henry Ossawa Tanner              3  1986 American           American         
+ 4 Henry Ossawa Tanner              4  1991 American           American         
+ 5 Henry Ossawa Tanner              5  1995 American           American         
+ 6 Henry Ossawa Tanner              6  2001 American           American         
+ 7 Henry Ossawa Tanner              7  2007 American           American         
+ 8 Henry Ossawa Tanner              8  2011 American           American         
+ 9 Jacob Lawrence                   5  1995 American           American         
+10 Jacob Lawrence                   6  2001 American           American         
+# ... with 18 more rows, and 9 more variables: artist_gender <chr>,
+#   artist_race <chr>, artist_ethnicity <chr>, book <chr>,
+#   space_ratio_per_page_total <dbl>, artist_unique_id <int>,
+#   moma_count_to_year <dbl>, whitney_count_to_year <dbl>,
+#   artist_race_nwi <chr>
 \end{verbatim}
 
 Pivoting to looking at race diversity in \emph{Janson's History of Art}
@@ -1243,27 +1479,75 @@ through time, unsurprisingly, the three cataloged books, first two
 editions written by H. W. Janson and Dora Jane Janson, there were only
 white artists included. When their son took over authorship, he included
 a handful of black artists, then in the fifth edition, he added an
-artist by the name Kay Walkingstick, who is a Native American woman. She
-was included through the sixth edition then removed when the group of
-six professors took over. Interestingly, the black artists who are
-included have frequent turnover. In the seventh and eighth editions,
-there was an Asian artist introduced, Ando Hiroshige, a Japanese male
-painter who was used as a reference when discussing impressionist art.
+artist by the name of Kay Walkingstick (1935-present), who is a Native
+American woman. She was included through the sixth edition then removed
+when the group of six professors took over.
+
+\includegraphics[width=6.25in,height=\textheight]{https://lh6.googleusercontent.com/-fxCinylYYA8sB2zbAHmHqqUqxQ26KdZHZgPvNBfgKfWMZqCVK_-VZk2SKqToScRwccJ1ynxTJuI_w2lp0N2BmvgfLPEWl0LO4Ll84ljfkyBkCMQwU8WH-HDC7MXBZpMstMMA8ff.pdf}
+
+Figure \_\_ : Kay WalkingStick, \emph{On The Edge}, 1989. Acrylic and
+wax and oil on canvas, 81 x 162 ½~ cm. Private collection.
+
+Interestingly, the black artists who are included have frequent
+turnover. The only black artist that enters \emph{Janson's History of
+Art} in the third edition (1986) and remains through the latest edition
+(2011) is painter Henry Ossawa Tanner (1859-1937).
+
+Figure \_\_ : Henry Ossawa Tanner,
+
+In the seventh and eighth editions, there was an Asian artist
+introduced, Ando Hiroshige, a Japanese male painter who was used as a
+reference when discussing impressionist art.
+
+Figure \_\_: Ando Hiroshige,
 
 The overall percentage of white artists through all editions of
 \emph{Janson's History of Art} is 97.37\%.
 
-ADD FIGURE OF WORK USED IN JANSON FOR ANDO HIROSHIGE
-
-\textbf{Figure 1:} Kay WalkingStick, On The Edge, 1989. Acrylic and wax
-and oil on canvas, 81 x 162 ½~ cm. Private collection.
-
-\includegraphics{https://lh6.googleusercontent.com/-fxCinylYYA8sB2zbAHmHqqUqxQ26KdZHZgPvNBfgKfWMZqCVK_-VZk2SKqToScRwccJ1ynxTJuI_w2lp0N2BmvgfLPEWl0LO4Ll84ljfkyBkCMQwU8WH-HDC7MXBZpMstMMA8ff.pdf}
-
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/gardnerracethroughtime-1.pdf}
 
 \begin{verbatim}
-[1] 0.9001544
+# A tibble: 77 x 14
+# Groups:   artist_name [21]
+   artist_name          edition_number  year artist_nationality artist_national~
+   <chr>                         <dbl> <dbl> <chr>              <chr>           
+ 1 Ando Hiroshige                   14  2013 Japanese           Other           
+ 2 Ando Hiroshige                   15  2016 Japanese           Other           
+ 3 Ando Hiroshige                   16  2020 Japanese           Other           
+ 4 Helen Oji                        15  2016 American           American        
+ 5 Helen Oji                        16  2020 American           American        
+ 6 Hokusai                           4  1959 Japanese           Other           
+ 7 Hokusai                           6  1975 Japanese           Other           
+ 8 Huang Binhong                    11  2001 Chinese            Other           
+ 9 Kamol Tassananchalee             11  2001 Thai               Other           
+10 Kano Hogai                       14  2013 Japanese           Other           
+# ... with 67 more rows, and 9 more variables: artist_gender <chr>,
+#   artist_race <chr>, artist_ethnicity <chr>, book <chr>,
+#   space_ratio_per_page_total <dbl>, artist_unique_id <int>,
+#   moma_count_to_year <dbl>, whitney_count_to_year <dbl>,
+#   artist_race_nwi <chr>
+\end{verbatim}
+
+\begin{verbatim}
+# A tibble: 55 x 14
+# Groups:   artist_name [14]
+   artist_name      edition_number  year artist_nationality artist_nationality_~
+   <chr>                     <dbl> <dbl> <chr>              <chr>               
+ 1 Aaron Douglas                 9  1991 American           American            
+ 2 Aaron Douglas                10  1996 American           American            
+ 3 Aaron Douglas                11  2001 American           American            
+ 4 Aaron Douglas                12  2005 American           American            
+ 5 Aaron Douglas                13  2009 American           American            
+ 6 Aaron Douglas                14  2013 American           American            
+ 7 Aaron Douglas                15  2016 American           American            
+ 8 Aaron Douglas                16  2020 American           American            
+ 9 Carrie Mae Weems             15  2016 American           American            
+10 Carrie Mae Weems             16  2020 American           American            
+# ... with 45 more rows, and 9 more variables: artist_gender <chr>,
+#   artist_race <chr>, artist_ethnicity <chr>, book <chr>,
+#   space_ratio_per_page_total <dbl>, artist_unique_id <int>,
+#   moma_count_to_year <dbl>, whitney_count_to_year <dbl>,
+#   artist_race_nwi <chr>
 \end{verbatim}
 
 \emph{Gardner's Art Through the Age's} began with including more than
@@ -1276,6 +1560,18 @@ jump in black representation in the eleventh edition, as well as other
 non-white artists as the percentage of non-white artists goes from just
 under 4\% in the tenth (1996) to close to 14\% in the eleventh (2001).
 
+The first named asian artist was Suzuki Harunobu in the third edtion in
+1959. He remains within \emph{Gardner's History of Art} through the
+latest 16th edition (2020).
+
+Figure \_\_: Suzuki Harunobu
+
+The first black artists were added in the ninth edition (1991). The only
+two black artists to be included in all editions from then on are Aaron
+Douglas and Henry Ossawa Tanner.
+
+Figure \_\_: Aaron Douglas
+
 The overall percentage of white artists through all editions of
 \emph{Gardner's Art Through the Ages} is 90.02\%.
 
@@ -1284,10 +1580,6 @@ The overall percentage of white artists through all editions of
 Editions:}}{Ethnicity Through Editions:}}\label{ethnicity-through-editions}}
 
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/jansonethnicitythroughtime-1.pdf}
-
-\begin{verbatim}
-[1] 0.9581624
-\end{verbatim}
 
 Fascinatingly, in \emph{Janson's History of Art,} the ratio of Hispanic
 or Latinx artists is the highest of all editions in the first edition,
@@ -1299,11 +1591,7 @@ publication.
 The overall percentage of artists who are not Hispanic or Latinx
 included in \emph{Janson's History of Art} is 95.82\%.
 
-\includegraphics{Chapter1/Chapter1_files/figure-pdf/gardnethnicitythroughtime-1.pdf}
-
-\begin{verbatim}
-[1] 0.9150798
-\end{verbatim}
+\includegraphics{Chapter1/Chapter1_files/figure-pdf/gardnerethnicitythroughtime-1.pdf}
 
 Helen Gardner's third edition published in 1959 was the most ethnically
 diverse of all 25 textbooks. This edition was published after her death,
@@ -1323,10 +1611,6 @@ Editions:}}{Nationality Through Editions:}}\label{nationality-through-editions}}
 
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/jansonnationalitythroughtime-1.pdf}
 
-\begin{verbatim}
-[1] 0.7850697
-\end{verbatim}
-
 It is clear that \emph{Janson's History of Art} paints a western
 tradition through the visualization above, highlighting predominantly
 French, American, British, German, and Spanish artists. Through the
@@ -1335,7 +1619,8 @@ revised and enlarged published in 1969---the majority nationality is
 French. Then, when authorship changes from Peter and Dora Janson to
 Anthony F. Janson in the third edition in 1986, the dominant nationality
 flips to American. Anthony adds American contemporary artists, such as
-Lee Krasner, as well as American photographers such as Dorothea Lange.
+Jackson Pollock and Lee Krasner, as well as American photographers such
+as Dorothea Lange.
 
 The most consistently represented nationality through editions, however,
 is French, which could be explained by the type of art highlighted from
@@ -1351,10 +1636,6 @@ is 78.51\%.
 
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/gardnernationalitythroughtime-1.pdf}
 
-\begin{verbatim}
-[1] 0.765826
-\end{verbatim}
-
 The spike of the ratio of American artists included in the second
 edition published in 1936 could be explained by President Franklin
 Delano Roosevelt's Federal Art Project during the Great Depression. The
@@ -1369,11 +1650,11 @@ The overall percentage of artists who are French, American, British,
 German, or Spanish through all editions of \emph{Gardner's Art Through
 the Ages} is 76.58\%.
 
-\hypertarget{exploratory-data-analysis-jansons-history-of-art-and-gardners-art-through-the-ages-vs.-total-space-ratio-per-page-per-artist-per-editionspace_ratio_per_page_total}{%
+\hypertarget{exploratory-data-analysis-jansons-history-of-art-and-gardners-art-through-the-ages-vs.-total-space-ratio-per-page-per-artist-per-edition-space_ratio_per_page_total}{%
 \chapter{\texorpdfstring{Exploratory Data Analysis: \emph{Janson's
 History of Art} and \emph{Gardner's Art Through the Ages vs.} Total
-Space Ratio per Page per Artist per
-Edition\texttt{space\_ratio\_per\_page\_total}}{Exploratory Data Analysis: Janson's History of Art and Gardner's Art Through the Ages vs. Total Space Ratio per Page per Artist per Editionspace\_ratio\_per\_page\_total}}\label{exploratory-data-analysis-jansons-history-of-art-and-gardners-art-through-the-ages-vs.-total-space-ratio-per-page-per-artist-per-editionspace_ratio_per_page_total}}
+Space Ratio per Page per Artist per Edition
+\texttt{space\_ratio\_per\_page\_total}}{Exploratory Data Analysis: Janson's History of Art and Gardner's Art Through the Ages vs. Total Space Ratio per Page per Artist per Edition space\_ratio\_per\_page\_total}}\label{exploratory-data-analysis-jansons-history-of-art-and-gardners-art-through-the-ages-vs.-total-space-ratio-per-page-per-artist-per-edition-space_ratio_per_page_total}}
 
 \hypertarget{distribution-of-space_ratio_per_page_total}{%
 \section{\texorpdfstring{Distribution of
@@ -1391,16 +1672,20 @@ Edition\texttt{space\_ratio\_per\_page\_total}}{Exploratory Data Analysis: Janso
 
 The shape of the visualization above is right-skewed, unimodal and
 asymmetrical. Therefore, we would want to look at the median to
-understand its center and IQR to understand its spread. The median total
+understand its center and interquartile range, which is the middle 50\%
+of the range of the data to understand its spread. The median total
 space an artist receives is 40.93\% of a page. The IQR of total space an
 artist receives is 28.59\% of a page.
 
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/logspaceratioperpagetotal-1.pdf}
 
 In order to create less skew in our outcome variable, it is evident that
-log transforming total space per page given to an artist in a particular
-edition gives the spread a much more mild right-skew than before. The
-shape is still unimodal and asymmetrical.
+log transforming total space ratio per page given to an artist in a
+particular edition gives the spread a much more mild right-skew than
+before. The shape is still unimodal and asymmetrical. I will be using
+the log transformation on the total space ratio per page, our outcome
+variable, in the linear mixed-effects model. This allows for the
+residuals to have constant variance.
 
 \hypertarget{space_ratio_per_page_total-vs.-artist_gender}{%
 \section{\texorpdfstring{\texttt{space\_ratio\_per\_page\_total}
@@ -1485,15 +1770,15 @@ vs.~\texttt{artist\_ethnicity}}{space\_ratio\_per\_page\_total vs.~artist\_ethni
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/ethnicityallbooks-1.pdf}
 
 \begin{verbatim}
-[1] 0.4879276
+[1] NA
 \end{verbatim}
 
 \begin{verbatim}
-[1] 0.4060381
+[1] NA
 \end{verbatim}
 
-Interestingly, the median \texttt{space\_ratio\_per\_page\_total} for
-artists who are Hispanic or Latinx,
+Interestingly, the median for the total space ratio per page for artists
+who are Hispanic or Latinx,
 \texttt{round(median(janson\_HL\$space\_ratio\_per\_page\_total),\ 3)}
 is higher than those who are Not Hispanic or Latinx,
 \texttt{round(median(janson\_NHL\$space\_ratio\_per\_page\_total),\ 3)}.
@@ -1510,195 +1795,78 @@ vs.~\texttt{artist\_nationality\_other}}{space\_ratio\_per\_page\_total vs.~arti
 
 \includegraphics{Chapter1/Chapter1_files/figure-pdf/nationalityotherallbooks-1.pdf}
 
-\hypertarget{section}{%
-\section{}\label{section}}
-
-\hypertarget{model-exploration}{%
-\chapter{Model Exploration}\label{model-exploration}}
-
-\hypertarget{data-preparation-for-modeling}{%
-\chapter{Data Preparation for
-Modeling:}\label{data-preparation-for-modeling}}
-
 \begin{verbatim}
-# A tibble: 6 x 2
-  artist_nationality_other     n
-  <fct>                    <int>
-1 American                   896
-2 French                     870
-3 Other                      671
-4 British                    317
-5 German                     256
-6 Spanish                     94
+# A tibble: 717 x 5
+# Groups:   artist_name [132]
+   artist_name      edition_number  year book    space_ratio_per_page_total
+   <chr>                     <dbl> <dbl> <chr>                        <dbl>
+ 1 Vincent Van Gogh            7    2007 Janson                        2.16
+ 2 Vincent Van Gogh            2    1977 Janson                        1.79
+ 3 Vincent Van Gogh            3    1986 Janson                        1.63
+ 4 Vincent Van Gogh            1    1963 Janson                        1.55
+ 5 Vincent Van Gogh            1.1  1969 Janson                        1.54
+ 6 Vincent Van Gogh            8    2011 Janson                        1.38
+ 7 Vincent Van Gogh           15    2016 Gardner                       1.27
+ 8 Karl Bodmer                 6    1975 Gardner                       1.21
+ 9 Paul Klee                   6    1975 Gardner                       1.20
+10 Paul Klee                   5    1970 Gardner                       1.19
+# ... with 707 more rows
 \end{verbatim}
 
-\hypertarget{model-exploration-1}{%
-\chapter{Model Exploration:}\label{model-exploration-1}}
-
 \begin{verbatim}
-ddf="Satterthwaite"
+# A tibble: 10 x 14
+# Groups:   artist_name [4]
+   artist_name       edition_number  year artist_nationality artist_nationality~
+   <chr>                      <dbl> <dbl> <chr>              <chr>              
+ 1 Albert Bierstadt              11  2001 German-American    Other              
+ 2 Albert Bierstadt              12  2005 German-American    Other              
+ 3 Albert Bierstadt              13  2009 German-American    Other              
+ 4 Albert Bierstadt              14  2013 German-American    Other              
+ 5 Albert Bierstadt              15  2016 German-American    Other              
+ 6 Albert Bierstadt              16  2020 German-American    Other              
+ 7 Alexander Gardner             10  1996 Scottish           Other              
+ 8 Alfredo Guido                  3  1948 Argentine          Other              
+ 9 Ana Mendieta                  11  2001 Cuban-American     Other              
+10 Ana Mendieta                  13  2009 Cuban-American     Other              
+# ... with 9 more variables: artist_gender <chr>, artist_race <chr>,
+#   artist_ethnicity <chr>, book <chr>, space_ratio_per_page_total <dbl>,
+#   artist_unique_id <int>, moma_count_to_year <dbl>,
+#   whitney_count_to_year <dbl>, artist_race_nwi <chr>
 \end{verbatim}
 
-Satterthwaite test, more flexible, looking directly at p-values -
-non-parametric test - uses different error term, similar to a two same
-t-test, similar to ANOVA - analysis of variance - checking between
-different groups -
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1942}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4369}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3689}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Artist Nationality
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Percent of Total Count Through all 25 books
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Median Total Ratio of Space per Page
+\end{minipage} \\
+\midrule
+\endhead
+American & 28.72\% & .377 \\
+British & 10.03\% & .372 \\
+French & 27.51\% & .535 \\
+German & 8.10\% & .375 \\
+Other & 22.68\% & .380 \\
+Spanish & 2.97\% & .889 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{results}{%
+\chapter{Results}\label{results}}
+
+\includegraphics{Chapter1/Chapter1_files/figure-pdf/sjplot-1.pdf}
 
 \begin{verbatim}
-Backward reduced random-effect table:
-
-                  Eliminated npar  logLik    AIC    LRT Df Pr(>Chisq)    
-<none>                         23 -1930.6 3907.2                         
-(1 | artist_name)          0   22 -2606.4 5256.9 1351.7  1  < 2.2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Backward reduced fixed-effect table:
-Degrees of freedom method: Satterthwaite 
-
-                                            Eliminated Sum Sq Mean Sq NumDF
-artist_race_nwi:moma_count_to_date                   1 0.0015 0.00151     1
-artist_ethnicity:whitney_count_to_date               2 0.0092 0.00922     1
-artist_ethnicity:moma_count_to_date                  3 0.1130 0.11296     1
-artist_ethnicity                                     4 0.0057 0.00574     1
-artist_gender                                        5 0.3801 0.19006     2
-artist_race_nwi:whitney_count_to_date                6 0.1548 0.15478     1
-whitney_count_to_date                                7 0.0232 0.02319     1
-artist_race_nwi                                      8 0.0426 0.04263     1
-artist_nationality_other:moma_count_to_date          0 3.3446 0.66892     5
-                                              DenDF F value   Pr(>F)   
-artist_race_nwi:moma_count_to_date           539.28  0.0091 0.923923   
-artist_ethnicity:whitney_count_to_date      1970.66  0.0559 0.813065   
-artist_ethnicity:moma_count_to_date          731.38  0.6850 0.408150   
-artist_ethnicity                             505.76  0.0348 0.852153   
-artist_gender                                401.31  1.1522 0.316977   
-artist_race_nwi:whitney_count_to_date        480.27  0.9384 0.333175   
-whitney_count_to_date                        984.87  0.1406 0.707781   
-artist_race_nwi                              510.52  0.2585 0.611386   
-artist_nationality_other:moma_count_to_date 1221.63  4.0556 0.001178 **
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Model found:
-log(space_ratio_per_page_total) ~ artist_nationality_other + moma_count_to_date + (1 | artist_name) + artist_nationality_other:moma_count_to_date
-\end{verbatim}
-
-pick a handful of interest
-
-visualization : confidence intervals for each on of the slopes
-
-predictors on the y axis -
-
-bar plots of the pvalues another option
-
-nationality discourse for significance
-
-log transformation on the y variable -
-
-stepwise model selection
-
-the multiple of the number of degrees of freedom used for the penalty.
-Only k = 2 gives the genuine AIC: k = log(n) is sometimes referred to as
-BIC or SBC.
-
-\begin{verbatim}
-Linear mixed model fit by maximum likelihood . t-tests use Satterthwaite's
-  method [lmerModLmerTest]
-Formula: log(space_ratio_per_page_total) ~ artist_nationality_other +  
-    moma_count_to_date + artist_nationality_other * moma_count_to_date +  
-    (1 | artist_name)
-   Data: gardnerjanson_museums
-
-     AIC      BIC   logLik deviance df.resid 
-  3893.6   3978.2  -1932.8   3865.6     3090 
-
-Scaled residuals: 
-    Min      1Q  Median      3Q     Max 
--3.6304 -0.5820 -0.0716  0.6203  3.0709 
-
-Random effects:
- Groups      Name        Variance Std.Dev.
- artist_name (Intercept) 0.1274   0.3569  
- Residual                0.1649   0.4061  
-Number of obs: 3104, groups:  artist_name, 395
-
-Fixed effects:
-                                                     Estimate Std. Error
-(Intercept)                                        -9.291e-01  4.017e-02
-artist_nationality_otherFrench                      2.681e-01  6.377e-02
-artist_nationality_otherOther                      -6.192e-02  5.836e-02
-artist_nationality_otherBritish                     1.044e-02  8.093e-02
-artist_nationality_otherGerman                     -6.204e-02  8.653e-02
-artist_nationality_otherSpanish                     6.589e-01  2.002e-01
-moma_count_to_date                                 -1.026e-02  6.948e-03
-artist_nationality_otherFrench:moma_count_to_date   2.872e-02  7.962e-03
-artist_nationality_otherOther:moma_count_to_date    1.580e-02  8.077e-03
-artist_nationality_otherBritish:moma_count_to_date  1.011e-02  1.689e-02
-artist_nationality_otherGerman:moma_count_to_date   2.433e-02  8.943e-03
-artist_nationality_otherSpanish:moma_count_to_date  3.528e-02  9.481e-03
-                                                           df t value Pr(>|t|)
-(Intercept)                                         4.979e+02 -23.131  < 2e-16
-artist_nationality_otherFrench                      4.367e+02   4.205 3.17e-05
-artist_nationality_otherOther                       5.139e+02  -1.061 0.289240
-artist_nationality_otherBritish                     4.405e+02   0.129 0.897407
-artist_nationality_otherGerman                      4.758e+02  -0.717 0.473735
-artist_nationality_otherSpanish                     3.689e+02   3.291 0.001096
-moma_count_to_date                                  8.440e+02  -1.477 0.140001
-artist_nationality_otherFrench:moma_count_to_date   1.037e+03   3.607 0.000324
-artist_nationality_otherOther:moma_count_to_date    8.326e+02   1.956 0.050764
-artist_nationality_otherBritish:moma_count_to_date  7.812e+02   0.599 0.549598
-artist_nationality_otherGerman:moma_count_to_date   1.031e+03   2.721 0.006617
-artist_nationality_otherSpanish:moma_count_to_date  1.819e+03   3.721 0.000205
-                                                      
-(Intercept)                                        ***
-artist_nationality_otherFrench                     ***
-artist_nationality_otherOther                         
-artist_nationality_otherBritish                       
-artist_nationality_otherGerman                        
-artist_nationality_otherSpanish                    ** 
-moma_count_to_date                                    
-artist_nationality_otherFrench:moma_count_to_date  ***
-artist_nationality_otherOther:moma_count_to_date   .  
-artist_nationality_otherBritish:moma_count_to_date    
-artist_nationality_otherGerman:moma_count_to_date  ** 
-artist_nationality_otherSpanish:moma_count_to_date ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Correlation of Fixed Effects:
-            (Intr) art__F art__O art__B art__G art__S mm_c__ a__F:_ a__O:_
-artst_ntn_F -0.630                                                        
-artst_ntn_O -0.688  0.434                                                 
-artst_ntn_B -0.496  0.313  0.342                                          
-artst_ntn_G -0.464  0.292  0.319  0.230                                   
-artst_ntn_S -0.201  0.126  0.138  0.100  0.093                            
-mm_cnt_t_dt -0.458  0.288  0.315  0.227  0.213  0.092                     
-arts__F:___  0.400 -0.356 -0.275 -0.198 -0.185 -0.080 -0.873              
-arts__O:___  0.394 -0.248 -0.399 -0.195 -0.183 -0.079 -0.860  0.751       
-arts__B:___  0.188 -0.119 -0.130 -0.366 -0.087 -0.038 -0.411  0.359  0.354
-arts__G:___  0.356 -0.224 -0.245 -0.177 -0.349 -0.071 -0.777  0.678  0.668
-arts__S:___  0.336 -0.211 -0.231 -0.167 -0.156 -0.305 -0.733  0.640  0.630
-            a__B:_ a__G:_
-artst_ntn_F              
-artst_ntn_O              
-artst_ntn_B              
-artst_ntn_G              
-artst_ntn_S              
-mm_cnt_t_dt              
-arts__F:___              
-arts__O:___              
-arts__B:___              
-arts__G:___  0.320       
-arts__S:___  0.302  0.569
-\end{verbatim}
-
-\includegraphics{Chapter2/Chapter2_files/figure-pdf/sjplot-1.pdf}
-
-\begin{verbatim}
-                                                GVIF Df GVIF^(1/(2*Df))
-artist_nationality_other                     1.94725  5        1.068913
-moma_count_to_date                          10.07286  1        3.173778
-artist_nationality_other:moma_count_to_date 16.54427  5        1.323929
+                                                 GVIF Df GVIF^(1/(2*Df))
+artist_nationality_other                     1.822957  5        1.061885
+moma_count_to_year                           6.610187  1        2.571028
+artist_nationality_other:moma_count_to_year 10.843105  5        1.269157
 \end{verbatim}
 
 GET PVALUES FOR COEFFICIENTS - STATISTICALLY SIGNIFICANT - GO THROUGH
@@ -1706,100 +1874,106 @@ INTERPRETATIONS WITH LOG TRANSFORMATION AND MIXED EFFECTS MODEL -
 CONFIRM MODEL DIAGNOSTICS - AIC / BIC FOR MIXED EFFECTS -
 
 \begin{verbatim}
-          R2m       R2c
-[1,] 0.171159 0.5323004
+           R2m      R2c
+[1,] 0.1565302 0.568739
 \end{verbatim}
 
 Marginal R2 provides the variance explained only by fixed effects and
 conditional R2 provides the variance explained by the entire model,
 i.e., both fixed effects and random effects.
 
-Model Diagnostics : Check for linearity, independence, residuals, normal
-distribution of the residuals - no pattern in residuals, constant
-variance
-
 RESOURCE: https://www.ssc.wisc.edu/sscc/pubs/MM/MM\_DiagInfer.html
 
-Plotting : log transform some variables : Fitted v. Residuals
+\hypertarget{discussion}{%
+\chapter{Discussion}\label{discussion}}
+
+\hypertarget{limitations-and-next-steps}{%
+\chapter{Limitations and Next Steps}\label{limitations-and-next-steps}}
+
+\textbf{Relevance of Research and Connection to Bigger Picture}
+
+Statistical analysis in tandem to art historical research leads to a
+more comprehensive and thorough report when looking at the communication
+between art history and other players in the art world. The decisions
+and publications of art historians and experts are in communication with
+art sales, museum exhibitions and collections. The intersectionality of
+the realm of art, as well as the significance of data in the aggregate
+mustn't go ignored. Such research additionally allows for the lack of
+diversity in regards to gender and more severely race to be highlighted
+objectively and effectively. The role of art historical narratives has
+decreased significantly, but discrimination in terms of representation
+for minority artists is still an issue at the forefront of not only art
+history programs, but additionally in museum spaces. How can the art
+world further create space for diversity looking forward? In terms of
+museums, many institutions have been making efforts to not only
+diversify their collections and exhibitions through deaccessioning, but
+also diversifying their staff through opening up positions specifically
+for individuals of minority demographics. It will be interesting to see
+how, if at all, art historical surveys will adapt going forward, or if
+they will be left in the past.~
+
+\textbf{Suggestions for Further Research}
+
+There are myriad next steps for such research going forward. Firstly, it
+would be ideal to extend the museum datato exhibitions and acquisitions
+from museums of various sizes and locations in order to garner a more
+representative sample of the art museum sector beyond major institutions
+in New York City. Secondly, we would love to use more complex statistics
+in order to predict the likelihood of an artist's inclusion in an art
+historical survey. Therefore, creating a statistical model using
+variables such as inclusion in museum spaces, prices fetched at auction,
+and number of publications by art experts on a particular artist in
+order to predict inclusion would greatly add to our research. Lastly,
+other art historical narratives should also be catalogued. This would
+allow for us to not only look at the changes per edition of the Janson's
+History of Art, but also how various art historical canons differ from
+one another, leaving which artists out and which artists in. I would
+collect data through editions of Marilyn Stokstad et al.'s Art History,
+the other two art historical narratives that are most utilized in
+introductory courses across the United States.
 
 \hypertarget{appendix}{%
-\chapter{Appendix:}\label{appendix}}
+\chapter{Appendix}\label{appendix}}
 
 \hypertarget{assumptions}{%
-\section{Assumptions:}\label{assumptions}}
+\section{Assumptions}\label{assumptions}}
 
 \hypertarget{residuals-and-constant-variance}{%
 \subsection{Residuals and Constant
-Variance:}\label{residuals-and-constant-variance}}
+Variance}\label{residuals-and-constant-variance}}
 
-\includegraphics{Chapter2/Chapter2_files/figure-pdf/diagnostics-1.pdf}
+\includegraphics{Chapter1/Chapter1_files/figure-pdf/diagnostics-1.pdf}
 
-for the very low values of the predicted have very low variability for
-residuals - the rest varied
-
-the a bulk of the data there is constant variability in the residuals
-
-before log transforming our outcome variable, the constant variance
-assumption was violated. Therefore, in order to pass the constant
-variance assumption, I performed a log transformation.
+The very low values of the predicted values have very low variability
+for residuals but for the bulk of the data, there is constant
+variability in the residuals.
 
 \hypertarget{normality}{%
-\subsection{Normality:}\label{normality}}
+\subsection{Normality}\label{normality}}
 
-normal histogram = density plot overlayed -
+\includegraphics{Chapter1/Chapter1_files/figure-pdf/density-histogram-1.pdf}
 
-Struggling to understand how to do this with a mixed-effects model
-
-\includegraphics{Chapter2/Chapter2_files/figure-pdf/normal-1.pdf}
+The distribution of the residuals is approximately normal.
 
 \hypertarget{linearity}{%
-\subsection{Linearity:}\label{linearity}}
+\subsection{Linearity}\label{linearity}}
 
-residuals v quantitative predictors
+\includegraphics{Chapter1/Chapter1_files/figure-pdf/linearitymoma-1.pdf}
 
-once i figure out how to augment the data and get the .resid I can make
-this visualization as well
-
-no pattern is left behind
-
-\includegraphics{Chapter2/Chapter2_files/figure-pdf/linearitymoma-1.pdf}
-
-\includegraphics{Chapter2/Chapter2_files/figure-pdf/linearitywhitney-1.pdf}
-
-Normality of random effect: Get the estimate of random effect (in your
-case random intercepts), and check them as check the residual. But it is
-not efficient because you just have 7 random intercepts.
+There is no pattern left behind therefore linearity is satisfied. There
+is a linear relationship between the response and predictor variables.
+(not sure if this is correct)
 
 \hypertarget{independence}{%
-\subsection{Independence:}\label{independence}}
+\subsection{Independence}\label{independence}}
 
-Another assumption is the independence between subjects. No test, based
-on your judgement. Subject specific random intercept means the
-correlation between the response variable from the same subject are the
-same.
-
-all obervations of different artists are independent -
-
-fitting a mixed model - i do not believe that pieces by each artist is
-independence - at the artist level we have independence
-
-log transforming predictors - interpretations change - variables weren't
-changed - same idea, bit different
-
-INDEPENDENCE: DOUBLE CHECK - EMPIRICALLY ARGUE OR ?
-
-check for time series - residuals v. order of data points
-
-irrelevant - based on how the sample was collected.
-
-verbally argue the independence between artists - since we are using a
-mixed effects model, and our random effect is per artist, we eliminate
-the dependence of our observations had we not used a mixed effects
-model. Between artists, we expect the observations to be independent.
+Since we are using a mixed-effects model, and our random effect is per
+artist, we eliminate the dependence of our observations had we not used
+a mixed effects model. Between artists, we expect the observations to be
+independent.
 
 \hypertarget{data-dictionary}{%
-\section{\texorpdfstring{\textbf{Data
-Dictionary:}}{Data Dictionary:}}\label{data-dictionary}}
+\section{Data Dictionary}\label{data-dictionary}}
 
 Outcome:
 
@@ -1819,17 +1993,18 @@ meaning if an artist's race is denoted as either white or non-white.
 
 \texttt{artist\_ethnicity} = The ethnicity of the artist.
 
-\texttt{artist\_nationality\_other} = The nationality of the artist.
-Roughly 80\% of of the total count of artists through all editions of
-Janson account for French, Spanish, British, American and German.
-Therefore, the categorical strings of this variable are French, Spanish,
-British, American, German and Other.
+\texttt{artist\_nationality\_other} = The nationality of the artist. Of
+the total count of artists through all editions of \emph{Gardner's Art
+Through the Ages} and \emph{Janson's History of Art}, 77.32\% account
+for French, Spanish, British, American and German. Therefore, the
+categorical strings of this variable are French, Spanish, British,
+American, German and Other.
 
-\texttt{whitney\_count\_to\_date} = The count of exhibitions held by The
+\texttt{whitney\_count\_to\_year} = The count of exhibitions held by The
 Whitney of a particular artist at a particular moment of time, as
 highlighted by \texttt{year}.
 
-\texttt{moma\_count\_to\_date} = The count of exhibitions held by the
+\texttt{moma\_count\_to\_year} = The count of exhibitions held by the
 Museum of Modern Art (MoMA) of a particular artist at a particular
 moment of time, as highlighted by \texttt{year}.
 
@@ -1846,5 +2021,111 @@ artist at that particular time was included.
 
 \texttt{artist\_unique\_id} = A unique identifying number assigned to
 artists across books and editions denoted in alphabetical order.
+
+\hypertarget{bibliography}{%
+\chapter{Bibliography}\label{bibliography}}
+
+``100 Best-Selling Art History Books of All Time.'' Book Authority.\\
+https://bookauthority.org/books/best-selling-art-history-books.~~
+
+Bolin, Paul E. ``Discussions and Depictions of Women in H. W. Janson's
+History of Art, Fourth\\
+Edition.'' Journal of Social Theory in Art Education. Vol. 15. 1996:
+146-159.\\
+https://core.ac.uk/download/pdf/51288476.pdf.
+
+Davies, Penelope J.E., Walter B. Denny, Frima Fox Hofrichter, Joseph F.
+Jacobs, Ann S. Roberts,\\
+David L. Simon. Janson's History of Art. Seventh Edition. New Jersey:
+Pearson Prentice\\
+Hall, 2007.
+
+Davies, Penelope J.E., Walter B. Denny, Frima Fox Hofrichter, Joseph F.
+Jacobs, Ann S. Roberts,\\
+David L. Simon.~ Janson's History of Art. Eighth Edition. New Jersey:
+Pearson\\
+Prentice Hall, 2011.
+
+Hills, Patricia. ``Art History Textbooks: The Hidden Persuaders.''
+Artforum. Summer 1976.\\
+https://www.artforum.com/print/197606/art-history-textbooks-the-hidden-\\
+persuaders-69128.~
+
+Ingalls, Zoë. ``A Son Revises His Father's Classic Art-History
+Textbook.'' The Chronicle of\\
+Higher Education. August 11, 1995.
+https://www.chronicle.com/article/a-son-\\
+revises-his-fathers-classic-art-history-textbook/.
+
+Janson, Anthony. University of North Carolina Wilmington Archives and
+Special Collections.\\
+By Sherman Hayes. March 15-19, 2007.~
+
+Janson, H. W., and Anthony F. Janson. History of Art. 3rd Edition. New
+York: Harry N.\\
+Abrams, 1986.\\
+Janson, H. W., and Anthony F. Janson. History of Art. 4th Edition. New
+York: Harry N.\\
+Abrams, 1991.
+
+Janson, H. W., and Anthony F. Janson. History of Art. 5th Edition. New
+York: Harry N.\\
+Abrams. New Jersey: Prentice Hall, 1995.~
+
+Janson, H. W., and Anthony F. Janson. History of Art. 6th Edition. Harry
+N. Abrams.\\
+New York: Prentice Hall, 2001.
+
+Janson, H. W., and Dora Jane Janson. History of Art: A Survey of the
+Major Visual Arts\\
+from the Dawn of History to the Present Day. First Edition, Second
+Printing. New York:\\
+Harry N. Abrams, 1963.~
+
+Janson, H. W., and Dora Jane Janson. History of Art: A Survey of the
+Major\\
+Visual Arts from the Dawn of History to the Present Day. First Edition
+Revised and\\
+Enlarged. New Jersey: Prentice Hall, 1969.
+
+Janson, H. W., and Dora Jane Janson. History of Art: A Survey of the
+Major Visual Arts\\
+from the Dawn of History to the Present Day. Second Edition. New York:
+Harry N.\\
+Abrams, 1977.~
+
+Kennedy, Randy. ``Revising Art History's Big Book: Who's In and Who
+Comes Out?'' New York\\
+Times. March 7, 2006. https://www.nytimes.com/2006/03/07/arts/design/\\
+revising-art-historys-big-book-whos-in-and-who-comes-out.html.
+
+Peers, Alexandra. ``Canon Fodder.'' ARTnews.com. February 1, 2006.\\
+https://www.artnews.com/art-news/news/canon-fodder-135/.~
+
+Russell, John. ``Prof.~H. W. Janson is Dead at 68; Wrote Best-Selling
+`History of Art.'\,'' The New\\
+York Times. October 3, 1982.
+https://www.nytimes.com/1982/10/03/nyregion/prof-h-w-\\
+Janson-is-dead-at-68-wrote-best-selling-history-of-art.html.
+
+Sears, Elizabeth and Charlotte Schoell-Glass. ``An Émigré Art Historian
+and American: H. W.\\
+Janson.'' The Art Bulletin, Vol. 95, No.~2. June 2013: 219-242.
+https://www-jstor-\\
+org.proxy.lib.duke.edu/stable/pdf/43188810.Pdf?ab\_
+segments=0\%252Fbasic\\
+\_search\_gsv2\%252Fcontrol\&refreqid=
+excelsior\%3A650026c2e9a3cd0873008880\\
+2a88e215.
+
+Weidman, Jeffrey. ``Many Are Culled but Few Are Chosen: Janson's History
+of Art, Its\\
+Reception, Emulators, Legacy, and Current Demise.'' Journal of Scholarly
+Publishing\\
+Vol. 38. No.~2. January 2007: 85-107.
+https://muse.jhu.edu/article/209994/pdf.
+
+\hypertarget{model-exploration}{%
+\chapter{Model Exploration}\label{model-exploration}}
 
 \end{document}
