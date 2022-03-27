@@ -220,19 +220,8 @@ gardnerjanson_museums_mod <- gardnerjanson_museums %>%
   mutate(artist_race_nwi = if_else(artist_race == "White", "White", "Non-White"))
 
 gardnerjanson_museums_mod <- gardnerjanson_museums_mod %>%
-  mutate(artist_nationality_other = fct_relevel(artist_nationality_other, c("American", 
-                                                                            "French", 
-                                                                            "Other", 
-                                                                            "British", 
-                                                                            "German", 
-                                                                            "Spanish")))
-       #  artist_race_nwi = fct_relevel(artist_race_nwi, c("White", "Non-White")),
-       #  artist_ethnicity = fct_relevel(artist_ethnicity, c("Not Hispanic or Latino origin",
-        #                                                    "Hispanic or Latino origin")),
-       #  artist_gender = fct_relevel(artist_gender, c("Male", "Female")))
-
-
-
+  mutate(artist_nationality_other = factor(artist_nationality_other, 
+         levels = c("American", "French", "Other", "British", "German", "Spanish")))
 ```
 
 ```{r}
@@ -340,35 +329,59 @@ Sources Found to Looking Into:
 
 **Table 1:** Edition Number, Year of Publication, Title, Authorship, and Publisher Over Time of All Cataloged Editions of Gardner's Art Through the Ages.
 
-| Edition | Year of Publication | Author(s)                                                                                       | Title                                                                 | Publisher (as listed per Edition)                       |
-|---------|---------------------|-------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|---------------------------------------------------------|
-| 1       | 1926                | Helen Gardner                                                                                   | Art Through the Ages; An Introduction to Its History and Significance | New York, Brace, Harcourt                               |
-| 2       | 1936                | Helen Gardner                                                                                   | Art Through the Ages; An Introduction to Its History and Significance | New York, Brace, Harcourt                               |
-| 3       | 1948                | Helen Gardner                                                                                   | Art Through the Ages                                                  | New York, Brace, Harcourt                               |
-| 4       | 1959                | Helen Gardner; revised by Sumner M. Crosby and the Dept. of the History of Art, Yale University | Art Through the Ages                                                  | New York, Harcourt, Brace                               |
-| 5       | 1970                | Revised by Horst de la Croix, Richard G. Tansey                                                 | Gardner's Art Through the Ages                                        | New York, Harcourt, Brace                               |
-| 6       | 1975                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's Art Through the Ages                                        | New York: Harcourt Brace Jovanovich                     |
-| 7       | 1980                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's Art Through the Ages                                        | Harcourt Brace Jovanovich, New York                     |
-| 8       | 1986                | Horst de la Croix, Richard G. Tansey                                                            | Gardner's Art Through the Ages                                        | Harcourt Brace Jovanovich, San Diego, CA                |
-| 9       | 1991                | Horst de la Croix, Richard G. Tansey, Diane Kirkpatrick                                         | Gardner's Art Through the Ages                                        | San Diego: Harcourt Brace Jovanovich                    |
-| 10      | 1996                | Richard G. Tansey, Fred S. Kleiner                                                              | Gardner's Art Through the Ages                                        | Fort Worth, TX: Harcourt Brace                          |
-| 11      | 2001                | Fred S. Kleiner, Christin J. Mamiya, Richard G. Tansey                                          | Gardner's Art Through the Ages                                        | Fort Worth TX: Harcourt College Publishers              |
-| 12      | 2005                | Fred S. Kleiner, Christin J. Mamiya                                                             | Gardner's Art Through the Ages                                        | Thomson/Wadsworth, Belmont, CA                          |
-| 13      | 2009                | Fred S. Kleiner                                                                                 | Gardner's Art Through the Ages: A Global History                      | Boston, Thomson/Wadsworth                               |
-| 14      | 2013                | Fred S. Kleiner                                                                                 | Gardner's Art Through the Ages: A Global History                      | Australia ; United States : Wadsworth, Cengage Learning |
-| 15      | 2016                | Fred S. Kleiner                                                                                 | Gardner's Art Through the Ages: A Global History                      | Boston, MA : Cengage Learning                           |
-| 16      | 2020                | Fred S. Kleiner                                                                                 | Gardner's Art Through the Ages: A Global History                      | Boston, MA, US : Cengage Learning                       |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| Edition   | Year of Publication | Author(s)                                                                                       | Title                                                                 | Publisher (as listed per Edition)                       |
++===========+=====================+=================================================================================================+=======================================================================+=========================================================+
+| 1         | 1926                | Helen Gardner                                                                                   | Art Through the Ages; An Introduction to Its History and Significance | New York, Brace, Harcourt                               |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 2         | 1936                | Helen Gardner                                                                                   | Art Through the Ages; An Introduction to Its History and Significance | New York, Brace, Harcourt                               |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 3         | 1948                | Helen Gardner                                                                                   | Art Through the Ages                                                  | New York, Brace, Harcourt                               |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 4         | 1959                | Helen Gardner; revised by Sumner M. Crosby and the Dept. of the History of Art, Yale University | Art Through the Ages                                                  | New York, Harcourt, Brace                               |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 5         | 1970                | Revised by Horst de la Croix, Richard G. Tansey                                                 | Gardner's Art Through the Ages                                        | New York, Harcourt, Brace                               |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 6         | 1975                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's Art Through the Ages                                        | New York: Harcourt Brace Jovanovich                     |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 7         | 1980                | Helen Gardner; revised by Horst de la Croix, Richard G. Tansey                                  | Gardner's Art Through the Ages                                        | Harcourt Brace Jovanovich, New York                     |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 8         | 1986                | Horst de la Croix, Richard G. Tansey                                                            | Gardner's Art Through the Ages                                        | Harcourt Brace Jovanovich, San Diego, CA                |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 9         | 1991                | Horst de la Croix, Richard G. Tansey, Diane Kirkpatrick                                         | Gardner's Art Through the Ages                                        | San Diego: Harcourt Brace Jovanovich                    |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 10        | 1996                | Richard G. Tansey, Fred S. Kleiner                                                              | Gardner's Art Through the Ages                                        | Fort Worth, TX: Harcourt Brace                          |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 11        | 2001                | Fred S. Kleiner, Christin J. Mamiya, Richard G. Tansey                                          | Gardner's Art Through the Ages                                        | Fort Worth TX: Harcourt College Publishers              |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 12        | 2005                | Fred S. Kleiner, Christin J. Mamiya                                                             | Gardner's Art Through the Ages                                        | Thomson/Wadsworth, Belmont, CA                          |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 13        | 2009                | Fred S. Kleiner                                                                                 | Gardner's Art Through the Ages: A Global History                      | Boston, Thomson/Wadsworth                               |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 14        | 2013                | Fred S. Kleiner                                                                                 | Gardner's Art Through the Ages: A Global History                      | Australia ; United States : Wadsworth, Cengage Learning |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 15        | 2016                | Fred S. Kleiner                                                                                 | Gardner's Art Through the Ages: A Global History                      | Boston, MA : Cengage Learning                           |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
+| 16        | 2020                | Fred S. Kleiner                                                                                 | Gardner's Art Through the Ages: A Global History                      | Boston, MA, US : Cengage Learning                       |
++-----------+---------------------+-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------+---------------------------------------------------------+
 
 **Table 4:** Authors of Gardner's Art Through the Ages: NEEDS TO BE ADDED
 
++------------------------------------+-----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Author Name                        | Edition Number (Year)                                                       | Description                                                                                                                                                                                                                               |
-|------------------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
++====================================+=============================================================================+===========================================================================================================================================================================================================================================+
 | Sumner McKnight Crosby (1909-1982) | 4 (1959)                                                                    | Sumner McKnight Crosby was an American Medievalist architectural historian. He was the principal scholar of St-Denis and chair of the Department of Art History, Yale University, 1947-1953.[^chapter1-1]                                 |
++------------------------------------+-----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Horst de la Croix                  | 5 (1970), 6 (1975), 7 (1980), 8 (1986), 9 (1991)                            | An Art Historian and professor at San Jose State University.[^chapter1-2]                                                                                                                                                                 |
++------------------------------------+-----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Richard G. Tansey (1919-1998)      | 5 (1970), 6 (1975), 7 (1980), 8 (1986), 9 (1991), 10 (1995)                 | An Art Historian and professor at San Jose State University from 1947-1961. He then taught at UCLA for a year, only to return to San Jose State University from 1962-1980. He recieved his BA, MA, and Ph.D. from Harvard.[^chapter1-3]   |
++------------------------------------+-----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Diane Kirkpatrick (1933 - present) | 9 (1991)                                                                    | She received her BA from Vassar College in 1955, her MA and Ph.D. in Art Hhistory from the University of Michigan in 1965 and 1969. She joined the faculty at the University of Michican in 1968 and retired in May of 2000.[^chapter1-4] |
++------------------------------------+-----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Fred S. Kleiner                    | 10 (1995), 11 (2001), 12 (2005), 13 (2009), 14 (2013), 15 (2016), 16 (2020) |                                                                                                                                                                                                                                           |
++------------------------------------+-----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Christin J. Mamiya                 | 11 (2001), 12 (2005)                                                        |                                                                                                                                                                                                                                           |
++------------------------------------+-----------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 [^chapter1-1]: https://arthistorians.info/crosbys
 
@@ -503,13 +516,13 @@ Art historian Paul E. Bolin discusses gender inequality through the first four e
 
 [^chapter1-25]: Paul E. Bolin, "Discussions and Depictions of Women in H. W. Janson's History of Art, Fourth Edition," Journal of Social Theory in Art Education, Vol. 15.(1996), pp. 146-159. https://core.ac.uk/download/pdf/51288476.pdf.
 
-# **Significance of Research:**
+## Significance of Research:
 
 As far as I am aware, there has not been research done in the aggregate, quantitatively analyzing the change over time specifically regarding artist demographic in *Janson's History of Art* nor *Gardner's Art Through the Ages*. My research is significant as it efficiently shows the gaps of representation in terms of gender, nationality, race, and ethnicity that have not been deeply touched on by previous scholars. As mentioned in my literature review of publications that discuss *Gardner's Art Through the Ages,* the closest research I have found to my own was published by The University of Chicago Press Journals in 2020 in which two professors and library assistant out of Purdue University, randomly selected and cataloged information from the first, fifth, twelfth and sixteenth edition. They were focused on how the length of the book changes through time, the type of image changed through time, how the percent of color images change through time, and how the number of suggested readings changes through time. My research has more breadth, as I scraped information from all 16 editions of *Gardner's Art Through the Ages,* as well as *Janson's History of Art* and working less with how the book itself was changing, but more so how the artist's included changes through time.
 
 Secondly, my research looks at how the area given to particular artists changes through time and which, if any, external variables can help account for the variance of such. As mentioned in my abstract, I use a linear mixed-effects model with a random effect of the artist's name, to infer the magnitude of the space given to a particular artist divided by the area of the page of the given edition (total space ratio per page), in *Janson's History of Art* and *Gardner's Art Through the Ages,* using the potential predictor variables: Artist Race, Artist Gender, Artist Ethnicity, Artist Nationality, the count through time of the number of exhibitions an artist has at the MoMA, and the count through time of the number of exhibitions an artist has at The Whitney. The model that best explains the variance in the total space ratio per page per artist per edition uses artist nationality and the count through time of the number of exhibitions an artist has in the MoMA as well as the interaction between those two variables. With a log transformation applied to the outcome variable of the as it is heavily right-skewed, my linear mixed-effects model yields a conditional r squared of 53.23%. Such denotes that 53.23% of the variance of total space ratio per page given to an artist in a given edition can be explained by the artist's nationality and the count through time of the number of exhibitions an artist has at the MoMA. This type of statistical analysis as far as I am aware has not been done in regards to looking at how art historical survey texts evolve. My research works to explain how the authors of *Janson's History of Art* and *Gardner's Art Through the Ages,* operate while choosing which artists are given any particular amount of space in their publications.
 
-# **Research Questions:**
+## Research Questions:
 
 1.  What are the demographics (Race, Gender, Ethnicity, Nationality) of artists included in each edition of Janson's History of Art (from 1962-2011) and Gardner's Art Through the Ages (from 1926-2020) looking at two-dimensional works after c. 1750?
 
@@ -1145,16 +1158,27 @@ other_median <- median(other$space_ratio_per_page_total)
 nonother_total <-(1-(nrow(other)/nrow(gardnerjanson_museums)))
 ```
 
++--------------------+---------------------------------------------+--------------------------------------+
 | Artist Nationality | Percent of Total Count Through all 25 books | Median Total Ratio of Space per Page |
-|--------------------|---------------------------------------------|--------------------------------------|
++====================+=============================================+======================================+
 | American           | 28.72%                                      | .377                                 |
++--------------------+---------------------------------------------+--------------------------------------+
 | British            | 10.03%                                      | .372                                 |
++--------------------+---------------------------------------------+--------------------------------------+
 | French             | 27.51%                                      | .535                                 |
++--------------------+---------------------------------------------+--------------------------------------+
 | German             | 8.10%                                       | .375                                 |
++--------------------+---------------------------------------------+--------------------------------------+
 | Other              | 22.68%                                      | .380                                 |
++--------------------+---------------------------------------------+--------------------------------------+
 | Spanish            | 2.97%                                       | .889                                 |
++--------------------+---------------------------------------------+--------------------------------------+
 
 # Results
+
+Descriptive Analysis:
+
+EDA to answer research question 1
 
 ```{r}
 #| label: sjplot
@@ -1171,17 +1195,19 @@ sjPlot::plot_model(lmm,
                                  "German",
                                  "British",
                                  "Nationality Other",
-                                 "French"),
-                   show.values=TRUE, show.p=TRUE,
+                                 "French", 
+                                 "Intercept"),
+                   show.values=TRUE, 
+                   show.p=TRUE, 
+                   show.intercept = TRUE,
+                   value.offset = .35,
+                   value.size = 3,
+                   dot.size = 1,
+                   line.size = .5,
                    title="Effect of Artist Nationality and the Number of Exhibitions Held at the MoMA per Artist per Edition on the Total Space Ratio per Page")
 ```
 
-```{r}
-#| label: collinearity
-#| echo: false
-
-vif(lmm)
-```
+conditional r squared
 
 GET PVALUES FOR COEFFICIENTS - STATISTICALLY SIGNIFICANT - GO THROUGH INTERPRETATIONS WITH LOG TRANSFORMATION AND MIXED EFFECTS MODEL - CONFIRM MODEL DIAGNOSTICS - AIC / BIC FOR MIXED EFFECTS -
 
@@ -1189,13 +1215,51 @@ GET PVALUES FOR COEFFICIENTS - STATISTICALLY SIGNIFICANT - GO THROUGH INTERPRETA
 r.squaredGLMM(lmm)
 ```
 
+With a log transformation applied to the outcome variable as it is heavily right-skewed, my linear mixed-effects model yields a conditional r squared of 53.23%. Such denotes that 53.23% of the variance of total space ratio per page given to an artist in a given edition can be explained by the model.
+
 Marginal R2 provides the variance explained only by fixed effects and conditional R2 provides the variance explained by the entire model, i.e., both fixed effects and random effects.
 
 RESOURCE: https://www.ssc.wisc.edu/sscc/pubs/MM/MM_DiagInfer.html
 
 # Discussion
 
-# Limitations and Next Steps
+## Model Interpretation and Relevance
+
+goal is not prediction - goal is to understand choices that occured in the past - Identifying variables as they occurred in the past = they didnt impact the explanation of the variability of the outcome variable
+
+parsimony - they muddled the r squared and model
+
+inference - get to the root of the problem - most important predictors
+
+the data doesn't allow for the model to use other variables of demographic due to the imbalance of inclusion. If we were to have more observations
+
+mathematically couldn't fit the model using those three variables
+
+if the goal of this was to focus on a minority group to begin with - ex. mexican female artists
+
+Statistically significant:
+
+Intercept: For an American artist with no exhibitions at the MoMA, we expect on average for the space_ratio_per_page to multiply by a factor of `r round(exp(.99), 3)`.
+
+French: Holding all else constant, for a French artist, we expect the total space ratio per page to increase on average by `r round(exp(.23), 3)` as compared to an American artist.
+
+Spanish: Holding all else constant, for a Spanish artist, we expect the total space ratio per page to increase on average by `r round(exp(.57), 3)` as compared to an American artist.
+
+MoMA: For each additional exhibition at the MoMA, we expect the total space ratio per page to multiply on average by a factor of `r round(exp(-.01), 3)`.
+
+French x MoMA Count to Year: For a French artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor `r round(exp(.02 - .01), 3)`, as compared to an American artist.
+
+Other x MoMA Count to Year:
+
+German x MoMA Count to Year:
+
+Spanish x MoMA Count to Year
+
+## Limitations
+
+write model is most generalizable for an audience of American white male from not Hispanic or Latino origin as this demographic is most dominant through the data I collected in *Gardner's Art Through the Ages* and *Janson's History of Art.*
+
+## Next Steps
 
 **Relevance of Research and Connection to Bigger Picture**
 
@@ -1258,7 +1322,18 @@ There is no pattern left behind therefore linearity is satisfied. There is a lin
 
 ### Independence
 
-Since we are using a mixed-effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed effects model. Between artists, we expect the observations to be independent.
+Since we are using a mixed-effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed-effects model. Between artists, we expect the observations to be independent.
+
+### Collinearity
+
+```{r}
+#| label: collinearity
+#| echo: false
+
+vif(lmm)
+```
+
+Given artist nationality, MoMA Count to Year and the interaction between the two all have a corrected GVIF under 10 therefore no variables are collinear.
 
 ## Data Dictionary
 
