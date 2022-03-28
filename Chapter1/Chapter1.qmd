@@ -259,6 +259,10 @@ lmm <- lmer(log(space_ratio_per_page_total) ~ artist_race_nwi
     REML = FALSE)
 ```
 
+stepAIC()
+
+stepAIC() log(n)
+
 ```{r}
 #| label: lmm_step
 #| echo: false
@@ -526,11 +530,11 @@ Secondly, my research looks at how the area given to particular artists changes 
 
 ## Research Questions:
 
-1.  What are the demographics (Race, Gender, Ethnicity, Nationality) of artists included in each edition of Janson's History of Art (from 1962-2011) and Gardner's Art Through the Ages (from 1926-2020) looking at two-dimensional works after c. 1750?
+1.  What are the demographics (artist gender, race, ethnicity, nationality) of artists included in each edition of Janson's History of Art (from 1962-2011) and Gardner's Art Through the Ages (from 1926-2020) looking at two-dimensional works after c. 1750?
 
     Hypothesis: *Janson's History of Art* and *Gardner's Art Through the Ages* will include more female, nonwhite, Hispanic or Latinx artists over time; however, these artists will still be dramatically underrepresented compared to white male artists. Moreover, race and ethnicity will be more of a limiting factor than gender.
 
-2.  Which variables (gender, race, ethnicity, nationality, number of exhibitions at the MoMA or The Whitney) if any, predict the magnitude of an artist's inclusion in art history survey texts (*Janson's History of Art* and *Gardner's Art Through the Ages*)?
+2.  Which variables ( artist gender, race, ethnicity, nationality, number of exhibitions at the MoMA or The Whitney) if any, predict the magnitude of an artist's inclusion in art history survey texts (*Janson's History of Art* and *Gardner's Art Through the Ages*)?
 
     Hypothesis: I hypothesize demographic information per artist will play a large role in accounting for the total variance in `space_ratio_per_page_total`. The type of race, gender, nationality, and ethnicity of an artist in theory highly impacts how much they are highlighted and discussed in introductory art history texts. Additionally, I hypothesize that if a given artist has many exhibitions in the MoMA or The Whitney, such would additionally account for variance in the outcome variable `space_ratio_per_page`. The notion behind such a hypothesis is that if an artist is being put on exhibition, they are likely to be discussed more in introductory art history texts.
 
@@ -612,13 +616,17 @@ Lastly, I releveled my data such that the baseline demographic of artist reflect
 
 ### Linear Mixed-Effects Model:
 
-We chose to use a linear mixed-effects model as the data contains a random effect at the artist level as multiple observations in the data can be by the same artist. Using a linear mixed effects model with artist name as the random effect eliminates the dependence between observations of the same artist, therefore allowing independence to be satisfied for our model. Additionally, we chose to log transform the outcome variable, the total space ratio per page is extremely right-skewed. Performing the log transformation allows for the residuals to have constant variance (homoscedasticity). In regards to choosing the combination of both main fixed effects and interaction fixed effects, we used a step-wise model selection methodology.
+I chose to use a linear mixed-effects model as the data contains a random effect at the artist level as multiple observations in the data can be by the same artist. Using a linear mixed-effects model with artist name as the random effect eliminates the dependence between observations of the same artist, therefore allowing independence to be satisfied for our model. Additionally, I chose to log transform the outcome variable, the total space ratio per page is extremely right-skewed. Performing the log transformation allows for the residuals to have constant variance (homoscedasticity). In regards to choosing the combination of both main fixed effects and interaction fixed effects, I used a step-wise model selection methodology.
 
 Satterthwaite test, more flexible, looking directly at p-values - non-parametric test - uses different error term, similar to a two same t-test, similar to ANOVA - analysis of variance - checking between different groups -
 
-# Exploratory Data Analysis: *Gardner's Art Through the Ages* and *Janson's History of Art* Through Editions
+# Results
 
-## **Count Through Editions:**
+## Descriptive Analysis: Research Question 1
+
+What are the demographics (artist race, gender, ethnicity, nationality) of artists included in each edition of Janson's History of Art (from 1962-2011) and Gardner's Art Through the Ages (from 1926-2020) looking at two-dimensional works after c. 1750?
+
+### **Count Through Editions:**
 
 ```{r}
 #| label: gardnercountthroughtime
@@ -669,7 +677,7 @@ gardnerjanson_museums%>%
 
 The shape of the overall count of works by artists in *Janson's History of Art* is left-skewed, unimodal and asymmetrical. Such highlights how through time, more works are added to *Janson's History of Art* that are two-dimensional and made after c. 1750. There is then a drop-off of works included in the seventh (published in 2007 with 163 works) and eighth (published in 2011 with 153 works) editions, when new authorship took over. Within edition five (published 1995) and edition six (published in 2001), both written by Anthony Janson, there are the same number of works, the maximum amount included in the text throughout time, 185, as compared to the count of works in the first edition, first printing, 62, and first edition, second printing, 76.
 
-## **Gender Through Editions:**
+### **Gender Through Editions:**
 
 ```{r}
 #| label: jansongenderthroughtime
@@ -726,7 +734,7 @@ The breakdown of artists' gender through editions of *Gardner's Art Through the 
 
 The overall percentage of male artists through all books of *Gardner's Art Through the Ages* is 85.69%, roughly a 4.5% increase in regard to gender diversity as compared to *Janson's History of Art.*
 
-## **Race Through Editions:**
+### **Race Through Editions:**
 
 ```{r}
 #| label: jansonracethroughtime
@@ -814,7 +822,7 @@ Figure \_\_: Aaron Douglas
 
 The overall percentage of white artists through all editions of *Gardner's Art Through the Ages* is 90.02%.
 
-## **Ethnicity Through Editions:**
+### **Ethnicity Through Editions:**
 
 ```{r}
 #| label: jansonethnicitythroughtime
@@ -867,7 +875,7 @@ Helen Gardner's third edition published in 1959 was the most ethnically diverse 
 
 The overall percentage of artists who are not Hispanic or Latinx included in *Janson's History of Art* is 91.51%.
 
-## **Nationality Through Editions:**
+### **Nationality Through Editions:**
 
 ```{r}
 #| label: jansonnationalitythroughtime
@@ -934,9 +942,11 @@ This visualization also displays a gradual but significant shift in dominance fr
 
 The overall percentage of artists who are French, American, British, German, or Spanish through all editions of *Gardner's Art Through the Ages* is 76.58%.
 
-# Exploratory Data Analysis: *Janson's History of Art* and *Gardner's Art Through the Ages vs.* Total Space Ratio per Page per Artist per Edition `space_ratio_per_page_total`
+## Exploratory Data Analysis: Research Question 2
 
-## Distribution of `space_ratio_per_page_total`
+Which variables (artist gender, race, ethnicity, nationality, number of exhibitions at the MoMA or The Whitney) if any, predict the magnitude of an artist's inclusion in art history survey texts (*Janson's History of Art* and *Gardner's Art Through the Ages*)?
+
+### Distribution of Total Space Ratio Per Page
 
 ```{r}
 #| label: spaceratioperpagetotal
@@ -956,22 +966,7 @@ IQR(gardnerjanson_museums$space_ratio_per_page_total)
 
 The shape of the visualization above is right-skewed, unimodal and asymmetrical. Therefore, we would want to look at the median to understand its center and interquartile range, which is the middle 50% of the range of the data to understand its spread. The median total space an artist receives is 40.93% of a page. The IQR of total space an artist receives is 28.59% of a page.
 
-```{r}
-#| label: logspaceratioperpagetotal
-#| echo: false
-
-ggplot(gardnerjanson_museums,
-       aes(x = log(space_ratio_per_page_total)))+
-  geom_histogram(binwidth = .1)+
-  labs(title = "Distribution of Ratio of Space 
-       per Artist per Edition per Page in all Textbooks",
-       x = "Ratio of Space per Page Total",
-       y = "Count")
-```
-
-In order to create less skew in our outcome variable, it is evident that log transforming total space ratio per page given to an artist in a particular edition gives the spread a much more mild right-skew than before. The shape is still unimodal and asymmetrical. I will be using the log transformation on the total space ratio per page, our outcome variable, in the linear mixed-effects model. This allows for the residuals to have constant variance.
-
-## `space_ratio_per_page_total` vs. `artist_gender`
+### Total Space Ratio Per Page vs. Artist Gender
 
 ```{r}
 #| label: genderallbooks
@@ -1016,7 +1011,7 @@ That said, there are far more male artists that are given a total ratio of space
 
 LOOK AT WHICH WORK OF HERS IS INCLUDED IN EACH EDITION.
 
-## `space_ratio_per_page_total` vs. `artist_race`
+### Total Space Ratio Per Page vs. Artist Race
 
 ```{r raceallbooks}
 #| echo: false
@@ -1070,7 +1065,7 @@ The median of the total ratio of space given to a particular artist through all 
 
 Obviously, the top quartile of white artists dominates this visualization. White is the only race that has any artists given more than a page of space in any one book. Out of the top ten outliers of white artists, eight of them are Pablo Picasso, with the first five observations being from various editions of *Janson's History of Art.*
 
-## `space_ratio_per_page_total` vs. `artist_ethnicity`
+### Total Space Ratio Per Page vs. Artist Ethnicity
 
 ```{r ethnicityallbooks}
 #| echo: false
@@ -1094,7 +1089,7 @@ median(artists_NHL$space_ratio_per_page_total)
 
 Interestingly, the median for the total space ratio per page for artists who are Hispanic or Latinx, `round(median(janson_HL$space_ratio_per_page_total), 3)` is higher than those who are Not Hispanic or Latinx, `round(median(janson_NHL$space_ratio_per_page_total), 3)`. There are `nrow(janson_HL)` observations of artists per edition who are Hispanic and Latinx and there are `nrow(janson_NHL)` observations of artists per edition who are not Hispanic or Latinx. Picasso plays a large role in such, as he is Hispanic or Latinx and is accounting for the outlyingly larger observations for `space_ratio_per_page_total`.
 
-## `space_ratio_per_page_total` vs. `artist_nationality_other`
+### Total Space Ratio Per Page vs. Artist Nationality
 
 ```{r nationalityotherallbooks}
 #| echo: false
@@ -1176,11 +1171,9 @@ nonother_total <-(1-(nrow(other)/nrow(gardnerjanson_museums)))
 | Spanish            | 2.97%                                       | .889                                 |
 +--------------------+---------------------------------------------+--------------------------------------+
 
-# Results
+## Model Output: Research Question 2
 
-## Research Question 1: Descriptive Analysis
-
-## Research Question 2: Model Output
+Which variables (artist gender, race, ethnicity, nationality, number of exhibitions at the MoMA or The Whitney) if any, predict the magnitude of an artist's inclusion in art history survey texts (*Janson's History of Art* and *Gardner's Art Through the Ages*)?
 
 ```{r}
 #| label: sjplot
@@ -1196,7 +1189,7 @@ sjPlot::plot_model(lmm,
                                  "Spanish",
                                  "German",
                                  "British",
-                                 "Nationality Other",
+                                 "Other",
                                  "French", 
                                  "Intercept"),
                    show.values=TRUE,
@@ -1210,11 +1203,23 @@ sjPlot::plot_model(lmm,
                    title="Effect of Artist Nationality and the Number of Exhibitions Held at the MoMA per Artist per Edition on the Total Space Ratio per Page")
 ```
 
-Write out latex mathematic function
+$$
+\begin{aligned}
+\widehat{Total Space RatioPerPage} = -0.988 &+ 0.233\times French \\
+&-0.058\times Other \\
+&-0.015\times British \\
+&-0.078\times German \\
+&+ .571\times Spanish \\
+&-.011\times MoMA \\
+&+ .023\times French \times MoMACountToYear\\
+&+ .015 \times Other \times MoMACountToYear\\
+&+ .014 \times British \times MoMACountToYear\\
+&+ .022 \times German \times MoMACountToYear\\
+&+ .032 \times Spanish \times MoMACountToYear\\
+\end{aligned}
+$$
 
-$$
-outcome = predictors
-$$
+After step-wise model evaluation, the model that is most parsimonious with the highest conditional r squared is a model using only artist nationality and the count to year of the number of exhibitions an artist is included in at the MoMA and the interaction between the two.
 
 ```{r rsq}
 r.squaredGLMM(lmm)
@@ -1269,6 +1274,23 @@ Statistical analysis in tandem to art historical research leads to a more compre
 There are myriad next steps for such research going forward. Firstly, it would be ideal to extend the museum datato exhibitions and acquisitions from museums of various sizes and locations in order to garner a more representative sample of the art museum sector beyond major institutions in New York City. Secondly, we would love to use more complex statistics in order to predict the likelihood of an artist's inclusion in an art historical survey. Therefore, creating a statistical model using variables such as inclusion in museum spaces, prices fetched at auction, and number of publications by art experts on a particular artist in order to predict inclusion would greatly add to our research. Lastly, other art historical narratives should also be catalogued. This would allow for us to not only look at the changes per edition of the Janson's History of Art, but also how various art historical canons differ from one another, leaving which artists out and which artists in. I would collect data through editions of Marilyn Stokstad et al.'s Art History, the other two art historical narratives that are most utilized in introductory courses across the United States.
 
 # Appendix
+
+## Log Transformation: Total Space Ratio per Page
+
+```{r}
+#| label: logspaceratioperpagetotal
+#| echo: false
+
+ggplot(gardnerjanson_museums,
+       aes(x = log(space_ratio_per_page_total)))+
+  geom_histogram(binwidth = .1)+
+  labs(title = "Distribution of the Log of Ratio of Space 
+       per Artist per Edition per Page in all Textbooks",
+       x = "Ratio of Space per Page Total",
+       y = "Count")
+```
+
+In order to create less skew in our outcome variable, it is evident that log transforming total space ratio per page given to an artist in a particular edition gives the spread a much more mild right-skew than before. The shape is still unimodal and asymmetrical. I will be using the log transformation on the total space ratio per page, our outcome variable, in the linear mixed-effects model. This allows for the residuals to have constant variance.
 
 ## Assumptions
 
