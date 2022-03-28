@@ -50,6 +50,7 @@
       "search-submit-button-title": "Submit"
     }
   }</script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -152,7 +153,11 @@
 <li><a href="#space_ratio_per_page_total-vs.-artist_ethnicity" class="nav-link" data-scroll-target="#space_ratio_per_page_total-vs.-artist_ethnicity"> <span class="header-section-number">6.4</span> <code>space_ratio_per_page_total</code> vs.&nbsp;<code>artist_ethnicity</code></a></li>
 <li><a href="#space_ratio_per_page_total-vs.-artist_nationality_other" class="nav-link" data-scroll-target="#space_ratio_per_page_total-vs.-artist_nationality_other"> <span class="header-section-number">6.5</span> <code>space_ratio_per_page_total</code> vs.&nbsp;<code>artist_nationality_other</code></a></li>
 </ul></li>
-<li><a href="#results" class="nav-link" data-scroll-target="#results"> <span class="header-section-number">7</span> Results</a></li>
+<li><a href="#results" class="nav-link" data-scroll-target="#results"> <span class="header-section-number">7</span> Results</a>
+<ul class="collapse">
+<li><a href="#research-question-1-descriptive-analysis" class="nav-link" data-scroll-target="#research-question-1-descriptive-analysis"> <span class="header-section-number">7.1</span> Research Question 1: Descriptive Analysis</a></li>
+<li><a href="#research-question-2-model-output" class="nav-link" data-scroll-target="#research-question-2-model-output"> <span class="header-section-number">7.2</span> Research Question 2: Model Output</a></li>
+</ul></li>
 <li><a href="#discussion" class="nav-link" data-scroll-target="#discussion"> <span class="header-section-number">8</span> Discussion</a>
 <ul class="collapse">
 <li><a href="#model-interpretation-and-relevance" class="nav-link" data-scroll-target="#model-interpretation-and-relevance"> <span class="header-section-number">8.1</span> Model Interpretation and Relevance</a></li>
@@ -1165,15 +1170,20 @@ Born Dora Jane Heineberg (1916-2002) in Philadelphia in 1916, she shared a passi
 </section>
 <section id="results" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Results</h1>
-<p>Descriptive Analysis:</p>
-<p>EDA to answer research question 1</p>
+<section id="research-question-1-descriptive-analysis" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="research-question-1-descriptive-analysis"><span class="header-section-number">7.1</span> Research Question 1: Descriptive Analysis</h2>
+</section>
+<section id="research-question-2-model-output" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="research-question-2-model-output"><span class="header-section-number">7.2</span> Research Question 2: Model Output</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Chapter1_files/figure-html/sjplot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>conditional r squared</p>
-<p>GET PVALUES FOR COEFFICIENTS - STATISTICALLY SIGNIFICANT - GO THROUGH INTERPRETATIONS WITH LOG TRANSFORMATION AND MIXED EFFECTS MODEL - CONFIRM MODEL DIAGNOSTICS - AIC / BIC FOR MIXED EFFECTS -</p>
+<p>Write out latex mathematic function</p>
+<p><span class="math display">\[
+outcome = predictors
+\]</span></p>
 <div class="cell">
 <div class="cell-output-stdout">
 <pre><code>           R2m      R2c
@@ -1181,8 +1191,7 @@ Born Dora Jane Heineberg (1916-2002) in Philadelphia in 1916, she shared a passi
 </div>
 </div>
 <p>With a log transformation applied to the outcome variable as it is heavily right-skewed, my linear mixed-effects model yields a conditional r squared of 53.23%. Such denotes that 53.23% of the variance of total space ratio per page given to an artist in a given edition can be explained by the model.</p>
-<p>Marginal R2 provides the variance explained only by fixed effects and conditional R2 provides the variance explained by the entire model, i.e., both fixed effects and random effects.</p>
-<p>RESOURCE: https://www.ssc.wisc.edu/sscc/pubs/MM/MM_DiagInfer.html</p>
+</section>
 </section>
 <section id="discussion" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Discussion</h1>
@@ -1195,14 +1204,13 @@ Born Dora Jane Heineberg (1916-2002) in Philadelphia in 1916, she shared a passi
 <p>mathematically couldn’t fit the model using those three variables</p>
 <p>if the goal of this was to focus on a minority group to begin with - ex. mexican female artists</p>
 <p>Statistically significant:</p>
-<p>Intercept: For an American artist with no exhibitions at the MoMA, we expect on average for the space_ratio_per_page to multiply by a factor of 2.691.</p>
-<p>French: Holding all else constant, for a French artist, we expect the total space ratio per page to increase on average by 1.259 as compared to an American artist.</p>
-<p>Spanish: Holding all else constant, for a Spanish artist, we expect the total space ratio per page to increase on average by 1.768 as compared to an American artist.</p>
-<p>MoMA: For each additional exhibition at the MoMA, we expect the total space ratio per page to multiply on average by a factor of 0.99.</p>
-<p>French x MoMA Count to Year: For a French artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor 1.01, as compared to an American artist.</p>
-<p>Other x MoMA Count to Year:</p>
-<p>German x MoMA Count to Year:</p>
-<p>Spanish x MoMA Count to Year</p>
+<p>Intercept: For an American artist with no exhibitions at the MoMA, we expect on average for the space_ratio_per_page to multiply by a factor of 2.686.</p>
+<p>French: Holding all else constant, for a French artist, we expect the total space ratio per page to increase on average by 1.262 as compared to an American artist.</p>
+<p>Spanish: Holding all else constant, for a Spanish artist, we expect the total space ratio per page to increase on average by 1.77 as compared to an American artist.</p>
+<p>French x MoMA Count to Year: For a French artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor 1.012, as compared to an American artist.</p>
+<p>Other x MoMA Count to Year: For an artist with a nationality different from American, French, British, German and Spanish, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor 1.004, as compared to an American artist.</p>
+<p>German x MoMA Count to Year: For a German artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor 1.011, as compared to an American artist.</p>
+<p>Spanish x MoMA Count to Year: For a Spanish artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor 1.021, as compared to an American artist.</p>
 </section>
 <section id="limitations" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="limitations"><span class="header-section-number">8.2</span> Limitations</h2>

@@ -1178,9 +1178,9 @@ nonother_total <-(1-(nrow(other)/nrow(gardnerjanson_museums)))
 
 # Results
 
-Descriptive Analysis:
+## Research Question 1: Descriptive Analysis
 
-EDA to answer research question 1
+## Research Question 2: Model Output
 
 ```{r}
 #| label: sjplot
@@ -1199,7 +1199,8 @@ sjPlot::plot_model(lmm,
                                  "Nationality Other",
                                  "French", 
                                  "Intercept"),
-                   show.values=TRUE, 
+                   show.values=TRUE,
+                   digits = 3,
                    show.p=TRUE, 
                    show.intercept = TRUE,
                    value.offset = .35,
@@ -1209,19 +1210,17 @@ sjPlot::plot_model(lmm,
                    title="Effect of Artist Nationality and the Number of Exhibitions Held at the MoMA per Artist per Edition on the Total Space Ratio per Page")
 ```
 
-conditional r squared
+Write out latex mathematic function
 
-GET PVALUES FOR COEFFICIENTS - STATISTICALLY SIGNIFICANT - GO THROUGH INTERPRETATIONS WITH LOG TRANSFORMATION AND MIXED EFFECTS MODEL - CONFIRM MODEL DIAGNOSTICS - AIC / BIC FOR MIXED EFFECTS -
+$$
+outcome = predictors
+$$
 
 ```{r rsq}
 r.squaredGLMM(lmm)
 ```
 
 With a log transformation applied to the outcome variable as it is heavily right-skewed, my linear mixed-effects model yields a conditional r squared of 53.23%. Such denotes that 53.23% of the variance of total space ratio per page given to an artist in a given edition can be explained by the model.
-
-Marginal R2 provides the variance explained only by fixed effects and conditional R2 provides the variance explained by the entire model, i.e., both fixed effects and random effects.
-
-RESOURCE: https://www.ssc.wisc.edu/sscc/pubs/MM/MM_DiagInfer.html
 
 # Discussion
 
@@ -1241,21 +1240,19 @@ if the goal of this was to focus on a minority group to begin with - ex. mexican
 
 Statistically significant:
 
-Intercept: For an American artist with no exhibitions at the MoMA, we expect on average for the space_ratio_per_page to multiply by a factor of `r round(exp(.99), 3)`.
+Intercept: For an American artist with no exhibitions at the MoMA, we expect on average for the space_ratio_per_page to multiply by a factor of `r round(exp(.988), 3)`.
 
-French: Holding all else constant, for a French artist, we expect the total space ratio per page to increase on average by `r round(exp(.23), 3)` as compared to an American artist.
+French: Holding all else constant, for a French artist, we expect the total space ratio per page to increase on average by `r round(exp(.233), 3)` as compared to an American artist.
 
-Spanish: Holding all else constant, for a Spanish artist, we expect the total space ratio per page to increase on average by `r round(exp(.57), 3)` as compared to an American artist.
+Spanish: Holding all else constant, for a Spanish artist, we expect the total space ratio per page to increase on average by `r round(exp(.571), 3)` as compared to an American artist.
 
-MoMA: For each additional exhibition at the MoMA, we expect the total space ratio per page to multiply on average by a factor of `r round(exp(-.01), 3)`.
+French x MoMA Count to Year: For a French artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor `r round(exp(.023 - .011), 3)`, as compared to an American artist.
 
-French x MoMA Count to Year: For a French artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor `r round(exp(.02 - .01), 3)`, as compared to an American artist.
+Other x MoMA Count to Year: For an artist with a nationality different from American, French, British, German and Spanish, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor `r round(exp(.015 - .011), 3)`, as compared to an American artist.
 
-Other x MoMA Count to Year:
+German x MoMA Count to Year: For a German artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor `r round(exp(.022 - .011), 3)`, as compared to an American artist.
 
-German x MoMA Count to Year:
-
-Spanish x MoMA Count to Year
+Spanish x MoMA Count to Year: For a Spanish artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor `r round(exp(.032 - .011), 3)`, as compared to an American artist.
 
 ## Limitations
 
