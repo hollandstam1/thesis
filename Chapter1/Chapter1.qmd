@@ -259,10 +259,6 @@ lmm <- lmer(log(space_ratio_per_page_total) ~ artist_race_nwi
     REML = FALSE)
 ```
 
-stepAIC()
-
-stepAIC() log(n)
-
 ```{r}
 #| label: lmm_step
 #| echo: false
@@ -650,7 +646,7 @@ gardnerjanson_museums %>%
   filter(year == "2009")
 ```
 
-The shape of the overall count of works by artists in *Gardner's Art Through the Ages* is heavily left-skewed, multimodal, and asymmetrical. Such highlights how through time, more works are, on average, continually added to *Gardner's Art Through the Ages* that are two-dimensional and made after c. 1750. The first edition, published in 1926 by Helen Gardner, only has a a total of 21 works. Edition 15, published in 2016 as well as edition 16, published in 2020, have 182 works respectively, which is the maximum amount of works through all editions.
+The shape of the overall count of works by artists in *Gardner's Art Through the Ages* is heavily left-skewed, multimodal, and asymmetrical. Such highlights how through time, more works are, on average, continually added to *Gardner's Art Through the Ages* that are two-dimensional and made after c. 1750. The first edition, published in 1926 by Helen Gardner, only has a total of 21 works. Edition 15, published in 2016 as well as edition 16, published in 2020, have 182 works respectively, which is the maximum amount of works through all editions.
 
 ```{r}
 #| label: jansoncountthroughtime
@@ -1140,7 +1136,7 @@ other <- gardnerjanson_museums %>%
 
 other_total <- nrow(other)/nrow(gardnerjanson_museums)
 
-other%>%
+other <- other%>%
   dplyr::select(artist_name, 
          edition_number, 
          year, 
@@ -1231,19 +1227,7 @@ With a log transformation applied to the outcome variable as it is heavily right
 
 ## Model Interpretation and Relevance
 
-goal is not prediction - goal is to understand choices that occured in the past - Identifying variables as they occurred in the past = they didnt impact the explanation of the variability of the outcome variable
-
-parsimony - they muddled the r squared and model
-
-inference - get to the root of the problem - most important predictors
-
-the data doesn't allow for the model to use other variables of demographic due to the imbalance of inclusion. If we were to have more observations
-
-mathematically couldn't fit the model using those three variables
-
-if the goal of this was to focus on a minority group to begin with - ex. mexican female artists
-
-Statistically significant:
+In the visualization above, the slopes with any asterisk are the slopes that have a p-value smaller than .05, denoting that they are statistically significant. We can reject the null hypothesis that the relationship between the given predictors with any asterisk has a slope that is not equal to 0. The following denotes the interpretation for the intercept and every predicted slope the model outputs as statistically significant:
 
 Intercept: For an American artist with no exhibitions at the MoMA, we expect on average for the space_ratio_per_page to multiply by a factor of `r round(exp(.988), 3)`.
 
@@ -1259,19 +1243,15 @@ German x MoMA Count to Year: For a German artist, for an additional exhibition a
 
 Spanish x MoMA Count to Year: For a Spanish artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor `r round(exp(.032 - .011), 3)`, as compared to an American artist.
 
-## Limitations
+The goal of my model is to understand and infer which variables are most statistically significant when accounting for the variance of the total space ratio per page per artist per edition. The goal of the model is not prediction, but rather inference and to identify which variables, out my the possible six predictors (artist gender, race, ethnicity, nationality, MoMA count to year and Whitney count to year) that I collected, explain the variability of my outcome variable. Creating a model that focuses on inference allows for me to see the most important predictors spanning from 1926-2020 of two-dimensional works made after c. 1750 included in either *Janson's History of Art* or *Gardner's Art Through the Ages.*
 
-write model is most generalizable for an audience of American white male from not Hispanic or Latino origin as this demographic is most dominant through the data I collected in *Gardner's Art Through the Ages* and *Janson's History of Art.*
+That being said, the best fit model is limited by the imbalances in the data that I collected and highlighted through answering my first research question of how the demographic of artists included in the books change through time. There are incredible imbalances particularly when it comes to race, gender, and ethnicity. Mathematically, my model struggled with rank deficiencies, meaning there were so few observations of artists who are in a minority group either in regard to being female or non-white or being of Hispanic or Latino origin. My model is most generalizable for an audience of American white male from not Hispanic or Latino origin as this demographic is most dominant through the data I collected in *Gardner's Art Through the Ages* and *Janson's History of Art.* With more diverse data that potentially the future of art history introductory survey texts holds, one could achieve a model in which those demographic categories account for the variability of total space ratio per page per artist per edition.
 
-## Next Steps
+## Limitations and Next Steps
 
-**Relevance of Research and Connection to Bigger Picture**
+That being said, the best fit model is limited by the imbalances in the data that I collected and highlighted through answering my first research question of how the demographic of artists included in the books change through time. There are incredible imbalances particularly when it comes to race, gender, and ethnicity. Mathematically, my model struggled with rank deficiencies, meaning there were so few observations of artists who are in a minority group either in regard to being female or non-white or being of Hispanic or Latino origin. My model is most generalizable for an audience of American white male from not Hispanic or Latino origin as this demographic is most dominant through the data I collected in *Gardner's Art Through the Ages* and *Janson's History of Art.* With more diverse data that potentially the future of art history introductory survey texts holds, one could achieve a model in which those demographic categories account for the variability of total space ratio per page per artist per edition.
 
-Statistical analysis in tandem to art historical research leads to a more comprehensive and thorough report when looking at the communication between art history and other players in the art world. The decisions and publications of art historians and experts are in communication with art sales, museum exhibitions and collections. The intersectionality of the realm of art, as well as the significance of data in the aggregate mustn't go ignored. Such research additionally allows for the lack of diversity in regards to gender and more severely race to be highlighted objectively and effectively. The role of art historical narratives has decreased significantly, but discrimination in terms of representation for minority artists is still an issue at the forefront of not only art history programs, but additionally in museum spaces. How can the art world further create space for diversity looking forward? In terms of museums, many institutions have been making efforts to not only diversify their collections and exhibitions through deaccessioning, but also diversifying their staff through opening up positions specifically for individuals of minority demographics. It will be interesting to see how, if at all, art historical surveys will adapt going forward, or if they will be left in the past. 
-
-**Suggestions for Further Research**
-
-There are myriad next steps for such research going forward. Firstly, it would be ideal to extend the museum datato exhibitions and acquisitions from museums of various sizes and locations in order to garner a more representative sample of the art museum sector beyond major institutions in New York City. Secondly, we would love to use more complex statistics in order to predict the likelihood of an artist's inclusion in an art historical survey. Therefore, creating a statistical model using variables such as inclusion in museum spaces, prices fetched at auction, and number of publications by art experts on a particular artist in order to predict inclusion would greatly add to our research. Lastly, other art historical narratives should also be catalogued. This would allow for us to not only look at the changes per edition of the Janson's History of Art, but also how various art historical canons differ from one another, leaving which artists out and which artists in. I would collect data through editions of Marilyn Stokstad et al.'s Art History, the other two art historical narratives that are most utilized in introductory courses across the United States.
+Additionally, my research is limited to the lack of transparency in the sales of art. I would have loved to create a variable using price data of works of artists in an effort to quantify the relationship between various art markets and art history introductory textbooks. Additionally, due to time constraints, I would have loved to have created a variable counting the number of external publications written about a particular artist at each moment of time in which another edition of either *Janson's History of Art* or *Gardner's Art Through the Ages* was published. This would have been in an effort to quantify the relationship between art history survey texts and external publications. Additionally, there are potential gaps in information regarding the exhibition history at The Whitney as it is only the exhibitions as stated by their website in March of 2021, rather than a fully complete exhibition history. I would love to as well as a next step to be able to have used exhibition history's of other museums not only in the United States but across the world to better understand the relationship between museum spaces art history introductory survey texts. Additionally, there are myriad other art history survey texts one could catalog, as well as expanding the scope within the 25 books from which I did record data.
 
 # Appendix
 

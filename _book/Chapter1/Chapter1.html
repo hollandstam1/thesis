@@ -160,8 +160,7 @@
 <li><a href="#discussion" class="nav-link" data-scroll-target="#discussion"> <span class="header-section-number">6</span> Discussion</a>
 <ul class="collapse">
 <li><a href="#model-interpretation-and-relevance" class="nav-link" data-scroll-target="#model-interpretation-and-relevance"> <span class="header-section-number">6.1</span> Model Interpretation and Relevance</a></li>
-<li><a href="#limitations" class="nav-link" data-scroll-target="#limitations"> <span class="header-section-number">6.2</span> Limitations</a></li>
-<li><a href="#next-steps" class="nav-link" data-scroll-target="#next-steps"> <span class="header-section-number">6.3</span> Next Steps</a></li>
+<li><a href="#limitations-and-next-steps" class="nav-link" data-scroll-target="#limitations-and-next-steps"> <span class="header-section-number">6.2</span> Limitations and Next Steps</a></li>
 </ul></li>
 <li><a href="#appendix" class="nav-link" data-scroll-target="#appendix"> <span class="header-section-number">7</span> Appendix</a>
 <ul class="collapse">
@@ -225,8 +224,6 @@
 <div class="cell">
 
 </div>
-<p>stepAIC()</p>
-<p>stepAIC() log(n)</p>
 <div class="cell">
 <div class="cell-output-stdout">
 <pre><code>Backward reduced random-effect table:
@@ -826,7 +823,7 @@ Born Dora Jane Heineberg (1916-2002) in Philadelphia in 1916, she shared a passi
 #   artist_race_nwi &lt;chr&gt;</code></pre>
 </div>
 </div>
-<p>The shape of the overall count of works by artists in <em>Gardner’s Art Through the Ages</em> is heavily left-skewed, multimodal, and asymmetrical. Such highlights how through time, more works are, on average, continually added to <em>Gardner’s Art Through the Ages</em> that are two-dimensional and made after c.&nbsp;1750. The first edition, published in 1926 by Helen Gardner, only has a a total of 21 works. Edition 15, published in 2016 as well as edition 16, published in 2020, have 182 works respectively, which is the maximum amount of works through all editions.</p>
+<p>The shape of the overall count of works by artists in <em>Gardner’s Art Through the Ages</em> is heavily left-skewed, multimodal, and asymmetrical. Such highlights how through time, more works are, on average, continually added to <em>Gardner’s Art Through the Ages</em> that are two-dimensional and made after c.&nbsp;1750. The first edition, published in 1926 by Helen Gardner, only has a total of 21 works. Edition 15, published in 2016 as well as edition 16, published in 2020, have 182 works respectively, which is the maximum amount of works through all editions.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Chapter1_files/figure-html/jansoncountthroughtime-1.png" class="img-fluid" width="672"></p>
@@ -1083,8 +1080,8 @@ Born Dora Jane Heineberg (1916-2002) in Philadelphia in 1916, she shared a passi
 <p><img src="Chapter1_files/figure-html/nationalityotherallbooks-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output-stdout">
-<pre><code># A tibble: 717 × 5
-# Groups:   artist_name [132]
+<pre><code># A tibble: 10 × 5
+# Groups:   artist_name [3]
    artist_name      edition_number  year book    space_ratio_per_page_total
    &lt;chr&gt;                     &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                        &lt;dbl&gt;
  1 Vincent Van Gogh            7    2007 Janson                        2.16
@@ -1096,28 +1093,7 @@ Born Dora Jane Heineberg (1916-2002) in Philadelphia in 1916, she shared a passi
  7 Vincent Van Gogh           15    2016 Gardner                       1.27
  8 Karl Bodmer                 6    1975 Gardner                       1.21
  9 Paul Klee                   6    1975 Gardner                       1.20
-10 Paul Klee                   5    1970 Gardner                       1.19
-# … with 707 more rows</code></pre>
-</div>
-<div class="cell-output-stdout">
-<pre><code># A tibble: 10 × 14
-# Groups:   artist_name [4]
-   artist_name       edition_number  year artist_nationality artist_nationality…
-   &lt;chr&gt;                      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;              
- 1 Albert Bierstadt              11  2001 German-American    Other              
- 2 Albert Bierstadt              12  2005 German-American    Other              
- 3 Albert Bierstadt              13  2009 German-American    Other              
- 4 Albert Bierstadt              14  2013 German-American    Other              
- 5 Albert Bierstadt              15  2016 German-American    Other              
- 6 Albert Bierstadt              16  2020 German-American    Other              
- 7 Alexander Gardner             10  1996 Scottish           Other              
- 8 Alfredo Guido                  3  1948 Argentine          Other              
- 9 Ana Mendieta                  11  2001 Cuban-American     Other              
-10 Ana Mendieta                  13  2009 Cuban-American     Other              
-# … with 9 more variables: artist_gender &lt;chr&gt;, artist_race &lt;chr&gt;,
-#   artist_ethnicity &lt;chr&gt;, book &lt;chr&gt;, space_ratio_per_page_total &lt;dbl&gt;,
-#   artist_unique_id &lt;int&gt;, moma_count_to_year &lt;dbl&gt;,
-#   whitney_count_to_year &lt;dbl&gt;, artist_race_nwi &lt;chr&gt;</code></pre>
+10 Paul Klee                   5    1970 Gardner                       1.19</code></pre>
 </div>
 </div>
 <table class="table">
@@ -1205,13 +1181,7 @@ Born Dora Jane Heineberg (1916-2002) in Philadelphia in 1916, she shared a passi
 <h1 data-number="6"><span class="header-section-number">6</span> Discussion</h1>
 <section id="model-interpretation-and-relevance" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="model-interpretation-and-relevance"><span class="header-section-number">6.1</span> Model Interpretation and Relevance</h2>
-<p>goal is not prediction - goal is to understand choices that occured in the past - Identifying variables as they occurred in the past = they didnt impact the explanation of the variability of the outcome variable</p>
-<p>parsimony - they muddled the r squared and model</p>
-<p>inference - get to the root of the problem - most important predictors</p>
-<p>the data doesn’t allow for the model to use other variables of demographic due to the imbalance of inclusion. If we were to have more observations</p>
-<p>mathematically couldn’t fit the model using those three variables</p>
-<p>if the goal of this was to focus on a minority group to begin with - ex. mexican female artists</p>
-<p>Statistically significant:</p>
+<p>In the visualization above, the slopes with any asterisk are the slopes that have a p-value smaller than .05, denoting that they are statistically significant. We can reject the null hypothesis that the relationship between the given predictors with any asterisk has a slope that is not equal to 0. The following denotes the interpretation for the intercept and every predicted slope the model outputs as statistically significant:</p>
 <p>Intercept: For an American artist with no exhibitions at the MoMA, we expect on average for the space_ratio_per_page to multiply by a factor of 2.686.</p>
 <p>French: Holding all else constant, for a French artist, we expect the total space ratio per page to increase on average by 1.262 as compared to an American artist.</p>
 <p>Spanish: Holding all else constant, for a Spanish artist, we expect the total space ratio per page to increase on average by 1.77 as compared to an American artist.</p>
@@ -1219,17 +1189,13 @@ Born Dora Jane Heineberg (1916-2002) in Philadelphia in 1916, she shared a passi
 <p>Other x MoMA Count to Year: For an artist with a nationality different from American, French, British, German and Spanish, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor 1.004, as compared to an American artist.</p>
 <p>German x MoMA Count to Year: For a German artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor 1.011, as compared to an American artist.</p>
 <p>Spanish x MoMA Count to Year: For a Spanish artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor 1.021, as compared to an American artist.</p>
+<p>The goal of my model is to understand and infer which variables are most statistically significant when accounting for the variance of the total space ratio per page per artist per edition. The goal of the model is not prediction, but rather inference and to identify which variables, out my the possible six predictors (artist gender, race, ethnicity, nationality, MoMA count to year and Whitney count to year) that I collected, explain the variability of my outcome variable. Creating a model that focuses on inference allows for me to see the most important predictors spanning from 1926-2020 of two-dimensional works made after c.&nbsp;1750 included in either <em>Janson’s History of Art</em> or <em>Gardner’s Art Through the Ages.</em></p>
+<p>That being said, the best fit model is limited by the imbalances in the data that I collected and highlighted through answering my first research question of how the demographic of artists included in the books change through time. There are incredible imbalances particularly when it comes to race, gender, and ethnicity. Mathematically, my model struggled with rank deficiencies, meaning there were so few observations of artists who are in a minority group either in regard to being female or non-white or being of Hispanic or Latino origin. My model is most generalizable for an audience of American white male from not Hispanic or Latino origin as this demographic is most dominant through the data I collected in <em>Gardner’s Art Through the Ages</em> and <em>Janson’s History of Art.</em> With more diverse data that potentially the future of art history introductory survey texts holds, one could achieve a model in which those demographic categories account for the variability of total space ratio per page per artist per edition.</p>
 </section>
-<section id="limitations" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="limitations"><span class="header-section-number">6.2</span> Limitations</h2>
-<p>write model is most generalizable for an audience of American white male from not Hispanic or Latino origin as this demographic is most dominant through the data I collected in <em>Gardner’s Art Through the Ages</em> and <em>Janson’s History of Art.</em></p>
-</section>
-<section id="next-steps" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">6.3</span> Next Steps</h2>
-<p><strong>Relevance of Research and Connection to Bigger Picture</strong></p>
-<p>Statistical analysis in tandem to art historical research leads to a more comprehensive and thorough report when looking at the communication between art history and other players in the art world. The decisions and publications of art historians and experts are in communication with art sales, museum exhibitions and collections. The intersectionality of the realm of art, as well as the significance of data in the aggregate mustn’t go ignored. Such research additionally allows for the lack of diversity in regards to gender and more severely race to be highlighted objectively and effectively. The role of art historical narratives has decreased significantly, but discrimination in terms of representation for minority artists is still an issue at the forefront of not only art history programs, but additionally in museum spaces. How can the art world further create space for diversity looking forward? In terms of museums, many institutions have been making efforts to not only diversify their collections and exhibitions through deaccessioning, but also diversifying their staff through opening up positions specifically for individuals of minority demographics. It will be interesting to see how, if at all, art historical surveys will adapt going forward, or if they will be left in the past.&nbsp;</p>
-<p><strong>Suggestions for Further Research</strong></p>
-<p>There are myriad next steps for such research going forward. Firstly, it would be ideal to extend the museum datato exhibitions and acquisitions from museums of various sizes and locations in order to garner a more representative sample of the art museum sector beyond major institutions in New York City. Secondly, we would love to use more complex statistics in order to predict the likelihood of an artist’s inclusion in an art historical survey. Therefore, creating a statistical model using variables such as inclusion in museum spaces, prices fetched at auction, and number of publications by art experts on a particular artist in order to predict inclusion would greatly add to our research. Lastly, other art historical narratives should also be catalogued. This would allow for us to not only look at the changes per edition of the Janson’s History of Art, but also how various art historical canons differ from one another, leaving which artists out and which artists in. I would collect data through editions of Marilyn Stokstad et al.’s Art History, the other two art historical narratives that are most utilized in introductory courses across the United States.</p>
+<section id="limitations-and-next-steps" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="limitations-and-next-steps"><span class="header-section-number">6.2</span> Limitations and Next Steps</h2>
+<p>That being said, the best fit model is limited by the imbalances in the data that I collected and highlighted through answering my first research question of how the demographic of artists included in the books change through time. There are incredible imbalances particularly when it comes to race, gender, and ethnicity. Mathematically, my model struggled with rank deficiencies, meaning there were so few observations of artists who are in a minority group either in regard to being female or non-white or being of Hispanic or Latino origin. My model is most generalizable for an audience of American white male from not Hispanic or Latino origin as this demographic is most dominant through the data I collected in <em>Gardner’s Art Through the Ages</em> and <em>Janson’s History of Art.</em> With more diverse data that potentially the future of art history introductory survey texts holds, one could achieve a model in which those demographic categories account for the variability of total space ratio per page per artist per edition.</p>
+<p>Additionally, my research is limited to the lack of transparency in the sales of art. I would have loved to create a variable using price data of works of artists in an effort to quantify the relationship between various art markets and art history introductory textbooks. Additionally, due to time constraints, I would have loved to have created a variable counting the number of external publications written about a particular artist at each moment of time in which another edition of either <em>Janson’s History of Art</em> or <em>Gardner’s Art Through the Ages</em> was published. This would have been in an effort to quantify the relationship between art history survey texts and external publications. Additionally, there are potential gaps in information regarding the exhibition history at The Whitney as it is only the exhibitions as stated by their website in March of 2021, rather than a fully complete exhibition history. I would love to as well as a next step to be able to have used exhibition history’s of other museums not only in the United States but across the world to better understand the relationship between museum spaces art history introductory survey texts. Additionally, there are myriad other art history survey texts one could catalog, as well as expanding the scope within the 25 books from which I did record data.</p>
 </section>
 </section>
 <section id="appendix" class="level1" data-number="7">
