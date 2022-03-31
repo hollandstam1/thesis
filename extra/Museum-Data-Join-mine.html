@@ -262,9 +262,9 @@ lgl (1): SingleArtist
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(artist_name, <span class="at">year =</span> <span class="fu">c</span>(<span class="fu">min</span>(year)<span class="sc">:</span><span class="fu">max</span>(year))) <span class="sc">%&gt;%</span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">moma_count =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(count), <span class="dv">0</span>, count),</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">moma_count_to_date =</span> <span class="fu">cumsum</span>(count)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">count_to_year =</span> <span class="fu">cumsum</span>(count)</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(artist_name, year, moma_count, moma_count_to_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(artist_name, year, moma_count, count_to_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Create whitney with complete years</p>
 <div class="cell">
@@ -688,7 +688,7 @@ F-statistic: 9.507 on 14 and 3944 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <p>moma eda</p>
 <div class="cell">
-<div class="sourceCode" id="cb54"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums, <span class="fu">aes</span>(<span class="at">x =</span> moma_count_to_date)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums, <span class="fu">aes</span>(<span class="at">x =</span> count_to_year)) <span class="sc">+</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of MoMA Exhibitions per Artist per Edition"</span>,</span>
@@ -706,7 +706,7 @@ F-statistic: 9.507 on 14 and 3944 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb57"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums, <span class="fu">aes</span>(<span class="at">x =</span> moma_count_to_date, <span class="at">y =</span> space_ratio_per_page)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums, <span class="fu">aes</span>(<span class="at">x =</span> count_to_year, <span class="at">y =</span> space_ratio_per_page)) <span class="sc">+</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Ratio of Space Per Artist Per Edition by</span><span class="sc">\n</span><span class="st">Number of Exhibitions per Artist per Editions in the MoMA"</span>,</span>

@@ -1,4 +1,4 @@
-"artist_name"	"edition_number"	"year"	"artist_nationality"	"artist_nationality_other"	"artist_gender"	"artist_race"	"artist_ethnicity"	"book"	"space_ratio_per_page_total"	"artist_unique_id"	"moma_count"	"moma_count_to_date"	"whitney_count"	"whitney_count_to_date"
+"artist_name"	"edition_number"	"year"	"artist_nationality"	"artist_nationality_other"	"artist_gender"	"artist_race"	"artist_ethnicity"	"book"	"space_ratio_per_page_total"	"artist_unique_id"	"moma_count"	"count_to_year"	"whitney_count"	"whitney_count_to_date"
 "1"	"Aaron Douglas"	9	1991	"American"	"American"	"Male"	"Black or African American"	"Not Hispanic or Latinx"	"gardner"	0.3533657745	2	0	0	0	0
 "2"	"Aaron Douglas"	10	1996	"American"	"American"	"Male"	"Black or African American"	"Not Hispanic or Latinx"	"gardner"	0.3739470004	2	0	0	0	0
 "3"	"Aaron Douglas"	11	2001	"American"	"American"	"Male"	"Black or African American"	"Not Hispanic or Latinx"	"gardner"	0.3032593292	2	0	0	0	0

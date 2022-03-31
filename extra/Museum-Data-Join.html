@@ -230,9 +230,9 @@ had status 1</code></pre>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span></span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(artist_name, year)<span class="sc">%&gt;%</span></span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(artist_name)<span class="sc">%&gt;%</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">moma_count_to_date =</span> <span class="fu">cumsum</span>(moma_count))<span class="sc">%&gt;%</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">count_to_year =</span> <span class="fu">cumsum</span>(moma_count))<span class="sc">%&gt;%</span></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()<span class="sc">%&gt;%</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(artist_name, year, moma_count, moma_count_to_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(artist_name, year, moma_count, count_to_year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Create whitney with complete years</p>
 <div class="cell">
@@ -259,7 +259,7 @@ had status 1</code></pre>
 </div>
 <div class="cell">
 <div class="sourceCode" id="cb17"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gardnerjanson_museums <span class="ot">&lt;-</span> gardnerjanson_museums <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">moma_cat =</span> <span class="fu">case_when</span>(moma_count_to_date <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">'1'</span>, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">moma_cat =</span> <span class="fu">case_when</span>(count_to_year <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">'1'</span>, </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>         <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">'0'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
@@ -466,7 +466,7 @@ had status 1</code></pre>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  artist_ethnicity <span class="sc">+</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  artist_gender <span class="sc">+</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  artist_nationality_other <span class="sc">+</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  moma_count_to_date <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  count_to_year <span class="sc">+</span></span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  whitney_count_to_date,</span>
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gardnerjanson_museums <span class="sc">%&gt;%</span> <span class="fu">filter</span>(book <span class="sc">==</span> <span class="st">"janson"</span>)</span>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -475,7 +475,7 @@ had status 1</code></pre>
 <pre><code>
 Call:
 lm(formula = space_ratio_per_page_total ~ artist_race + artist_ethnicity + 
-    artist_gender + artist_nationality_other + moma_count_to_date + 
+    artist_gender + artist_nationality_other + count_to_year + 
     whitney_count_to_date, data = gardnerjanson_museums %&gt;% filter(book == 
     "janson"))
 
@@ -493,7 +493,7 @@ artist_nationality_otherBritish         0.218994   0.133834   1.636  0.10285
 artist_nationality_otherFrench          0.392225   0.091197   4.301 2.32e-05
 artist_nationality_otherGerman          0.110778   0.058479   1.894  0.05917
 artist_nationality_otherOther           0.011203   0.045129   0.248  0.80412
-moma_count_to_date                      0.005234   0.001999   2.619  0.00928
+count_to_year                      0.005234   0.001999   2.619  0.00928
 whitney_count_to_date                   0.002039   0.002229   0.915  0.36117
                                           
 (Intercept)                            .  
@@ -504,7 +504,7 @@ artist_nationality_otherBritish
 artist_nationality_otherFrench         ***
 artist_nationality_otherGerman         .  
 artist_nationality_otherOther             
-moma_count_to_date                     ** 
+count_to_year                     ** 
 whitney_count_to_date                     
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -646,7 +646,7 @@ F-statistic: 5.256 on 9 and 293 DF,  p-value: 1.207e-06</code></pre>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  artist_ethnicity <span class="sc">+</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  artist_gender <span class="sc">+</span></span>
 <span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  artist_nationality_other <span class="sc">+</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  moma_count_to_date <span class="sc">+</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  count_to_year <span class="sc">+</span></span>
 <span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  whitney_count_to_date,</span>
 <span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="at">data =</span> gardnerjanson_museums <span class="sc">%&gt;%</span> <span class="fu">filter</span>(book <span class="sc">==</span> <span class="st">"gardner"</span>)</span>
 <span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -655,7 +655,7 @@ F-statistic: 5.256 on 9 and 293 DF,  p-value: 1.207e-06</code></pre>
 <pre><code>
 Call:
 lm(formula = space_ratio_per_page_total ~ artist_race + artist_ethnicity + 
-    artist_gender + artist_nationality_other + moma_count_to_date + 
+    artist_gender + artist_nationality_other + count_to_year + 
     whitney_count_to_date, data = gardnerjanson_museums %&gt;% filter(book == 
     "gardner"))
 
@@ -675,7 +675,7 @@ artist_nationality_otherBritish         2.841e-01  1.588e-01   1.788   0.0745
 artist_nationality_otherFrench          3.371e-01  6.798e-02   4.958 1.08e-06
 artist_nationality_otherGerman          5.346e-02  4.806e-02   1.112   0.2667
 artist_nationality_otherOther           2.571e-02  3.957e-02   0.650   0.5162
-moma_count_to_date                      3.757e-03  1.784e-03   2.105   0.0359
+count_to_year                      3.757e-03  1.784e-03   2.105   0.0359
 whitney_count_to_date                  -1.372e-03  1.436e-03  -0.955   0.3402
                                           
 (Intercept)                               
@@ -688,7 +688,7 @@ artist_nationality_otherBritish        .
 artist_nationality_otherFrench         ***
 artist_nationality_otherGerman            
 artist_nationality_otherOther             
-moma_count_to_date                     *  
+count_to_year                     *  
 whitney_count_to_date                     
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -717,7 +717,7 @@ F-statistic: 5.378 on 11 and 371 DF,  p-value: 6.16e-08</code></pre>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  artist_ethnicity <span class="sc">+</span></span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  artist_gender <span class="sc">+</span></span>
 <span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  artist_nationality_other <span class="sc">+</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  moma_count_to_date <span class="sc">+</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  count_to_year <span class="sc">+</span></span>
 <span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>  whitney_count_to_date,</span>
 <span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="at">data =</span> gardnerjanson_museums</span>
 <span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -726,7 +726,7 @@ F-statistic: 5.378 on 11 and 371 DF,  p-value: 6.16e-08</code></pre>
 <pre><code>
 Call:
 lm(formula = space_ratio_per_page_total ~ artist_race + artist_ethnicity + 
-    artist_gender + artist_nationality_other + moma_count_to_date + 
+    artist_gender + artist_nationality_other + count_to_year + 
     whitney_count_to_date, data = gardnerjanson_museums)
 
 Residuals:
@@ -745,7 +745,7 @@ artist_nationality_otherBritish         0.2398944  0.0995366   2.410  0.01621
 artist_nationality_otherFrench          0.3603953  0.0550059   6.552 1.13e-10
 artist_nationality_otherGerman          0.0846152  0.0367719   2.301  0.02169
 artist_nationality_otherOther           0.0228913  0.0293261   0.781  0.43532
-moma_count_to_date                      0.0042287  0.0013163   3.213  0.00138
+count_to_year                      0.0042287  0.0013163   3.213  0.00138
 whitney_count_to_date                  -0.0003505  0.0012029  -0.291  0.77085
                                           
 (Intercept)                               
@@ -758,7 +758,7 @@ artist_nationality_otherBritish        *
 artist_nationality_otherFrench         ***
 artist_nationality_otherGerman         *  
 artist_nationality_otherOther             
-moma_count_to_date                     ** 
+count_to_year                     ** 
 whitney_count_to_date                     
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -875,7 +875,7 @@ F-statistic: 9.402 on 11 and 674 DF,  p-value: 7.494e-16</code></pre>
 <p><img src="Museum-Data-Join_files/figure-html/whitneymomaheatmap-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gardnerjanson_museums, <span class="fu">aes</span>(space_ratio_per_page_total,year)) <span class="sc">+</span> </span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> moma_count_to_date), <span class="at">colour =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span> </span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill =</span> count_to_year), <span class="at">colour =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span> </span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"steelblue"</span>,<span class="at">high =</span> <span class="st">"red"</span>)</span>
 <span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>g</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -884,7 +884,7 @@ F-statistic: 9.402 on 11 and 674 DF,  p-value: 7.494e-16</code></pre>
 </div>
 <p>moma eda</p>
 <div class="cell">
-<div class="sourceCode" id="cb81"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums, <span class="fu">aes</span>(<span class="at">x =</span> moma_count_to_date)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums, <span class="fu">aes</span>(<span class="at">x =</span> count_to_year)) <span class="sc">+</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of MoMA Exhibitions per Artist per Edition"</span>,</span>
@@ -899,7 +899,7 @@ F-statistic: 9.402 on 11 and 674 DF,  p-value: 7.494e-16</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb83"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums, <span class="fu">aes</span>(<span class="at">x =</span> moma_count_to_date, <span class="at">y =</span> space_ratio_per_page_total)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums, <span class="fu">aes</span>(<span class="at">x =</span> count_to_year, <span class="at">y =</span> space_ratio_per_page_total)) <span class="sc">+</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position=</span><span class="fu">position_jitter</span>(<span class="at">h=</span><span class="fl">0.1</span>, <span class="at">w=</span><span class="fl">0.1</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
 <span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
@@ -919,12 +919,12 @@ F-statistic: 9.402 on 11 and 674 DF,  p-value: 7.494e-16</code></pre>
 <div class="cell-output-display">
 <p><img src="Museum-Data-Join_files/figure-html/momavisual-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a> corr_coef_moma <span class="ot">&lt;-</span> <span class="fu">cor</span>(gardnerjanson_museums<span class="sc">$</span>moma_count_to_date,     </span>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a> corr_coef_moma <span class="ot">&lt;-</span> <span class="fu">cor</span>(gardnerjanson_museums<span class="sc">$</span>count_to_year,     </span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>                           gardnerjanson_museums<span class="sc">$</span>space_ratio_per_page_total, </span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb88"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums <span class="sc">%&gt;%</span> <span class="fu">filter</span>(book <span class="sc">==</span> <span class="st">"gardner"</span>), <span class="fu">aes</span>(<span class="at">x =</span> moma_count_to_date, <span class="at">y =</span> space_ratio_per_page_total)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums <span class="sc">%&gt;%</span> <span class="fu">filter</span>(book <span class="sc">==</span> <span class="st">"gardner"</span>), <span class="fu">aes</span>(<span class="at">x =</span> count_to_year, <span class="at">y =</span> space_ratio_per_page_total)) <span class="sc">+</span></span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position=</span><span class="fu">position_jitter</span>(<span class="at">h=</span><span class="fl">0.1</span>, <span class="at">w=</span><span class="fl">0.1</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
 <span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
@@ -946,7 +946,7 @@ F-statistic: 9.402 on 11 and 674 DF,  p-value: 7.494e-16</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb92"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums <span class="sc">%&gt;%</span> <span class="fu">filter</span>(book <span class="sc">==</span> <span class="st">"janson"</span>), <span class="fu">aes</span>(<span class="at">x =</span> moma_count_to_date, <span class="at">y =</span> space_ratio_per_page_total)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gardnerjanson_museums <span class="sc">%&gt;%</span> <span class="fu">filter</span>(book <span class="sc">==</span> <span class="st">"janson"</span>), <span class="fu">aes</span>(<span class="at">x =</span> count_to_year, <span class="at">y =</span> space_ratio_per_page_total)) <span class="sc">+</span></span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position=</span><span class="fu">position_jitter</span>(<span class="at">h=</span><span class="fl">0.1</span>, <span class="at">w=</span><span class="fl">0.1</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
 <span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>

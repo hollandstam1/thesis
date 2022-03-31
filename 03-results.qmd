@@ -1,0 +1,808 @@
+# Results
+
+```{r}
+#| label: load-pkg
+
+library(tidyverse)
+library(tidymodels)
+library(knitr)
+library(reshape)
+library(ggplot2)
+library(dplyr)
+library(lme4)
+library(MASS)
+library(car)
+library(MuMIn)
+library(lmerTest)
+library(ggplot2)
+library(dplyr)
+library(broom.mixed)
+library(forcats)
+library(sjPlot)
+
+theme_set(theme_minimal(base_size = 11))
+```
+
+```{r}
+#| label: load-data
+#| message: false
+
+gardnerjanson <- read_csv(here::here("processed-data/gardnerjanson.csv"))
+
+gardnerjanson_museums <- read_csv(here::here("processed-data/gardnerjanson_museums.csv"))
+```
+
+```{r}
+#| label: lmm_prep
+
+gardnerjanson_museums_mod <- gardnerjanson_museums %>%
+  filter(!startsWith(artist_name, "N/A")) %>%
+  mutate(artist_race_nwi = if_else(artist_race == "White", "White", "Non-White"))
+
+gardnerjanson_museums_mod <- gardnerjanson_museums_mod %>%
+  mutate(artist_nationality_other = factor(artist_nationality_other,
+    levels = c("American", "French", "Other", "British", "German", "Spanish")
+  ))
+```
+
+```{r}
+#| label: lmm_full
+
+lmm_full <- lmer(log(space_ratio_per_page_total) ~ artist_race_nwi
+                       + artist_ethnicity 
+                       + artist_gender 
+                       + artist_nationality_other
+                       + moma_count_to_year
+                       + whitney_count_to_year +
+                         (1 | artist_name),
+            data = gardnerjanson_museums_mod,
+    REML = FALSE)
+```
+
+```{r}
+#| label: lmm_test
+
+lmm <- lmer(log(space_ratio_per_page_total) ~ artist_race_nwi
+                       + artist_ethnicity 
+                       + artist_gender 
+                       + artist_nationality_other
+                       + moma_count_to_year
+                       + whitney_count_to_year
+                       + artist_nationality_other*moma_count_to_year
+                       + artist_race_nwi*moma_count_to_year
+                       + artist_ethnicity*moma_count_to_year
+                       + artist_race_nwi*whitney_count_to_year
+                       + artist_ethnicity*whitney_count_to_year
+                  + (1 | artist_name),
+            data = gardnerjanson_museums_mod,
+    REML = FALSE)
+```
+
+```{r}
+#| label: lmm_step
+
+final_model <- lmerTest::step(lmm)
+```
+
+```{r}
+#| label: lmm
+
+lmm <- lmer(log(space_ratio_per_page_total) ~ artist_nationality_other
+                       + moma_count_to_year
+                       + artist_nationality_other*moma_count_to_year
+                        + (1 | artist_name),
+            data = gardnerjanson_museums_mod,
+    REML = FALSE)
+```
+
+## Descriptive Analysis: Research Question 1
+
+What are the demographics (artist race, gender, ethnicity, nationality) of artists included in each edition of Janson's History of Art (from 1962-2011) and Gardner's Art Through the Ages (from 1926-2020) looking at two-dimensional works after c.
+1750?
+
+### Count Through Editions
+
+In @fig-gardnercountthroughtime, we can see ... **TO DO: FIX**.
+
+```{r}
+#| label: fig-gardnercountthroughtime
+#| fig-cap: "sOME CAPTION GOES HERE, SHORTER THAN ALT TEXT USUALLY."
+#| fig-alt: "There are some respective lulls and peaks through time, as in the fourth edition published in 1959, there are 87 works, while in the fifth published in 1970, there is a significant regression to 69 works. Such trend is evident as well in the seventh edition published in 1980, which has 115 works, while the eighth published in 1986 regresses to 109 works. There is yet another peak at edition eleven published in 2001, with 170 works. There is then a lull over the course of two editions, ending with edition thirteen published in 2009 having 164 works."
+
+ggplot(gardnerjanson_museums %>% filter(book == "Gardner"), aes(x = year))+
+  geom_bar(fill = "dark green")+
+  labs(title = "Overall Count of Artists in Gardner's Art Through the Ages",
+       x = "Year of Publication",
+       y = "Count")+
+  geom_text(aes(label = ..count..),
+            stat = "count", 
+            vjust = -1, 
+            colour = "black", 
+            size = 2.5)+
+  ylim(0, 200)
+```
+
+The shape of the overall count of works by artists in *Gardner's Art Through the Ages* is heavily left-skewed, multimodal, and asymmetrical.
+Such highlights how through time, more works are, on average, continually added to *Gardner's Art Through the Ages* that are two-dimensional and made after c.
+1750.
+The first edition, published in 1926 by Helen Gardner, only has a total of 21 works.
+Edition 15, published in 2016 as well as edition 16, published in 2020, have 182 works respectively, which is the maximum amount of works through all editions.
+
+```{r}
+#| label: jansoncountthroughtime
+
+ggplot(gardnerjanson_museums %>% filter(book == "Janson"), aes(x = year))+
+  geom_bar(fill = "dark blue")+
+  labs(title = "Overall Count Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Count")+
+  geom_text(aes(label = ..count..),
+            stat = "count", 
+            vjust = -1, 
+            colour = "black", 
+            size = 4)+
+  ylim(0, 200)
+```
+
+The shape of the overall count of works by artists in *Janson's History of Art* is left-skewed, unimodal and asymmetrical.
+Such highlights how through time, more works are added to *Janson's History of Art* that are two-dimensional and made after c.
+1750.
+There is then a drop-off of works included in the seventh (published in 2007 with 163 works) and eighth (published in 2011 with 153 works) editions, when new authorship took over.
+Within edition five (published 1995) and edition six (published in 2001), both written by Anthony Janson, there are the same number of works, the maximum amount included in the text throughout time, 185, as compared to the count of works in the first edition, first printing, 62, and first edition, second printing, 76.
+
+### Gender Through Editions
+
+```{r}
+#| label: jansongenderthroughtime
+
+ggplot(gardnerjanson_museums %>% filter(book == "Janson"), aes(x = year, fill = artist_gender))+
+  geom_bar(position = "fill")+
+  labs(title = "Gender of Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Gender")+
+  geom_hline(yintercept = .86)
+
+janson_male <- gardnerjanson_museums%>%
+  filter(book == "Janson")%>%
+  filter(artist_gender == "Male")
+
+artists_janson <- gardnerjanson_museums %>%
+  filter(book == "Janson")
+
+jan_male <- nrow(janson_male)/nrow(artists_janson)
+  
+```
+
+The breakdown of artists' gender through editions of *Janson's History of Art,* has never dipped below 86% male, which is what the horizontal line denotes.
+Additionally, this visualization shows that the first two editions, (the first three books cataloged: edition 1, first printing, edition 1, second printing, and edition 2), that were written my H.
+W. Janson and Dora Jane Janson, contains no women.
+Anthony Janson, who took over authorship for the third edition in 1986, began including discourse surrounding female artists.
+Notably, he was extremely proud of himself for diversifying his family's art history survey text.[^results-35]
+
+[^results-35]: anthony janson interview
+
+The overall percentage of male artists through all books of *Janson's History of Art* is 89.99%.
+
+```{r}
+#| label: gardnergenderthroughtime
+
+ggplot(gardnerjanson %>% filter(book == "gardner", artist_gender != "N/A"), aes(x = year, fill = artist_gender))+
+  geom_bar(position = "fill")+
+  labs(title = "Gender of Artists in Gardner's Art Through the Ages",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Gender")+
+  geom_hline(yintercept = .81)
+
+gardner_male <- gardnerjanson_museums%>%
+  filter(book == "Gardner")%>%
+  filter(artist_gender == "Male")
+
+artists_gardner <- gardnerjanson_museums %>%
+  filter(book == "Gardner")
+
+gard_male <- nrow(gardner_male)/nrow(artists_gardner)
+```
+
+The breakdown of artists' gender through editions of *Gardner's Art Through the Ages,* is marginally more diverse in regard to gender, as the lowest threshold of male artists is just above 81%, which is denoted by the horizontal line.
+Additionally, this visualization shows that the first edition in 1926 contains no female artists in our scope, but that starting in the second edition in 1936, Helen Gardner began including female artists.
+*Gardner's History of Art* included female artists in the scope of two-dimensional works after c.
+1750 50 years earlier than *Janson's History of Art.*
+
+The overall percentage of male artists through all books of *Gardner's Art Through the Ages* is 85.69%, roughly a 4.5% increase in regard to gender diversity as compared to *Janson's History of Art.*
+
+### Race Through Editions
+
+```{r}
+#| label: jansonracethroughtime
+
+ggplot(gardnerjanson_museums %>% filter(book == "Janson"), aes(x = year, fill = artist_race))+
+  geom_bar(position = "fill")+
+  labs(title = "Race of Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Race")+
+  geom_hline(yintercept = .95)
+
+janson_white <- gardnerjanson_museums%>%
+  filter(artist_race == "White")
+
+jan_white <- nrow(janson_white) / nrow(artists_janson)
+
+jan_black <- gardnerjanson_museums %>%
+  filter(book == "Janson") %>%
+  filter(artist_race == "Black or African American")
+
+jan_black <- nrow(jan_black) / nrow(artists_janson)
+```
+
+Pivoting to looking at race diversity in *Janson's History of Art* through time, unsurprisingly, the three cataloged books, first two editions written by H.
+W. Janson and Dora Jane Janson, there were only white artists included.
+When their son took over authorship, he included a handful of black artists, then in the fifth edition, he added an artist by the name of Kay Walkingstick (1935-present), who is a Native American woman.
+She was included through the sixth edition then removed when the group of six professors took over.
+
+Anthony Janson states in the fifth edition that Walkingstick combines "Neo-Expressionism and Neo-Abstraction in a particularly fruitful way..."[^results-36] The work below was brought forth after the death of her husband in 1989, as she outpours her grief onto the canvas.
+The left panel, as Janson writes, is "built up in thick coats of paint applied mainly by her hands," with a fan shape in the center which suggests a manmade feature in a primitive landscape and also acts as a sign, investing the canvas mysterious emblematic significance.
+The right half was painted in an Expressionist style and releases anger through the various layers of color.
+Walkingstick's diptych display aspects of nature as a spiritual center, of calm contemplation, powerful emotion, and order in chaos.
+[^results-37]
+
+[^results-36]: Janson edition 5, 834
+
+[^results-37]: Janson fifther edition, 835
+
+![](images/on-the-edge.png){width="600"}
+
+Figure \_\_ : Kay WalkingStick, *On The Edge*, 1989.
+Acrylic and wax and oil on canvas, 81 x 162 ½  cm.
+Private collection.
+
+Interestingly, the black artists who are included have frequent turnover.
+The only black artist that enters *Janson's History of Art* in the third edition (1986) and remains through the latest edition (2011) is painter Henry Ossawa Tanner (1859-1937).
+Notably, in the fifth edition by Anthony Janson, he begins his discourse on Tanner with,
+
+Thanks in large part to \[Thomas\] Eakins' enlightened attitude, Philadelphia became the leading center of minority artists in the United States.
+Eakins encouraged women and blacks to study art seriously at a time when professional careers were closed to them.
+African-Americans has no chance to enter the arts before Emancipation, and after the Civil War the situation improved only gradually.
+[^results-38]
+
+[^results-38]: Janson's fifth edition, 724.
+
+Janson is seemingly distracted by Tanner's race and how Thomas Eakins provided space for him rather than beginning discourse directly about the aesthetics and significance of Tanner's work itself.
+He only mentions Tanner's name in the following sentence, allotting only half of the area of text to the history of the artist and the work itself.
+
+In the fifth edition of Janson's History of Art, Anthony Janson chose to include *The Banjo Lesson,* which he painted after he moved permenantly to Paris, which "bears Eakins' unmistakable influence."[^results-39] Tanner, who is described as the "first important black painter" is given space in the text, yet is not properly and independently discussed.
+
+[^results-39]: Janson fifth edition, 724.
+
+![](images/the-banjo-lesson.png){width="263"}
+
+Figure \_\_ : Henry Ossawa Tanner, *The Banjo Lesson,* c.
+1893.
+Oil on canvas, 121.9 x 88.9 cm.
+Hampton University Museum, Hampton, Virginia.
+
+In the seventh and eighth editions, there was an Asian artist introduced, Ando Hiroshige, a Japanese male painter who was used as a reference when discussing Edgar Degas.
+In Janson's eighth edition, the group of six authors highlights the use of flatness in Hiroshige's composition.
+The flatness he employs is used to discuss how the "spatial contraction of Japanese prints certainly influence Degas and Manet..."[^results-40] Similarly to the example of Tanner, Hiroshige stands as another example of a minority artist included to be compared to the work of a white male artist.
+
+[^results-40]: Janson Edition 8, 871.
+
+![](images/plum-estate.png){width="261"}
+
+Figure \_\_: Ando Hiroshige, *Plum Estate, Kamiedo,* from the series *One Hundred Famous Views of Edo.* 1857.
+Woodblock print, 34 x 22.6 cm.
+Brooklyn Museum of Art, New York.
+
+The overall percentage of white artists through all editions of *Janson's History of Art* is 97.37%.
+
+```{r}
+#| label: gardnerracethroughtime
+
+ggplot(gardnerjanson_museums %>% filter(book == "Gardner", artist_race != "N/A"), 
+       aes(x = year, fill = artist_race))+
+  geom_bar(position = "fill")+
+  labs(title = "Race of Artists in Gardner's Art Through the Ages",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Race")+
+  geom_hline(yintercept = .85)+
+  geom_hline(yintercept = .96)
+```
+
+```{r}
+gardner_white <- gardnerjanson_museums %>%
+  filter(book == "Gardner")%>%
+  filter(artist_race == "White")
+
+gard_white <- nrow(gardner_white)/nrow(artists_gardner)
+```
+
+In @tbl-gardner-asian, we can see Asian artists with high space ratio... **TO DO: FIX.**
+
+```{r}
+#| label: tbl-gardner-asian
+#| tbl-cap: "Asian artists whose names are known with highest space ratio per page across editions of Gardner."
+
+gardner_asian <- gardnerjanson_museums %>%
+  filter(book == "Gardner")%>%
+  filter(artist_race == "Asian")
+
+gardner_asian %>%
+  arrange(desc(space_ratio_per_page_total)) %>%
+  filter(!str_detect(artist_name, "N/A")) %>%
+  dplyr::select(artist_name, edition_number, space_ratio_per_page_total) %>%
+  mutate(space_ratio_per_page_total = round(space_ratio_per_page_total, 3)) %>%
+  slice_head(n = 5) %>%
+  kable(col.names = c("Artist", "Edition", "Space ratio per page"))
+```
+
+```{r}
+gardner_black <- gardnerjanson_museums %>%
+  filter(book == "Gardner")%>%
+  filter(artist_race == "Black or African American")
+
+gardner_black
+```
+
+*Gardner's Art Through the Age's* began with including more than just white artists, with the inclusion of Asian artists in the first edition.
+The most diverse a single edition has gotten thus far is just under 15% being non-white.
+Interestingly enough, the two editions that are least racially diverse are the seventh and eighth editions which were published in 1980 and 1986 respectively.
+There is a significant jump in black representation in the eleventh edition, as well as other non-white artists as the percentage of non-white artists goes from just under 4% in the tenth (1996) to close to 14% in the eleventh (2001).
+
+The first named Asian artist was Suzuki Harunobu in the third edition in 1959.
+He remains within *Gardner's History of Art* through the latest 16th edition (2020).
+
+![](images/glow-andon.png){width="320"}
+
+Figure \_\_: Suzuki Harunobu.
+*The Evening Glow of the Ando (Night Lantern).* 1765.\
+Color woodblock print, 28.6 × 21.5 cm.
+Art Institute of Chicago, Chicago.
+
+The first black artists were added in the ninth edition (1991).
+The only two black artists to be included in all editions from then on are Aaron Douglas and Henry Ossawa Tanner.
+
+Figure \_\_: Aaron Douglas
+
+The overall percentage of white artists through all editions of *Gardner's Art Through the Ages* is 90.02%.
+
+### Ethnicity Through Editions
+
+```{r}
+#| label: jansonethnicitythroughtime
+
+ggplot(gardnerjanson_museums %>% filter(book == "Janson"), aes(x = year, fill = artist_ethnicity))+
+  geom_bar(position = "fill")+
+  labs(title = "Ethnicity of Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Ethnicity")+
+  geom_hline(yintercept = .91)
+
+janson_nhl <- gardnerjanson_museums%>%
+  filter(book == "Janson")%>%
+  filter(artist_ethnicity == "Not Hispanic or Latino origin")
+
+jan_nhl <- nrow(janson_nhl)/ nrow(artists_janson)
+
+janson_hl <- gardnerjanson_museums %>%
+  filter(book == "Janson")%>%
+  filter(artist_ethnicity == "Hispanic or Latino origin")
+```
+
+Fascinatingly, in *Janson's History of Art,* the ratio of Hispanic or Latinx artists is the highest of all editions in the first edition, first printing.
+This may be because the overall count of artists was so few that having only a handful of Hispanic or Latinx artists accounted for just under 9% of the overall count of artists in the 1963 publication.
+
+The overall percentage of artists who are not Hispanic or Latinx included in *Janson's History of Art* is 95.82%.
+
+```{r}
+#| label: gardnerethnicitythroughtime
+
+ggplot(gardnerjanson_museums %>% filter(book == "Gardner", artist_ethnicity != "N/A"), aes(x = year, fill = artist_ethnicity))+
+  geom_bar(position = "fill")+
+  labs(title = "Ethnicity of Artists in Gardner's Art Through the Ages",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Ethnicity")+
+  geom_hline(yintercept = .78)+
+  geom_hline(yintercept = .91)
+
+gardner_nhl <- gardnerjanson_museums%>%
+  filter(book == "Gardner")%>%
+  filter(artist_ethnicity == "Not Hispanic or Latinx")
+
+gard_nhl <- nrow(gardner_nhl)/nrow(artists_gardner)
+```
+
+Helen Gardner's third edition published in 1959 was the most ethnically diverse of all 25 textbooks.
+This edition was published after her death, but she has passed with the intention of her book being a representation of the world's history of art.
+Her efforts are evident through the percentage of Hispanic and Latinx artists, just under 22%.
+It is clear that her succeeding authors did not continue with such an ethnically diverse selection of artists, which has remained under 9% in every other publication.
+
+The overall percentage of artists who are not Hispanic or Latinx included in *Janson's History of Art* is 91.51%.
+
+### Nationality Through Editions
+
+```{r}
+#| label: jansonnationalitythroughtime
+
+ggplot(gardnerjanson_museums %>% filter(book == "Janson"), 
+       aes(x = year, 
+           fill = factor(artist_nationality_other, 
+                         levels=c("Other",
+                                  "Spanish", 
+                                  "German", 
+                                  "British", 
+                                  "French",
+                                  "American"))))+
+  geom_bar(position = "fill")+
+  labs(title = "Nationality of Artists in Janson's History of Art",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Nationality")
+
+janson_nonother <- gardnerjanson_museums %>%
+  filter(book == "Janson") %>%
+  filter(artist_nationality_other != "Other")
+
+jan_nonother <- nrow(janson_nonother)/nrow(artists_janson)
+```
+
+It is clear that *Janson's History of Art* paints a western tradition through the visualization above, highlighting predominantly French, American, British, German, and Spanish artists.
+Through the first two editions---three books as such include the first edition revised and enlarged published in 1969---the majority nationality is French.
+Then, when authorship changes from Peter and Dora Janson to Anthony F. Janson in the third edition in 1986, the dominant nationality flips to American.
+Anthony adds American contemporary artists, such as Jackson Pollock and Lee Krasner, as well as American photographers such as Dorothea Lange.
+
+The most consistently represented nationality through editions, however, is French, which could be explained by the type of art highlighted from after c.
+1750: Impressionism, Post-Impressionism and Realism.
+Artists such as Édouard Manet and Claude Monet are French painters who enter the narrative when Peter first writes his discourse published in 1962, and who remain over time even with change in authorship due to their perpetual prominence within the art world.
+
+The overall percentage of artists who are French, American, British, German or Spanish through all editions of *Janson's History of Art* is 78.51%.
+
+```{r}
+#| label: gardnernationalitythroughtime
+
+ggplot(gardnerjanson_museums %>% filter(book == "Gardner", artist_nationality_other != "N/A"), 
+       aes(x = year, 
+           fill = factor(artist_nationality_other, 
+                         levels=c("Other",
+                                  "Spanish", 
+                                  "German", 
+                                  "British", 
+                                  "French",
+                                  "American"))))+
+  geom_bar(position = "fill")+
+  labs(title = "Nationality of Artists in Gardner's Art Through the Ages",
+       x = "Year of Publication",
+       y = "Proportion",
+       fill = "Artist Nationality")
+
+gardner_nonother <- gardnerjanson_museums %>%
+  filter(book == "Gardner") %>%
+  filter(artist_nationality_other != "Other")
+
+gard_nonother <- nrow(gardner_nonother)/nrow(artists_gardner)
+```
+
+The spike of the ratio of American artists included in the second edition published in 1936 could be explained by President Franklin Delano Roosevelt's Federal Art Project during the Great Depression.
+The US government started funding unemployed artists in the US from 1935 through 1943.
+
+This visualization also displays a gradual but significant shift in dominance from the percentage of French artists included to American artists from the 1970s through 2020.
+
+The overall percentage of artists who are French, American, British, German, or Spanish through all editions of *Gardner's Art Through the Ages* is 76.58%.
+
+## Exploratory Data Analysis: Research Question 2
+
+Which variables (artist gender, race, ethnicity, nationality, number of exhibitions at the MoMA or The Whitney) if any, predict the magnitude of an artist's inclusion in art history survey texts (*Janson's History of Art* and *Gardner's Art Through the Ages*).
+
+### Distribution of Total Space Ratio Per Page
+
+```{r}
+#| label: spaceratioperpagetotal
+
+ggplot(gardnerjanson_museums,
+       aes(x = space_ratio_per_page_total))+
+  geom_histogram(binwidth = .1)+
+  labs(title = "Distribution of Ratio of Space 
+       per Artist per Edition per Page in all Textbooks",
+       x = "Ratio of Space per Page Total",
+       y = "Count")
+
+#median(gardnerjanson_museums$space_ratio_per_page_total)
+#IQR(gardnerjanson_museums$space_ratio_per_page_total)
+```
+
+The shape of the visualization above is right-skewed, unimodal and asymmetrical.
+Therefore, we would want to look at the median to understand its center and interquartile range, which is the middle 50% of the range of the data to understand its spread.
+The median total space an artist receives is 40.93% of a page.
+The IQR of total space an artist receives is 28.59% of a page.
+
+### Total Space Ratio Per Page vs. Artist Gender
+
+```{r}
+#| label: genderallbooks
+
+ggplot(
+  gardnerjanson_museums %>% filter(artist_gender != "N/A"),
+  aes(x = artist_gender, y = space_ratio_per_page_total)
+) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition in 
+        by Gender",
+    x = "Gender",
+    y = "Ratio of Space per Page"
+  )
+
+artists_female <- gardnerjanson_museums %>%
+  filter(artist_gender == "Female")
+
+artists_female <- artists_female %>%
+  dplyr::select(
+    artist_name,
+    artist_gender,
+    edition_number,
+    year,
+    book,
+    space_ratio_per_page_total
+  ) %>%
+  arrange(desc(space_ratio_per_page_total))
+
+head(artists_female, 10)
+
+median(artists_female$space_ratio_per_page_total)
+
+artists_male <- gardnerjanson_museums %>%
+  filter(artist_gender == "Male")
+
+median(artists_male$space_ratio_per_page_total)
+
+nrow(artists_female) / nrow(gardnerjanson_museums)
+```
+
+Interestingly enough, the median of the total ratio of space per page for female artists is `r round(median(artists_female$space_ratio_per_page_total), 3)`, not far below the median of the total ratio of space per page in centimeters for male artists, `r round(median(artists_male$space_ratio_per_page_total), 3)` through all 25 varying textbooks*.* This indicates that even though the percentage of female artists as compared to male artists is 10.82%, the average amount of space allotted to a female artist is comparable to that of a male.
+
+That said, there are far more male artists that are given a total ratio of space per page of over 1, meaning over a page of information regarding their work or works.
+No female has a total ratio of space per page of over 1.
+The closest female artist to having a page of area given to them is Hannah Höch.
+In fact, she holds the top three spots of the most area given to a woman in three separate editions: The seventh (2007) and eighth (2011) editions of *Janson's History of Art* and the eleventh edition (2001) of *Gardner's Art Through the Ages.* Her work included, *Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany,* stands as an example of photomontage introducing the illogical and chaotic Dadaism.
+
+```{=html}
+<!--
+![](images/the-kitchen-knife.png){width="299"}
+-->
+```
+Figure \_\_ : Hannah Höch.
+*Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany.* 1919-1920.
+Photomontage, 114.3 x 90.17 cm.
+Neue Nationalgalerie, Staatliche Museen, Berlin.
+
+### Total Space Ratio Per Page vs. Artist Race
+
+```{r raceallbooks}
+#| eval: false
+
+ggplot(gardnerjanson_museums %>% filter(artist_race != "N/A"), 
+       aes(x=artist_race, y= space_ratio_per_page_total))+
+  geom_boxplot()+
+  labs(title = "Ratio of Space per Page per Artist per Edition by Race",
+       x = "Race",
+       y = "Ratio of Space per Page")+
+   theme(axis.text.x = element_text(angle = 15, size = 8))
+
+gardnerjanson_museums %>%
+  dplyr::select(artist_name, 
+         edition_number, 
+         year, 
+         book,
+         space_ratio_per_page_total)%>%
+  arrange(desc(space_ratio_per_page_total))
+
+artists_aian <- gardnerjanson_museums %>%
+  filter(artist_race == "American Indian or Alaska Native")
+
+median(artists_aian$space_ratio_per_page_total)
+
+artists_asian <- gardnerjanson_museums %>%
+  filter(artist_race == "Asian")
+
+median(artists_asian$space_ratio_per_page_total)
+
+artists_black <- gardnerjanson_museums %>%
+  filter(artist_race == "Black or African American")
+
+median(artists_black$space_ratio_per_page_total)
+
+artists_nhopi <- gardnerjanson_museums %>%
+  filter(artist_race == "Native Hawaiian or Other Pacific Islander")
+
+median(artists_nhopi$space_ratio_per_page_total)
+
+artists_white <- gardnerjanson_museums %>%
+  filter(artist_race == "White")
+
+median(artists_white$space_ratio_per_page_total)
+
+nrow(artists_white)/nrow(gardnerjanson_museums)
+```
+
+The median of the total ratio of space given to a particular artist through all 25 books is fairly comparable across varying races.
+Though the count of each race is far from being comparable, the respective medians per race are as follows: American Indian or Alaska Native, .469, Asian, .344, Black or African American .375, Native Hawaiian or Other Pacific Islander, .428 and White, .413.
+With that being said, even though the racial diversity in regard to the ratio of count for white to non-white artists is 92.85%, once an artist is represented, the amount of area given to them is fairly similar in regard to their respectively medians.
+
+Obviously, the top quartile of white artists dominates this visualization.
+White is the only race that has any artists given more than a page of space in any one book.
+Out of the top ten outliers of white artists, eight of them are Pablo Picasso, with the first five observations being from various editions of *Janson's History of Art.*
+
+### Total Space Ratio Per Page vs. Artist Ethnicity
+
+```{r ethnicityallbooks}
+ggplot(
+  gardnerjanson_museums %>% filter(artist_ethnicity != "N/A"),
+  aes(x = artist_ethnicity, y = space_ratio_per_page_total)
+) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition by Ethnicity",
+    x = "Ethnicity",
+    y = "Ratio of Space per Page"
+  )
+
+artists_HL <- gardnerjanson_museums %>%
+  filter(artist_ethnicity == "Hispanic or Latinx")
+
+median(artists_HL$space_ratio_per_page_total)
+
+artists_NHL <- gardnerjanson_museums %>%
+  filter(artist_ethnicity == "Not Hispanic or Latinx")
+
+median(artists_NHL$space_ratio_per_page_total)
+```
+
+Interestingly, the median for the total space ratio per page for artists who are Hispanic or Latinx, `round(median(janson_HL$space_ratio_per_page_total), 3)` is higher than those who are Not Hispanic or Latinx, `round(median(janson_NHL$space_ratio_per_page_total), 3)`.
+There are `nrow(janson_HL)` observations of artists per edition who are Hispanic and Latinx and there are `nrow(janson_NHL)` observations of artists per edition who are not Hispanic or Latinx.
+Picasso plays a large role in such, as he is Hispanic or Latinx and is accounting for the outlyingly larger observations for `space_ratio_per_page_total`.
+
+### Total Space Ratio Per Page vs. Artist Nationality
+
+```{r nationalityotherallbooks}
+
+ggplot(gardnerjanson_museums, aes(x = artist_nationality_other, y = space_ratio_per_page_total)) +
+  geom_boxplot() +
+  labs(
+    title = "Ratio of Space per Page per Artist per Edition by Nationality",
+    x = "Nationality",
+    y = "Ratio of Space per Page"
+  )
+
+american <- gardnerjanson_museums %>%
+  filter(artist_nationality_other == "American")
+
+american_total <- nrow(american) / nrow(gardnerjanson_museums)
+
+american_median <- median(american$space_ratio_per_page_total)
+
+french <- gardnerjanson_museums %>%
+  filter(artist_nationality_other == "French")
+
+french_total <- nrow(french) / nrow(gardnerjanson_museums)
+
+french_median <- median(french$space_ratio_per_page_total)
+
+british <- gardnerjanson_museums %>%
+  filter(artist_nationality_other == "British")
+
+british_total <- nrow(british) / nrow(gardnerjanson_museums)
+
+british_median <- median(british$space_ratio_per_page_total)
+
+german <- gardnerjanson_museums %>%
+  filter(artist_nationality_other == "German")
+
+german_total <- nrow(german) / nrow(gardnerjanson_museums)
+
+german_median <- median(german$space_ratio_per_page_total)
+
+spanish <- gardnerjanson_museums %>%
+  filter(artist_nationality_other == "Spanish")
+
+spanish_total <- nrow(spanish) / nrow(gardnerjanson_museums)
+
+spanish_median <- median(spanish$space_ratio_per_page_total)
+
+other <- gardnerjanson_museums %>%
+  filter(artist_nationality_other == "Other")
+
+other_total <- nrow(other) / nrow(gardnerjanson_museums)
+
+other <- other %>%
+  dplyr::select(
+    artist_name,
+    edition_number,
+    year,
+    book,
+    space_ratio_per_page_total
+  ) %>%
+  arrange(desc(space_ratio_per_page_total))
+
+head(other, 10)
+
+other_median <- median(other$space_ratio_per_page_total)
+
+nonother_total <- (1 - (nrow(other) / nrow(gardnerjanson_museums)))
+```
+
++--------------------+---------------------------------------------+--------------------------------------+
+| Artist Nationality | Percent of Total Count Through all 25 books | Median Total Ratio of Space per Page |
++====================+=============================================+======================================+
+| American           | 28.72%                                      | .377                                 |
++--------------------+---------------------------------------------+--------------------------------------+
+| British            | 10.03%                                      | .372                                 |
++--------------------+---------------------------------------------+--------------------------------------+
+| French             | 27.51%                                      | .535                                 |
++--------------------+---------------------------------------------+--------------------------------------+
+| German             | 8.10%                                       | .375                                 |
++--------------------+---------------------------------------------+--------------------------------------+
+| Other              | 22.68%                                      | .380                                 |
++--------------------+---------------------------------------------+--------------------------------------+
+| Spanish            | 2.97%                                       | .889                                 |
++--------------------+---------------------------------------------+--------------------------------------+
+
+## Model Output: Research Question 2
+
+Which variables (artist gender, race, ethnicity, nationality, number of exhibitions at the MoMA or The Whitney) if any, predict the magnitude of an artist's inclusion in art history survey texts (*Janson's History of Art* and *Gardner's Art Through the Ages*)?
+
+```{r}
+#| label: sjplot
+
+sjPlot::plot_model(lmm, 
+                   axis.labels=c("Spanish x MoMA Count to Year",
+                                 "German x MoMA Count to Year",
+                                 "British x MoMA Count to Year",
+                                 "Other x MoMA Count to Year", 
+                                 "French x MoMA Count to Year",
+                                 "MoMA Count to Year",
+                                 "Spanish",
+                                 "German",
+                                 "British",
+                                 "Other",
+                                 "French", 
+                                 "Intercept"),
+                   show.values=TRUE,
+                   digits = 3,
+                   show.p=TRUE, 
+                   show.intercept = TRUE,
+                   value.offset = .35,
+                   value.size = 3,
+                   dot.size = 1,
+                   line.size = .5,
+                   title="Effect of Artist Nationality and the Number of Exhibitions Held at the MoMA per Artist per Edition on the Total Space Ratio per Page")
+```
+
+$$
+\begin{aligned}
+\widehat{Total Space RatioPerPage} = -0.988 &+ 0.233\times French \\
+&-0.058\times Other \\
+&-0.015\times British \\
+&-0.078\times German \\
+&+ .571\times Spanish \\
+&-.011\times MoMA \\
+&+ .023\times French \times MoMACountToYear\\
+&+ .015 \times Other \times MoMACountToYear\\
+&+ .014 \times British \times MoMACountToYear\\
+&+ .022 \times German \times MoMACountToYear\\
+&+ .032 \times Spanish \times MoMACountToYear\\
+\end{aligned}
+$$
+
+After step-wise model evaluation, the model that is most parsimonious with the highest conditional r squared is a model using only artist nationality and the count to year of the number of exhibitions an artist is included in at the MoMA and the interaction between the two.
+
+```{r rsq}
+
+r.squaredGLMM(lmm)
+```
+
+With a log transformation applied to the outcome variable as it is heavily right-skewed, my linear mixed-effects model yields a conditional r squared of 53.23%.
+Such denotes that 53.23% of the variance of total space ratio per page given to an artist in a given edition can be explained by the model.

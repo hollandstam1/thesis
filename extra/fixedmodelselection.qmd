@@ -1,0 +1,99 @@
+```{r load-pkg}
+
+library(tidyverse)
+library(tidymodels)
+library(lme4)
+library(MASS)
+library(car)
+library(MuMIn)
+library(lmerTest)
+library(ggplot2)
+library(dplyr)
+library(broom.mixed)
+library(forcats)
+
+# load gardnerjanson_museums
+gardnerjanson_museums <- read_csv("gardnerjanson_museums.csv")
+```
+
+```{r raceprep}
+gardnerjanson_museums <- gardnerjanson_museums %>%
+  mutate(artist_race_nwi = if_else(artist_race == "White", "White", "Non-white")) %>%
+  mutate(artist_race_nwi = fct_relevel(artist_race_nwi, c("White", "Non-white")),
+         artist_gender = fct_relevel(artist_gender, c("Male", "Female")),
+         artist_ethnicity = fct_relevel(artist_ethnicity, c("Not Hispanic or Latinx",
+                                                         "Hispanic or Latinx")), 
+         artist_nationality_other = fct_relevel(artist_nationality_other, c("American", 
+                                                                            "French", 
+                                                                            "Other", 
+                                                                            "British", 
+                                                                            "German", 
+                                                                            "Spanish")))%>%
+  filter(!startsWith(artist_name, "N/A"))
+
+```
+
+```{r fixedeffects}
+model <- lm(log(space_ratio_per_page_total) ~ artist_race_nwi
+                       + artist_ethnicity 
+                       + artist_gender 
+                       + artist_nationality_other
+                       + count_to_year
+                       + whitney_count_to_date, 
+            data = gardnerjanson_museums)
+```
+
+```{r newmodel}
+#newmodel<- stats::step(model)
+
+newmodel<- stepAIC(model, scope=list(upper= ~artist_gender*artist_race_nwi*artist_nationality_other*artist_ethnicity*count_to_year*whitney_count_to_date, lower= ~1))
+```
+
+```{r BICnewmodel}
+n <- nrow(gardnerjanson_museums)
+
+newmodel<- stepAIC(model, k = log(n), scope=list(upper= ~artist_gender*artist_race_nwi*artist_nationality_other*artist_ethnicity*count_to_year*whitney_count_to_date, lower= ~1))
+
+```
+
+```{r lowestAIC}
+lmm_model <- lmer(log(space_ratio_per_page_total) ~ artist_race
+                       + artist_ethnicity 
+                       + artist_gender 
+                       + artist_nationality_other
+                       + count_to_year
+                       + whitney_count_to_date
+                       + artist_gender*count_to_year
+                       + artist_nationality_other*count_to_year +
+                         (1 | artist_name),
+            data = gardnerjanson_museums,
+    REML = FALSE)
+summary(lmm_model)
+```
+
+```{r collinearity}
+vif(lmm_model)
+```
+
+```{r}
+#| label: lmerTest
+#| echo: false
+
+summary(lmm_model, ddf = "Satterthwaite")
+```
+
+```{r rsq}
+r.squaredGLMM(lmm_model)
+```
+
+```{r diagnostics}
+
+plot(resid(lmm_model, type = "pearson") ~ fitted(lmm_model))
+```
+
+```{r normal}
+
+qqnorm(resid(lmm_model, type = "pearson"))
+qqline(resid(lmm_model, type = "pearson"))
+
+```
