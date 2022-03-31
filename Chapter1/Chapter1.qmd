@@ -620,7 +620,7 @@ Lastly, I releveled my data such that the baseline demographic of artist reflect
 
 ### Linear Mixed-Effects Model:
 
-I chose to use a linear mixed-effects model as the data contains a random effect at the artist level as multiple observations in the data can be by the same artist. Using a linear mixed-effects model with artist name as the random effect eliminates the dependence between observations of the same artist, therefore allowing independence to be satisfied for our model. Additionally, I chose to log transform the outcome variable, the total space ratio per page is extremely right-skewed. Performing the log transformation allows for the residuals to have constant variance (homoscedasticity). In regards to choosing the combination of both main fixed effects and interaction fixed effects, I used a step-wise model selection methodology.
+I chose to use a linear mixed-effects model as the data contains a random effect at the artist level as multiple observations in the data can be by the same artist. Using a linear mixed-effects model with artist name as the random effect eliminates the dependence between observations of the same artist, therefore allowing independence to be satisfied for our model. Additionally, I chose to log transform the outcome variable, as the total space ratio per page is extremely right-skewed. Performing the log transformation allows for the residuals to have constant variance (homoscedasticity). In regards to choosing the combination of both main fixed effects and interaction fixed effects, I used a step-wise model selection methodology.
 
 # MINE HELP
 
@@ -1369,7 +1369,9 @@ There is no pattern left behind therefore linearity is satisfied. There is a lin
 
 ### Independence
 
-Since we are using a mixed-effects model, and our random effect is per artist, we eliminate the dependence of our observations had we not used a mixed-effects model. Between artists, we expect the observations to be independent.
+Since we cannot assume that each row in our data set is independent from another, because we expect an artist effect, we added a random effect at the artist level
+
+Since we are using a mixed-effects model, and our random effect is per artist, therefore we eliminate the dependence of our observations had we not used a mixed-effects model. Between artists, we expect the observations to be independent.
 
 ### Collinearity
 
