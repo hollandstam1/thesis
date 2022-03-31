@@ -38,7 +38,7 @@ model <- lm(log(space_ratio_per_page_total) ~ artist_race_nwi
                        + artist_ethnicity 
                        + artist_gender 
                        + artist_nationality_other
-                       + moma_count_to_date
+                       + count_to_year
                        + whitney_count_to_date, 
             data = gardnerjanson_museums)
 ```
@@ -46,13 +46,13 @@ model <- lm(log(space_ratio_per_page_total) ~ artist_race_nwi
 ```{r newmodel}
 #newmodel<- stats::step(model)
 
-newmodel<- stepAIC(model, scope=list(upper= ~artist_gender*artist_race_nwi*artist_nationality_other*artist_ethnicity*moma_count_to_date*whitney_count_to_date, lower= ~1))
+newmodel<- stepAIC(model, scope=list(upper= ~artist_gender*artist_race_nwi*artist_nationality_other*artist_ethnicity*count_to_year*whitney_count_to_date, lower= ~1))
 ```
 
 ```{r BICnewmodel}
 n <- nrow(gardnerjanson_museums)
 
-newmodel<- stepAIC(model, k = log(n), scope=list(upper= ~artist_gender*artist_race_nwi*artist_nationality_other*artist_ethnicity*moma_count_to_date*whitney_count_to_date, lower= ~1))
+newmodel<- stepAIC(model, k = log(n), scope=list(upper= ~artist_gender*artist_race_nwi*artist_nationality_other*artist_ethnicity*count_to_year*whitney_count_to_date, lower= ~1))
 
 ```
 
@@ -61,10 +61,10 @@ lmm_model <- lmer(log(space_ratio_per_page_total) ~ artist_race
                        + artist_ethnicity 
                        + artist_gender 
                        + artist_nationality_other
-                       + moma_count_to_date
+                       + count_to_year
                        + whitney_count_to_date
-                       + artist_gender*moma_count_to_date
-                       + artist_nationality_other*moma_count_to_date +
+                       + artist_gender*count_to_year
+                       + artist_nationality_other*count_to_year +
                          (1 | artist_name),
             data = gardnerjanson_museums,
     REML = FALSE)
