@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2022.2.17)  27 MAR 2022 15:56
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2022.2.17)  30 MAR 2022 22:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -975,243 +975,258 @@ Class scrreprt Warning: \float@addtolists detected!
 chapter 2.
 [5
 
-] [6]
-Overfull \hbox (524.77847pt too wide) in paragraph at lines 283--283
+]
+Overfull \hbox (524.77847pt too wide) in paragraph at lines 274--274
 []\TU/lmtt/m/n/10.95 log(space_ratio_per_page_total) ~ artist_nationality_other
  + moma_count_to_year + whitney_count_to_year + (1 | artist_name) + artist_nati
 onality_other:moma_count_to_year[] 
  []
 
+[6]
+Overfull \hbox (1.64236pt too wide) in paragraph at lines 365--365
+[]                                                           \TU/lmtt/m/n/10.95
+ df t value Pr(>|t|)[] 
+ []
+
+
+Overfull \hbox (1.64236pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 (Intercept)                                         4.890e
++02 -27.179  < 2e-16[] 
+ []
+
+
+Overfull \hbox (1.64235pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 artist_nationality_otherFrench                      4.309e
++02   4.015 7.01e-05[] 
+ []
+
+
+Overfull \hbox (1.64235pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 artist_nationality_otherOther                       5.031e
++02  -1.104 0.270219[] 
+ []
+
+
+Overfull \hbox (1.64235pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 artist_nationality_otherBritish                     4.353e
++02  -0.206 0.836813[] 
+ []
+
+
+Overfull \hbox (1.64235pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 artist_nationality_otherGerman                      4.651e
++02  -0.994 0.320904[] 
+ []
+
+
+Overfull \hbox (1.64235pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 artist_nationality_otherSpanish                     3.643e
++02   3.111 0.002014[] 
+ []
+
+
+Overfull \hbox (1.64236pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 moma_count_to_year                                  8.952e
++02  -1.789 0.073879[] 
+ []
+
+
+Overfull \hbox (1.64233pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 artist_nationality_otherFrench:moma_count_to_year   1.114e
++03   3.300 0.000997[] 
+ []
+
+
+Overfull \hbox (1.64236pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 artist_nationality_otherOther:moma_count_to_year    8.992e
++02   2.142 0.032437[] 
+ []
+
+
+Overfull \hbox (1.64233pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 artist_nationality_otherBritish:moma_count_to_year  8.866e
++02   0.920 0.358001[] 
+ []
+
 [7]
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 392--392
-[]                                                            \TU/lmtt/m/n/10.9
-5 df t value Pr(>|t|)[] 
+Overfull \hbox (1.64233pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 artist_nationality_otherGerman:moma_count_to_year   1.125e
++03   2.798 0.005228[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 (Intercept)                                          4.588
-e+02 -15.331  < 2e-16[] 
- []
-
-
-Overfull \hbox (7.3911pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 artist_nationality_otherAmerican                     4.651
-e+02   0.994 0.320904[] 
- []
-
-
-Overfull \hbox (7.3911pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 artist_nationality_otherFrench                       4.396
-e+02   3.748 0.000202[] 
- []
-
-
-Overfull \hbox (7.3911pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 artist_nationality_otherOther                        4.714
-e+02   0.246 0.805742[] 
- []
-
-
-Overfull \hbox (7.3911pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 artist_nationality_otherBritish                      4.403
-e+02   0.665 0.506703[] 
- []
-
-
-Overfull \hbox (7.3911pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 artist_nationality_otherSpanish                      3.713
-e+02   3.364 0.000847[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 moma_count_to_year                                   1.647
-e+03   2.245 0.024928[] 
- []
-
-
-Overfull \hbox (7.39108pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 artist_nationality_otherAmerican:moma_count_to_year  1.125
-e+03  -2.798 0.005228[] 
- []
-
-
-Overfull \hbox (7.39108pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 artist_nationality_otherFrench:moma_count_to_year    1.866
-e+03   0.186 0.852305[] 
- []
-
-
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 artist_nationality_otherOther:moma_count_to_year     1.325
-e+03  -1.094 0.274068[] 
- []
-
-
-Overfull \hbox (7.39108pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 artist_nationality_otherBritish:moma_count_to_year   9.461
-e+02  -0.568 0.570410[] 
- []
-
-
-Overfull \hbox (7.39108pt too wide) in paragraph at lines 392--392
-[]\TU/lmtt/m/n/10.95 artist_nationality_otherSpanish:moma_count_to_year   2.773
-e+03   1.312 0.189784[] 
+Overfull \hbox (1.64233pt too wide) in paragraph at lines 365--365
+[]\TU/lmtt/m/n/10.95 artist_nationality_otherSpanish:moma_count_to_year  1.852e
++03   3.850 0.000122[] 
  []
 
 [8] [9]
 chapter 3.
 LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <14.4> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 433.
+(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 406.
 
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 9.0pt on input line 412.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 412.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 412.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 9.00082pt on input line 412.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 6.00055pt on input line 412.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 412.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 8.99904pt on input line 412.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 5.99936pt on input line 412.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 412.
 [10
 
 ]
-Underfull \hbox (badness 2443) in paragraph at lines 480--485
+Underfull \hbox (badness 2443) in paragraph at lines 482--487
 []\TU/lmr/m/n/10.95 “History, Textbooks, and Art: Reflections on a Half Century
  of Helen
  []
 
 
-Underfull \hbox (badness 1342) in paragraph at lines 480--485
+Underfull \hbox (badness 1342) in paragraph at lines 482--487
 \TU/lmr/m/n/10.95 Gardner’s”Art through the Ages”.” Critical Inquiry 4 (2) (Win
 ter): 285.
  []
 
 
-Underfull \hbox (badness 2318) in paragraph at lines 480--485
+Underfull \hbox (badness 2318) in paragraph at lines 482--487
 \TU/lmr/m/n/10.95 https://login.proxy.lib.duke.edu/login?u rl=https://www.proqu
 est.com/scholarly-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 480--485
+Underfull \hbox (badness 10000) in paragraph at lines 482--487
 \TU/lmr/m/n/10.95 journals/history-textbooks-art-reflections-on-half-century/do
 cview/1297337757/se-
  []
 
-
-Overfull \hbox (21.38243pt too wide) in paragraph at lines 505--506
+[11]
+Overfull \hbox (17.19014pt too wide) in paragraph at lines 507--508
 []\TU/lmr/m/n/10.95 Edition  
  []
 
 
-Overfull \hbox (16.28362pt too wide) in paragraph at lines 544--545
+Overfull \hbox (17.1172pt too wide) in paragraph at lines 546--547
 []|\TU/lmr/m/n/10.95 Thomson/Wadsworth, 
  []
 
-[11] [12]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 577.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 577.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 577.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 9.00082pt on input line 577.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.00055pt on input line 577.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 577.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.99904pt on input line 577.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 577.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 577.
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 588--588
+  [][]\TU/lmr/m/n/9 Staff Report, Mercury News. “H. DE LA CROIX, SJS PROFESSOR 
+OF ART HIS-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 588--588
+ \TU/lmr/m/n/9 TORY.” \TU/lmr/m/it/9 San Jose Mercury News (CA)\TU/lmr/m/n/9 , 
+March 5, 1992: 3B. \TU/lmr/m/it/9 NewsBank: America’s
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 588--588
+ \TU/lmr/m/it/9 News – Historical and Current\TU/lmr/m/n/9 . https://infoweb.ne
+wsbank.com/apps/news/document-
+ []
+
 [13]
-Underfull \hbox (badness 4316) in paragraph at lines 644--644
+Underfull \hbox (badness 10000) in paragraph at lines 625--626
+[]\TU/lmr/m/n/10.95 https://editions.lib.umn.edu/panorama/wp-content/uploads/si
+tes/14/2016/11/Jaffee-Art-
+ []
+
+[14]
+Underfull \hbox (badness 4316) in paragraph at lines 675--675
  \TU/lmr/m/n/9 Hill College Textbook Division and Follow-up Report, dated Sprin
 g, 1973. Citation from
  []
 
 
-Underfull \hbox (badness 3460) in paragraph at lines 644--644
+Underfull \hbox (badness 3460) in paragraph at lines 675--675
  \TU/lmr/m/n/9 Patricia Hills, “Art History Textbooks: The Hidden Persuaders,” 
 Artforum, (Summer 1976),
  []
 
-[14] [15]
-Overfull \hbox (4.15085pt too wide) in paragraph at lines 735--736
+[15] [16]
+Overfull \hbox (4.15085pt too wide) in paragraph at lines 766--767
 []\TU/lmr/m/n/10.95 Edition 
  []
 
 
-Overfull \hbox (5.02144pt too wide) in paragraph at lines 752--754
+Overfull \hbox (5.02144pt too wide) in paragraph at lines 783--785
 []|\TU/lmr/m/n/10.95 1963[][][][][]|  
  []
 
 
-Overfull \hbox (2.19081pt too wide) in paragraph at lines 762--762
+Overfull \hbox (2.19081pt too wide) in paragraph at lines 793--793
 \TU/lmr/m/n/10.95 larged)|  
  []
 
-[16] [17] [18]
-Overfull \hbox (1.96739pt too wide) in paragraph at lines 894--895
+[17] [18] [19]
+Overfull \hbox (1.96739pt too wide) in paragraph at lines 925--926
 []\TU/lmr/m/n/10.95 Author  
  []
 
 
-Overfull \hbox (11.22014pt too wide) in paragraph at lines 901--902
+Overfull \hbox (11.22014pt too wide) in paragraph at lines 932--933
 []\TU/lmr/m/n/10.95 Penelope 
  []
 
 
-Overfull \hbox (0.5439pt too wide) in paragraph at lines 910--910
+Overfull \hbox (0.5439pt too wide) in paragraph at lines 941--941
 []|\TU/lmr/m/n/10.95 Walter 
  []
 
 
-Overfull \hbox (16.60754pt too wide) in paragraph at lines 915--915
+Overfull \hbox (16.60754pt too wide) in paragraph at lines 946--946
 \TU/lmr/m/n/10.95 Hofrichter|  
  []
 
 
-Overfull \hbox (0.9381pt too wide) in paragraph at lines 919--919
+Overfull \hbox (0.9381pt too wide) in paragraph at lines 950--950
 []|\TU/lmr/m/n/10.95 Joseph 
  []
 
 
-Overfull \hbox (6.13934pt too wide) in paragraph at lines 924--924
+Overfull \hbox (6.13934pt too wide) in paragraph at lines 955--955
 \TU/lmr/m/n/10.95 Roberts|  
  []
 
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 971--993
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 1002--1024
 
  []
 
-[20]
-Underfull \hbox (badness 5091) in paragraph at lines 1002--1002
+[21]
+Underfull \hbox (badness 5091) in paragraph at lines 1033--1033
   [][][]\TU/lmr/m/n/9 Paul E. Bolin, “Discussions and Depictions of Women in H.
  W. Janson’s History of Art,
  []
 
 
-Underfull \hbox (badness 3396) in paragraph at lines 1002--1002
+Underfull \hbox (badness 3396) in paragraph at lines 1033--1033
  \TU/lmr/m/n/9 Fourth Edition,” Journal of Social Theory in Art Education, Vol.
  15.(1996), pp. 146-159.
  []
 
-[21]
+[22] [23]
 chapter 4.
-[22
 
-]
-chapter 5.
-[23
-
-]
-chapter 6.
-
-Underfull \hbox (badness 10000) in paragraph at lines 1158--1158
+Underfull \hbox (badness 10000) in paragraph at lines 1188--1188
  []\TU/lmr/m/n/9 https://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bur
 eau-Definitions-of-Race-and-
  []
 
 
-Overfull \hbox (252.78299pt too wide) in paragraph at lines 1158--1158
+Overfull \hbox (252.78299pt too wide) in paragraph at lines 1188--1188
  \TU/lmr/m/n/9 Ethnicity.pdf#:~:text=Definition%3A%20The%20U.S.%20Census%20Bure
 au%20adheres%20to%20the,Hispanics%20and%20Latinos%20may%20be%20of%20any%20race.
 | 
@@ -1220,52 +1235,52 @@ au%20adheres%20to%20the,Hispanics%20and%20Latinos%20may%20be%20of%20any%20race.
 [24
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1165--1165
+Underfull \hbox (badness 10000) in paragraph at lines 1195--1195
   [][][]\TU/lmr/m/n/9 https://www.mobap.edu/wp-content/uploads/2013/01/US-Censu
 s-Bureau-Definitions-of-Race-and-
  []
 
 
-Overfull \hbox (252.78299pt too wide) in paragraph at lines 1165--1165
+Overfull \hbox (252.78299pt too wide) in paragraph at lines 1195--1195
  \TU/lmr/m/n/9 Ethnicity.pdf#:~:text=Definition%3A%20The%20U.S.%20Census%20Bure
 au%20adheres%20to%20the,Hispanics%20and%20Latinos%20may%20be%20of%20any%20race.
 | 
  []
 
 [25] [26]
-Underfull \hbox (badness 2173) in paragraph at lines 1303--1308
+Underfull \hbox (badness 2173) in paragraph at lines 1333--1338
 \TU/lmr/m/n/10.95 common category across \TU/lmtt/m/n/10.95 artist_race\TU/lmr/
 m/n/10.95 , \TU/lmtt/m/n/10.95 artist_ethnicity\TU/lmr/m/n/10.95 , \TU/lmtt/m/n
 /10.95 artist_nationality \TU/lmr/m/n/10.95 and
  []
 
-[27] [28]
-chapter 7.
-LaTeX Font Info:    Font shape `TU/lmss/bx/it' in size <20.74> not available
-(Font)              Font shape `TU/lmss/bx/sl' tried instead on input line 1333
-.
+[27]
+chapter 5.
+[28
+
+]
+chapter 6.
 File: Chapter1/Chapter1_files/figure-pdf/gardnercountthroughtime-1.pdf Graphic 
 file (type pdf)
 <use Chapter1/Chapter1_files/figure-pdf/gardnercountthroughtime-1.pdf>
+[29
 
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 1367--1367
+]
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 1407--1407
 []   \TU/lmtt/m/n/10.95 artist_name            edition_number  year artist_nati
 onal~ artist_national~[] 
  []
 
-[29
-
-]
 File: Chapter1/Chapter1_files/figure-pdf/jansoncountthroughtime-1.pdf Graphic f
 ile (type pdf)
 <use Chapter1/Chapter1_files/figure-pdf/jansoncountthroughtime-1.pdf>
 
-Overfull \hbox (10.94926pt too wide) in paragraph at lines 1379--1380
+Overfull \hbox (10.94926pt too wide) in paragraph at lines 1419--1420
 [][] 
  []
 
 [30]
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 1401--1401
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 1441--1441
 []   \TU/lmtt/m/n/10.95 artist_name            edition_number  year artist_nati
 onal~ artist_national~[] 
  []
@@ -1275,7 +1290,7 @@ File: Chapter1/Chapter1_files/figure-pdf/jansongenderthroughtime-1.pdf Graphic
 file (type pdf)
 <use Chapter1/Chapter1_files/figure-pdf/jansongenderthroughtime-1.pdf>
 
-Overfull \hbox (10.94926pt too wide) in paragraph at lines 1419--1420
+Overfull \hbox (10.94926pt too wide) in paragraph at lines 1459--1460
 [] 
  []
 
@@ -1284,7 +1299,7 @@ File: Chapter1/Chapter1_files/figure-pdf/gardnergenderthroughtime-1.pdf Graphic
  file (type pdf)
 <use Chapter1/Chapter1_files/figure-pdf/gardnergenderthroughtime-1.pdf>
 
-Overfull \hbox (10.94926pt too wide) in paragraph at lines 1434--1435
+Overfull \hbox (10.94926pt too wide) in paragraph at lines 1475--1476
 [][] 
  []
 
@@ -1292,36 +1307,29 @@ File: Chapter1/Chapter1_files/figure-pdf/jansonracethroughtime-1.pdf Graphic fi
 le (type pdf)
 <use Chapter1/Chapter1_files/figure-pdf/jansonracethroughtime-1.pdf>
 
-Overfull \hbox (10.94926pt too wide) in paragraph at lines 1453--1454
+Overfull \hbox (10.94926pt too wide) in paragraph at lines 1496--1497
 [] 
  []
 
 [33]
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 1475--1475
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 1518--1518
 []   \TU/lmtt/m/n/10.95 artist_name         edition_number  year artist_nationa
 lity artist_nationali~[] 
  []
 
 [34]
-
-LaTeX Warning: File `https://lh6.googleusercontent.com/-fxCinylYYA8sB2zbAHmHqqU
-qxQ26KdZHZgPvNBfgKfWMZqCVK_-VZk2SKqToScRwccJ1ynxTJuI_w2lp0N2BmvgfLPEWl0LO4Ll84l
-jfkyBkCMQwU8WH-HDC7MXBZpMstMMA8ff.pdf' not found on input line 1486.
-
-! Unable to load picture or PDF file 'https://lh6.googleusercontent.com/-fxCiny
-lYYA8sB2zbAHmHqqUqxQ26KdZHZgPvNBfgKfWMZqCVK_-VZk2SKqToScRwccJ1ynxTJuI_w2lp0N2Bm
-vgfLPEWl0LO4Ll84ljfkyBkCMQwU8WH-HDC7MXBZpMstMMA8ff.pdf'.
+! Missing endcsname inserted.
 <to be read again> 
-                   }
-l.1486 ...4ljfkyBkCMQwU8WH-HDC7MXBZpMstMMA8ff.pdf}
+                   &
+l.1543 ...UKuLisgHaDw\&pid=Api\&P=0\&w=338\&h=171}
                                                    
 Here is how much of TeX's memory you used:
- 23411 strings out of 481804
- 436252 string characters out of 5937876
- 1002690 words of memory out of 5000000
- 40048 multiletter control sequences out of 15000+600000
+ 23354 strings out of 481804
+ 430412 string characters out of 5937876
+ 999864 words of memory out of 5000000
+ 40019 multiletter control sequences out of 15000+600000
  541714 words of font info for 98 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 58i,15n,115p,10128b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,15n,115p,10128b,748s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on index.pdf (34 pages).

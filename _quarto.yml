@@ -2,13 +2,12 @@ project:
   type: book
 
 book:
-  title: "holland-thesis"
-  author: "Jane Doe"
+  title: "Quantifying Art Historical Narratives"
+  author: "Holland Stam"
   date: "`r Sys.Date()`"
   chapters:
     - index.qmd
     - Chapter1/Chapter1.qmd
-    - Chapter2/Chapter2.qmd
 
 bibliography: references.bib
 
