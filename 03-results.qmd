@@ -241,15 +241,13 @@ Pivoting to looking at race diversity in *Janson's History of Art* through time,
 
 When Anthony Janson took over authorship, he included a handful of black artists, then in the fifth edition, he added an artist by the name of Kay Walkingstick (1935-present), who is a Native American woman. She was included through the sixth edition then removed when the group of six professors took over.
 
-Anthony Janson states in the fifth edition that Walkingstick combines "Neo-Expressionism and Neo-Abstraction in a particularly fruitful way..."[^results-2] The work below was brought forth after the death of her husband in 1989, as she outpours her grief onto the canvas. The left panel, as Janson writes, is "built up in thick coats of paint applied mainly by her hands," with a fan shape in the center which suggests a manmade feature in a primitive landscape and also acts as a sign, investing the canvas mysterious emblematic significance. The right half was painted in an Expressionist style and releases anger through the various layers of color. Walkingstick's diptych display aspects of nature as a spiritual center, of calm contemplation, powerful emotion, and order in chaos. [^results-3]
+Anthony Janson states in the fifth edition that Walkingstick combines "Neo-Expressionism and Neo-Abstraction in a particularly fruitful way..."[^results-2] The work in @fig-kay was brought forth after the death of her husband in 1989, as she outpours her grief onto the canvas. The left panel, as Janson writes, is "built up in thick coats of paint applied mainly by her hands," with a fan shape in the center which suggests a manmade feature in a primitive landscape and also acts as a sign, investing the canvas mysterious emblematic significance. The right half was painted in an Expressionist style and releases anger through the various layers of color. Walkingstick's diptych display aspects of nature as a spiritual center, of calm contemplation, powerful emotion, and order in chaos. [^results-3]
 
 [^results-2]: Janson edition 5, 834
 
 [^results-3]: Janson fifther edition, 835
 
-![](images/on-the-edge.png){width="400"}
-
-Figure \_\_ : Kay WalkingStick, *On The Edge*, 1989. Acrylic and wax and oil on canvas, 81 x 162 ½  cm. Private collection.
+![Kay WalkingStick, \*On The Edge\*, 1989. Acrylic and wax and oil on canvas, 81 x 162 ½  cm. Private collection.](images/on-the-edge.png){#fig-kay width="400"}
 
 Interestingly, the black artists who are included have frequent turnover. The only black artist that enters *Janson's History of Art* in the third edition (1986) and remains through the latest edition (2011) is painter Henry Ossawa Tanner (1859-1937). Notably, in the fifth edition by Anthony Janson, he begins his discourse on Tanner with,
 
@@ -719,14 +717,16 @@ nonother_total <- (1 - (nrow(other) / nrow(gardnerjanson_museums)))
 
 | Artist Nationality | Percent of Total Count Through all 25 Books | Median Total Ratio of Space per Page |
 |--------------------|---------------------------------------------|--------------------------------------|
-| American           | 28.72%                                      | .377                                 |
-| British            | 10.03%                                      | .372                                 |
-| French             | 27.51%                                      | .535                                 |
-| German             | 8.10%                                       | .375                                 |
-| Other              | 22.68%                                      | .380                                 |
-| Spanish            | 2.97%                                       | .889                                 |
+| American           | 28.72%                                      | 0.377                                |
+| British            | 10.03%                                      | 0.372                                |
+| French             | 27.51%                                      | 0.535                                |
+| German             | 8.10%                                       | 0.375                                |
+| Other              | 22.68%                                      | 0.380                                |
+| Spanish            | 2.97%                                       | 0.889                                |
 
-In the visualization, @fig-nationalityotherallbooks-1, it is clear the median total space per page does change in the case of particular nationalities such as French or Spanish. This is additionally highlighted in the table above, as well as the percentage divide of each varying category of nationality. Interestingly, Vincent van Gogh is the leading artist in the category of Other in regard to total space ratio per page. As a Dutch artist, he holds the two seven spots, as additionally displayed above.
+: Some table caption {#tbl-percent-nationality tbl-colwidths="\[40,30,30\]"}
+
+In the visualization, @fig-nationalityotherallbooks-1, it is clear the median total space per page does change in the case of particular nationalities such as French or Spanish. This is additionally highlighted in @tbl-percent-nationality, as well as the percentage divide of each varying category of nationality. Interestingly, Vincent van Gogh is the leading artist in the category of Other in regard to total space ratio per page. As a Dutch artist, he holds the two seven spots, as additionally displayed above.
 
 \pagebreak
 

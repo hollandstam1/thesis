@@ -6,6 +6,7 @@ book:
   author: "Holland Stam"
   date: "April 1, 2022"
   chapters:
+    - acknowledgements.qmd
     - index.qmd
     - 01-intro.qmd
     - 02-methodology.qmd
