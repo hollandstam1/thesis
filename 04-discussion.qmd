@@ -97,15 +97,13 @@ lmm <- lmer(log(space_ratio_per_page_total) ~ artist_nationality_other
 
 ## Model Interpretation and Relevance
 
-In the visualization above, the slopes with any asterisk are the slopes that have a p-value smaller than .05, denoting that they are statistically significant.
-We can reject the null hypothesis that the relationship between the given predictors with any asterisk has a slope that is not equal to 0.
-The following denotes the interpretation for the intercept and every predicted slope the model outputs as statistically significant:
+In the visualization above, the slopes with one or more asterisk(s) are the slope estimates that have a p-value smaller than .05. Therefore, the slope estimates that have one or more asterisk(s), we can reject the null hypothesis that the relationship between the log of total space ratio per page and a given predictor is equal to zero. The slope estimates with a p-value smaller than .05 are therefore statistically significant. The following denotes the interpretation for the intercept and every predicted slope the model outputs as statistically significant:
 
 Intercept: For an American artist with no exhibitions at the MoMA, we expect on average for the space_ratio_per_page to multiply by a factor of `r round(exp(.988), 3)`.
 
-French: Holding all else constant, for a French artist, we expect the total space ratio per page to increase on average by `r round(exp(.233), 3)` as compared to an American artist.
+French: Holding the count to year of the number of exhibitions at the MoMA constant, for a French artist, we expect the total space ratio per page to increase on average by `r round(exp(.233), 3)` as compared to an American artist.
 
-Spanish: Holding all else constant, for a Spanish artist, we expect the total space ratio per page to increase on average by `r round(exp(.571), 3)` as compared to an American artist.
+Spanish: Holding the count to year of the number of exhibitions at the MoMA constant, for a Spanish artist, we expect the total space ratio per page to increase on average by `r round(exp(.571), 3)` as compared to an American artist.
 
 French x MoMA Count to Year: For a French artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor `r round(exp(.023 - .011), 3)`, as compared to an American artist.
 
@@ -115,22 +113,10 @@ German x MoMA Count to Year: For a German artist, for an additional exhibition a
 
 Spanish x MoMA Count to Year: For a Spanish artist, for an additional exhibition at the MoMA, we expect total space ratio per page to increase by a factor `r round(exp(.032 - .011), 3)`, as compared to an American artist.
 
-The goal of my model is to understand and infer which variables are most statistically significant when accounting for the variance of the total space ratio per page per artist per edition.
-The goal of the model is not prediction, but rather inference and to identify which variables, out my the possible six predictors (artist gender, race, ethnicity, nationality, MoMA count to year and Whitney count to year) that I collected, explain the variability of my outcome variable.
-Creating a model that focuses on inference allows for me to see the most important predictors spanning from 1926-2020 of two-dimensional works made after c.
-1750 included in either *Janson's History of Art* or *Gardner's Art Through the Ages.*
+The goal of my model is to understand and infer which variables are most statistically significant when accounting for the variance of the total space ratio per page per artist per edition. The goal of the model is not prediction, but rather inference and to identify which variables, out my the possible six predictors (artist gender, race, ethnicity, nationality, MoMA count to year and Whitney count to year) that I collected, explain the variability of my outcome variable. Creating a model that focuses on inference allows for me to see the most important predictors spanning from 1926-2020 of two-dimensional works made after c. 1750 included in either *Janson's History of Art* or *Gardner's Art Through the Ages.*
 
 ## Limitations and Next Steps
 
-That being said, the best fit model is limited by the imbalances in the data that I collected and highlighted through answering my first research question of how the demographic of artists included in the books change through time.
-There are incredible imbalances particularly when it comes to race, gender, and ethnicity.
-Mathematically, my model struggled with rank deficiencies, meaning there were so few observations of artists who are in a minority group either in regard to being female or non-white or being of Hispanic or Latino origin.
-My model is most generalizable for an audience of American white male from not Hispanic or Latino origin as this demographic is most dominant through the data I collected in *Gardner's Art Through the Ages* and *Janson's History of Art.* With more diverse data that potentially the future of art history introductory survey texts holds, one could achieve a model in which those demographic categories account for the variability of total space ratio per page per artist per edition.
+That being said, the best fit model is limited by the imbalances in the data that I collected and highlighted through answering my first research question of how the demographic of artists included in the books change through time. There are incredible imbalances particularly when it comes to race, gender, and ethnicity. Mathematically, my model struggled with rank deficiencies, meaning there were so few observations of artists who are in a minority group either in regard to being female or non-white or being of Hispanic or Latino origin. My model is most generalizable for an audience of American white male from not Hispanic or Latino origin as this demographic is most dominant through the data I collected in *Gardner's Art Through the Ages* and *Janson's History of Art.* With more diverse data that potentially the future of art history introductory survey texts holds, one could achieve a model in which those demographic categories account for the variability of total space ratio per page per artist per edition.
 
-Additionally, my research is limited to the lack of transparency in the sales of art.
-I would have loved to create a variable using price data of works of artists in an effort to quantify the relationship between various art markets and art history introductory textbooks.
-Additionally, due to time constraints, I would have loved to have created a variable counting the number of external publications written about a particular artist at each moment of time in which another edition of either *Janson's History of Art* or *Gardner's Art Through the Ages* was published.
-This would have been in an effort to quantify the relationship between art history survey texts and external publications.
-Additionally, there are potential gaps in information regarding the exhibition history at The Whitney as it is only the exhibitions as stated by their website in March of 2021, rather than a fully complete exhibition history.
-I would love to as well as a next step to be able to have used exhibition history's of other museums not only in the United States but across the world to better understand the relationship between museum spaces art history introductory survey texts.
-Additionally, there are myriad other art history survey texts one could catalog, as well as expanding the scope within the 25 books from which I did record data.
+Additionally, my research is limited to the lack of transparency in the sales of art. I would have loved to create a variable using price data of works of artists in an effort to quantify the relationship between various art markets and art history introductory textbooks. Additionally, due to time constraints, I would have loved to have created a variable counting the number of external publications written about a particular artist at each moment of time in which another edition of either *Janson's History of Art* or *Gardner's Art Through the Ages* was published. This would have been in an effort to quantify the relationship between art history survey texts and external publications. Additionally, there are potential gaps in information regarding the exhibition history at The Whitney as it is only the exhibitions as stated by their website in March of 2021, rather than a fully complete exhibition history. I would love to as well as a next step to be able to have used exhibition history's of other museums not only in the United States but across the world to better understand the relationship between museum spaces art history introductory survey texts. Additionally, there are myriad other art history survey texts one could catalog, as well as expanding the scope within the 25 books from which I did record data.

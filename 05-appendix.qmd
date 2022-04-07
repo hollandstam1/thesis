@@ -95,99 +95,6 @@ lmm <- lmer(log(space_ratio_per_page_total) ~ artist_nationality_other
     REML = FALSE)
 ```
 
-## Log Transformation: Total Space Ratio per Page
-
-```{r}
-#| label: logspaceratioperpagetotal
-
-ggplot(
-  gardnerjanson_museums,
-  aes(x = log(space_ratio_per_page_total))
-) +
-  geom_histogram(binwidth = .1) +
-  labs(
-    title = "Distribution of the Log of Ratio of Space 
-       per Artist per Edition per Page in all Textbooks",
-    x = "Ratio of Space per Page Total",
-    y = "Count"
-  )
-```
-
-In order to create less skew in our outcome variable, it is evident that log transforming total space ratio per page given to an artist in a particular edition gives the spread a much more mild right-skew than before.
-The shape is still unimodal and asymmetrical.
-I will be using the log transformation on the total space ratio per page, our outcome variable, in the linear mixed-effects model.
-This allows for the residuals to have constant variance.
-
-## Assumptions
-
-### Residuals and Constant Variance
-
-```{r diagnostics}
-
-plot(resid(lmm, type = "pearson") ~ fitted(lmm))
-```
-
-The very low values of the predicted values have very low variability for residuals but for the bulk of the data, there is constant variability in the residuals.
-
-### Normality
-
-```{r}
-#| label: density-histogram
-
-lmm_aug <- broom.mixed::augment(lmm, gardnerjanson_museums_mod)
-
-ggplot(lmm_aug, aes(x = .resid)) +
-  geom_histogram(binwidth = .05, aes(y = after_stat(density))) +
-  theme_minimal() +
-  stat_function(
-    fun = dnorm,
-    args = list(
-      mean = mean(lmm_aug$.resid),
-      sd = sd(lmm_aug$.resid)
-    ),
-    color = "red",
-    size = 2
-  )
-```
-
-The distribution of the residuals is approximately normal.
-
-### Linearity
-
-```{r}
-#| label: linearitymoma
-
-ggplot(lmm_aug, aes(x = moma_count_to_year, y = .resid)) +
-  geom_point(position = position_jitter(h = 0.1, w = 0.1), alpha = 0.5, size = 1) +
-  geom_smooth(method = "lm", se = FALSE) +
-  labs(
-    title = "Residuals by MoMA Count to Year",
-    x = "Count to Year",
-    y = "Residuals"
-  )
-```
-
-There is no pattern left behind therefore linearity is satisfied.
-There is a linear relationship between the response and predictor variables.
-(not sure if this is correct)
-
-### Independence
-
-Since we cannot assume that each row in our data set is independent from another, because we expect an artist effect, we added a random effect at the artist level
-
-Since we are using a mixed-effects model, and our random effect is per artist, therefore we eliminate the dependence of our observations had we not used a mixed-effects model.
-Between artists, we expect the observations to be independent.
-
-### Collinearity
-
-```{r}
-#| label: collinearity
-
-vif(lmm)
-```
-
-Given artist nationality, MoMA Count to Year and the interaction between the two all have a corrected GVIF under 10 therefore no variables are collinear.
-
 ## Data Dictionary
 
 Outcome:
@@ -204,9 +111,7 @@ Potential Predictors:
 
 `artist_ethnicity` = The ethnicity of the artist.
 
-`artist_nationality_other` = The nationality of the artist.
-Of the total count of artists through all editions of *Gardner's Art Through the Ages* and *Janson's History of Art*, 77.32% account for French, Spanish, British, American and German.
-Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other.
+`artist_nationality_other` = The nationality of the artist. Of the total count of artists through all editions of *Gardner's Art Through the Ages* and *Janson's History of Art*, 77.32% account for French, Spanish, British, American and German. Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other.
 
 `whitney_count_to_year` = The count of exhibitions held by The Whitney of a particular artist at a particular moment of time, as highlighted by `year`.
 
@@ -221,3 +126,108 @@ Other variables:
 `book` = Which book, either Janson or Gardner the particular artist at that particular time was included.
 
 `artist_unique_id` = A unique identifying number assigned to artists across books and editions denoted in alphabetical order.
+
+## Log Transformation: Total Space Ratio per Page
+
+```{r}
+#| label: fig-logspaceratioperpagetotal
+#| fig-cap: "enter figure caption here"
+
+ggplot(
+  gardnerjanson_museums,
+  aes(x = log(space_ratio_per_page_total))
+) +
+  geom_histogram(binwidth = .1) +
+  labs(
+    title = "Distribution of the Log of Ratio of Space 
+       per Artist per Edition per Page in all Textbooks",
+    x = "Ratio of Space per Page Total",
+    y = "Count"
+  )
+```
+
+In order to create less skew in our outcome variable, it is evident that log transforming total space ratio per page given to an artist in a particular edition gives the spread a much more mild right-skew than before. The shape is still unimodal and asymmetrical. I will be using the log transformation on the total space ratio per page, our outcome variable, in the linear mixed-effects model. This allows for the residuals to have constant variance.
+
+\pagebreak
+
+## Assumptions
+
+### Residuals and Constant Variance
+
+```{r}
+#| label: fig-residuals
+#| fig-cap: "enter figure caption here"
+
+plot(resid(lmm, type = "pearson") ~ fitted(lmm), 
+     main = "Constant Variance Assumption Satisfied", 
+     xlab = "Fitted", 
+     ylab = "Residuals") 
+```
+
+The very low values of the predicted values have very low variability for residuals but for the bulk of the data, there is constant variability in the residuals.
+
+\pagebreak
+
+### Normality
+
+```{r}
+#| label: fig-density-histogram
+#| fig-cap: "enter figure caption here"
+
+lmm_aug <- broom.mixed::augment(lmm, gardnerjanson_museums_mod)
+
+ggplot(lmm_aug, aes(x = .resid)) +
+  geom_histogram(binwidth = .05, aes(y = after_stat(density))) +
+  theme_minimal() +
+  stat_function(
+    fun = dnorm,
+    args = list(
+      mean = mean(lmm_aug$.resid),
+      sd = sd(lmm_aug$.resid)
+    ),
+    color = "red",
+    size = 2
+  )+
+  labs(title = "Normality Assumption Satisfied", 
+       x = "Residuals", 
+       y = "Density")
+```
+
+The distribution of the residuals is approximately normal.
+
+\pagebreak
+
+### Linearity
+
+```{r}
+#| label: fig-linearitymoma
+#| fig-cap: "enter figure caption here"
+
+ggplot(lmm_aug, aes(x = moma_count_to_year, y = .resid)) +
+  geom_point(position = position_jitter(h = 0.1, w = 0.1), alpha = 0.5, size = 1) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Linearity Assumption Satisfied",
+    x = "MoMA Count to Year",
+    y = "Residuals"
+  )
+```
+
+There is no unexpected pattern left behind and the residuals are randomly and symmetrically scattered about the x-axis therefore linearity is satisfied. There is a linear relationship between the response and predictor variables.
+
+\pagebreak
+
+### Independence
+
+Since we cannot assume that each row in our data set is independent from another, because we expect an artist effect, we added a random effect at the artist level. Between artists, we expect the observations to be independent.
+
+### Collinearity
+
+```{r}
+#| label: collinearity
+#| tbl-cap: "add caption here"
+
+vif(lmm)
+```
+
+Given artist nationality, MoMA Count to Year and the interaction between the two all have a corrected GVIF under 10 therefore no variables are collinear.

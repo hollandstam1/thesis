@@ -99,130 +99,92 @@ lmm <- lmer(log(space_ratio_per_page_total) ~ artist_nationality_other
 
 ### Textbook data
 
-Scope: I collected data from 25 different books.
-I cataloged 9 different books of *Janson's History of Art*, spanning from 1963 to 2011.
-Additionally, I cataloged 16 different books of *Gardner's Art Through the Ages,* spanning from 1929 to 2020.
-I used the particular scope of works produced after c.
-1750 that were two-dimensional.
-This scope allowed me to collect information more quickly to understand how the books were changing over time.
-Across all 25 books, there are a total of `r nrow(gardnerjanson_museums)` observations, which is the sum of the count of artists in every book.
-In the finalized, gardnerjanson_museums data set, there are `r ncol(gardnerjanson_museums)` different variables cataloged (for further information about each variable, reference the Data Dictionary).
-There are a total of 414 unique artists.
+#### **Scope**
 
-Outcome variable:
+I collected data from 25 different books. I cataloged 9 different books of *Janson's History of Art*, spanning from 1963 to 2011. Additionally, I cataloged 16 different books of *Gardner's Art Through the Ages,* spanning from 1929 to 2020. I used the particular scope of works produced after c. 1750 that were two-dimensional. This scope allowed me to collect information more quickly to understand how the books were changing over time. Across all 25 books, there are a total of `r nrow(gardnerjanson_museums)` observations, which is the sum of the count of artists in every book. In the finalized, gardnerjanson_museums data set, there are `r ncol(gardnerjanson_museums)` different variables cataloged (for further information about each variable, reference the Data Dictionary). There are a total of 414 unique artists.
 
-`space_ratio_per_page_total` = I measured with a ruler with centimeters, the length and width of text per work per artist.
-If the area of text was not a rectangle, I additionally collected the length and width of any extra text.
-I then used excel to calculate the total area of the text per work per artist.
-Then I additionally measured the length and width of the figure in the book of the work itself.
-Again, using excel, I calculated the area of the figure of the work.
-I then added together the area of figure of a work with the area of text written about the work, to create a variable of total space given to a work.
-In order to achieve a ratio between total space and the area of a page is in a respective book, as they are inconsistent, I divided the total area of a page from a respective book with the total space given to a work by an artist in a respective book.
+##### **Outcome Variable:**
 
-Demographic variables:
+Total Space Ratio per Page = I measured with a ruler with centimeters, the length and width of text per work per artist. If the area of text was not a rectangle, I additionally collected the length and width of any extra text. I then used excel to calculate the total area of the text per work per artist. Then I additionally measured the length and width of the figure in the book of the work itself. Again, using excel, I calculated the area of the figure of the work. I then added together the area of figure of a work with the area of text written about the work, to create a variable of total space given to a work. In order to achieve a ratio between total space and the area of a page is in a respective book, as they are inconsistent, I divided the total area of a page from a respective book with the total space given to a work by an artist in a respective book.
 
-`artist_nationality` = I recorded the nationality of the artist as listed by the text.
-In the case the nationality of the artist was not listed, I would do a quick google search to further research their nationality.
-If I couldn't find their nationality, I listed such as N/A.
+##### **Demographic Variables:**
 
-`artist_gender` = I recorded the gender of the artist as listed by the text.
-In the case the gender of the artist was not listed, I would do a quick google search to further research their gender.
-If I couldn't find their gender, I listed such as N/A.
+**Artist Gender** = I recorded the gender of the artist as listed by the text. In the case the gender of the artist was not listed, I would do a quick google search to further research their gender. If I couldn't find their gender, I listed such as N/A.
 
-`artist_race` = I recorded the race of the artist as listed by the text.
-I categorized race based on the guidelines of the US Census.[^methodology-33]
-In the case the race of the artist was not listed, I would do a quick google search to further research their race.
-If I couldn't find their race, I listed such as N/A.
+**Artist Nationality** = I recorded the nationality of the artist as listed by the text. In the case the nationality of the artist was not listed, I would do a quick google search to further research their nationality. If I couldn't find their nationality, I listed such as N/A.
 
-[^methodology-33]: https://www.census.gov/topics/population/race/about.html
+**Artist Race** = I recorded the race of the artist as listed by the text. I categorized race based on the guidelines of the US Census.[^methodology-1] In the case the race of the artist was not listed, I would do a quick google search to further research their race. If I couldn't find their race, I listed such as N/A.
+
+[^methodology-1]: https://www.census.gov/topics/population/race/about.html
 
     dhttps://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bureau-Definitions-of-Race-and-Ethnicity.pdf#:\~:text=Definition%3A%20The%20U.S.%20Census%20Bureau%20adheres%20to%20the,Hispanics%20and%20Latinos%20may%20be%20of%20any%20race.
 
-`artist_ethnicity` = I recorded the ethnicity of the artist as listed by the text.
-Similarly to race, I categorized ethnicity based on the guidelines of the US Census.[^methodology-34]
-In the case the ethnicity of the artist was not listed, I would do a quick google search to further research their ethnicity.
-If I couldn't find their ethnicity, I listed such as N/A.
+**Artist Ethnicity** = I recorded the ethnicity of the artist as listed by the text. Similarly to race, I categorized ethnicity based on the guidelines of the US Census.[^methodology-2] In the case the ethnicity of the artist was not listed, I would do a quick google search to further research their ethnicity. If I couldn't find their ethnicity, I listed such as N/A.
 
-[^methodology-34]: https://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bureau-Definitions-of-Race-and-Ethnicity.pdf#:\~:text=Definition%3A%20The%20U.S.%20Census%20Bureau%20adheres%20to%20the,Hispanics%20and%20Latinos%20may%20be%20of%20any%20race.
+[^methodology-2]: https://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bureau-Definitions-of-Race-and-Ethnicity.pdf#:\~:text=Definition%3A%20The%20U.S.%20Census%20Bureau%20adheres%20to%20the,Hispanics%20and%20Latinos%20may%20be%20of%20any%20race.
 
-Identifying Variables:
+##### **Identifying Variables:**
 
-`artist_name` = The name of the artist as listed by the respective book.
-At times, each book would spell names slightly differently, so I standardized names across editions as well as across museum exhibition data for the MoMA and The Whitney.
+**Artist Name** = The name of the artist as listed by the respective book. At times, each book would spell names slightly differently, so I standardized names across editions as well as across museum exhibition data for the MoMA and The Whitney.
 
-`year` = I recorded the year of publication of each book.
+**Year** = I recorded the year of publication of each book.
 
-`edition_number` = I recorded the edition number of each book.
+**Edition Number** = I recorded the edition number of each book.
 
-`book` = I recorded which book, either Gardner or Janson, the work was mentioned.
+**Book** = I recorded which book, either Gardner or Janson, the work was mentioned.
 
-Selection: As argued in the Introduction and Context, *Janson's History of Art* and *Gardner's Art Through the Ages,* are the two most renowned and significant art history introductory texts through roughly the last century.
+#### Selection
 
-Limitations: I have limited my data collecting in *Janson's History of Art* and *Gardner's Art Through the Ages* to only including two-dimensional art made after c.
-1750.
-This omits sculpture and architecture and how the story of art changes from the beginning of time to c.
-1750.
-I did such as I am most interested in how the diversity of artists changes through editions, and because it only took roughly 1/5 of the time to catalog as I was only cataloging roughly 1/5 of each book.
-Additionally, two-dimensional works are more frequently included in museum exhibitions spaces than works of sculpture and architecture.
-My research would be more robust and complete had I cataloged every work in every edition.
-I am fully aware of this limitation, yet I believe my conclusions are significant within my scope.
+As argued in the Introduction and Context, *Janson's History of Art* and *Gardner's Art Through the Ages,* are the two most renowned and significant art history introductory texts through roughly the last century.
+
+#### Limitations
+
+I have limited my data collecting in *Janson's History of Art* and *Gardner's Art Through the Ages* to only including two-dimensional art made after c. 1750. This omits sculpture and architecture and how the story of art changes from the beginning of time to c. 1750. I did such as I am most interested in how the diversity of artists changes through editions, and because it only took roughly 1/5 of the time to catalog as I was only cataloging roughly 1/5 of each book. Additionally, two-dimensional works are more frequently included in museum exhibitions spaces than works of sculpture and architecture. My research would be more robust and complete had I cataloged every work in every edition. I am fully aware of this limitation, yet I believe my conclusions are significant within my scope.
 
 ### Museum data
 
-Scope: My second research question is looking at if / how an artist's inclusion in museums exhibitions impacts the amount of total area an artist is given in a particular book.
-I initially began this research as a group project for a class titled, "Art Markets." In order to collect information regarding museum exhibitions, my colleague, David Smoot ('21), web scraped the MoMA's website for the entirety of its catalog history from when its doors first opened in 1929 through the date he scraped the MoMA's website which was March 14th, 2021.
-He did the same thing with The Whitney's website and web scraped their exhibition history from 1933 through when he scraped the website, March 30th, 2021.
-There was a total of 10,630 observations in the MoMA data set and 13,736 at The Whitney.
-An observation is an appearance of an artist in an exhibition.
+#### Scope
 
-Selection: The Whitney and the MoMA were chosen as they are located in New York City, arguably the center of the art world as we know it, and because of the relative accessibility of historic exhibition data. 
+My second research question is looking at if / how an artist's inclusion in museums exhibitions impacts the amount of total area an artist is given in a particular book. I initially began this research as a group project for a class titled, "Art Markets." In order to collect information regarding museum exhibitions, my colleague, David Smoot ('21), web scraped the MoMA's website for the entirety of its catalog history from when its doors first opened in 1929 through the date he scraped the MoMA's website which was March 14th, 2021. He did the same thing with The Whitney's website and web scraped their exhibition history from 1933 through when he scraped the website, March 30th, 2021. There was a total of 10,630 observations in the MoMA data set and 13,736 at The Whitney. An observation is an appearance of an artist in an exhibition.
 
-Limitations: The inclusion of more museums, both domestically and internationally would lend the museum data sets greater power to provide context, and an independent metric for the importance of the exhibition, such as press coverage, would be more useful as a comparison to the `space_ratio_per_page_total` in the textbook than the number of exhibitions.
-Also, The Whitney appears to only list their annual shows on their website prior to 1997, so only the MoMA has complete data.
+#### Selection
 
-I finished my data collection process with four separate data sets.
-I had one in which I collected demographic and total space information for the nine books of *Janson's History of Art,* and a second doing the same for the sixteen books of *Gardner's Art Through the Ages.* I then had a data set of the MoMA's exhibition history from 1929-March 14th, 2021 and lastly a data set of The Whitney's exhibition history from 1933-March 30th, 2021.
+The Whitney and the MoMA were chosen as they are located in New York City, arguably the center of the art world as we know it, and because of the relative accessibility of historic exhibition data. 
+
+#### Limitations
+
+The inclusion of more museums both domestically and internationally would lend the museum data sets greater power to provide context, and an independent metric for the importance of the exhibition, such as press coverage, would be more useful as a comparison to the total space ratio per page in the textbook than the number of exhibitions. The Whitney also is a museum of only American art, meaning they only include artists who are in *Janson's History of Art* or *Gardner's Art Through the Ages* who are also American. Due to this, Whitney most likely will not be a strong predictor of the amount of area a given artist has as only about 30% of the artists in Janson and Gardner are American. Also, The Whitney appears to only list their annual shows on their website prior to 1997, so only the MoMA has complete data.
+
+### Overview of Data Collection
+
+I finished my data collection process with four separate data sets. I had one in which I collected demographic and total space information for the nine books of *Janson's History of Art,* and a second doing the same for the sixteen books of *Gardner's Art Through the Ages.* I then had a data set of the MoMA's exhibition history from 1929-March 14th, 2021 and lastly a data set of The Whitney's exhibition history from 1933-March 30th, 2021.
 
 ## Data Preparation
 
-In order to create one data set, `gardnerjanson_museums`, I went through a number of steps to join data from all four in R Studio.
-I began with binding the rows from the Janson data set and the Gardner data set.
-I then created a new variable `artist_unique_id` in which I assigned a number to each artist in alphabetical order across all editions of both books.
-In some cases, there are artists with multiple works cataloged in a particular edition.
-I was able to sum the total space per work such that an artist's name would only show up once per edition with a `total_space_per_page_total` value in centimeters squared.
+In order to create one data set, I went through a number of steps to join data from all four in R Studio. I began with binding the rows from the Janson data set and the Gardner data set. I then created a new variable of Artist Unique ID in which I assigned a number to each artist in alphabetical order across all editions of both books. In some cases, there are artists with multiple works cataloged in a particular edition. I was able to sum the total space per work such that an artist's name would only show up once per edition with a total space ratio per page value in centimeters squared.
 
-Pivoting to joining The Whitney's catalog history and the MoMA's catalog history with the data set I just created with both Janson and Gardner observations, I had to create a variable called `whitney_count_to_year` and `moma_count_to_year` respectively.
-This is because as the publication year of books changes through time, the amount of exhibitions that are given to an artist has the possibility to change through time as well.
+Pivoting to joining The Whitney's catalog history and the MoMA's catalog history with the data set I just created with both Janson and Gardner observations, I had to create a variable called Whitney Count to Year and MoMA Count to Year respectively. This is because as the publication year of books changes through time, the amount of exhibitions that are given to an artist has the possibility to change through time as well.
 
-`whitney_count_to_year` = The count of exhibitions held by The Whitney of a particular artist at a particular moment of time, as highlighted by `year`.
+#### Museum Exhibitions Count Variables:
 
-`moma_count_to_year` = The count of exhibitions held by the Museum of Modern Art (MoMA) of a particular artist at a particular moment of time, as highlighted by `year`.
+**Whitney Count to Year** = The count of exhibitions held by The Whitney of a particular artist at a particular moment of time, as highlighted by year.
+
+**MoMA Count to Year** = The count of exhibitions held by the Museum of Modern Art (MoMA) of a particular artist at a particular moment of time, as highlighted by year.
 
 ## Model Selection
 
 ### Data Preparation for Modeling Purposes
 
-In order to prepare my data further for the purposes of regression, I had to re-categorize the variable of `artist_nationality` and `artist_race`.
-Firstly, since there are myriad nationalities recorded through all 25 books, I had to condense `artist_nationality` to `artist_nationality_other` such that I would only receive five varying betas rather than more than thirty.
+In order to prepare my data further for the purposes of regression, I had to re-categorize the variable of artist nationality and artist race. Firstly, since there are myriad nationalities recorded through all 25 books, I had to condense artist nationality to artist nationality other such that I would only receive five varying betas rather than more than thirty.
 
-`artist_nationality_other` = The nationality of the artist.
-Of the total count of artists through all editions of *Janson's History of Art* and *Gardner's Art Through the Ages,* 77.32% account for French, Spanish, British, American and German.
-Therefore, the categorical strings of this variable are French, Spanish, British, American, German and Other.
+**Artist Nationality Other** = The nationality of the artist. Of the total count of artists through all editions of *Janson's History of Art* and *Gardner's Art Through the Ages,* 77.32% account for American, French, British, German, and Spanish. Therefore, the categorical strings of this variable are American, French, British, German, Spanish, and Other.
 
-In regard to `artist_race`, there are so few observations of artists who are non-white that when running a regression with a categorizing non-white even further into their respective cataloged races with only a handful of data points is not statistically sufficient nor informative.
-The buckets of information at the respective race-level were too small and therefore rank deficient.
-Therefore I created the variable `artist_race_nwi`.
+In regard to artist race, there are so few observations of artists who are non-white that when running a regression with a categorizing non-white even further into their respective cataloged races with only a handful of data points is not statistically sufficient nor informative. The buckets of information at the respective race-level were too small and therefore rank deficient. Therefore I created the variable artist race non-white indicator (artist race nwi).
 
-`artist_race_nwi` = The non-white indicator for artist race, meaning if an artist's race is denoted as either white or non-white.
+**Artist Race NWI** = The non-white indicator for artist race, meaning if an artist's race is denoted as either white or non-white.
 
-Lastly, I releveled my data such that the baseline demographic of artist reflects the most common category across `artist_race`, `artist_ethnicity`, `artist_nationality` and `artist_gender` respectively which is a white non-Latinx or Hispanic French man.
+Lastly, I releveled my data such that the baseline demographic of an artist reflects the most common category across an artist's gender, race, ethnicity, and nationality, which is male, white, of Hispanic or Latino origin, and American respectively.
 
 ### Linear Mixed-Effects Model
 
-I chose to use a linear mixed-effects model as the data contains a random effect at the artist level as multiple observations in the data can be by the same artist.
-Using a linear mixed-effects model with artist name as the random effect eliminates the dependence between observations of the same artist, therefore allowing independence to be satisfied for our model.
-Additionally, I chose to log transform the outcome variable, as the total space ratio per page is extremely right-skewed.
-Performing the log transformation allows for the residuals to have constant variance (homoscedasticity).
-In regards to choosing the combination of both main fixed effects and interaction fixed effects, I used a step-wise model selection methodology.
-
-Satterthwaite test, more flexible, looking directly at p-values - non-parametric test - uses different error term, similar to a two same t-test, similar to ANOVA - analysis of variance - checking between different groups -
+I chose to use a linear mixed-effects model as the data contains a random effect at the artist level as multiple observations in the data can be by the same artist. Using a linear mixed-effects model with artist name as the random effect accounts for the dependence between observations of the same artist, therefore allowing independence to be satisfied for our model. Additionally, I chose to log transform the outcome variable, as the total space ratio per page is extremely right-skewed. Performing the log transformation allows for the residuals to have constant variance (homoscedasticity). In regards to choosing the combination of both main fixed effects and interaction fixed effects, I used a step-wise model selection methodology and chose a model that optimizes AIC.
