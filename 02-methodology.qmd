@@ -115,13 +115,11 @@ Total Space Ratio per Page = I measured with a ruler with centimeters, the lengt
 
 **Artist Race** = I recorded the race of the artist as listed by the text. I categorized race based on the guidelines of the US Census.[^methodology-1] In the case the race of the artist was not listed, I would do a quick google search to further research their race. If I couldn't find their race, I listed such as N/A.
 
-[^methodology-1]: https://www.census.gov/topics/population/race/about.html
-
-    dhttps://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bureau-Definitions-of-Race-and-Ethnicity.pdf#:\~:text=Definition%3A%20The%20U.S.%20Census%20Bureau%20adheres%20to%20the,Hispanics%20and%20Latinos%20may%20be%20of%20any%20race.
+[^methodology-1]: "U.S. Census Bureau Definitions of Race and Ethnicity," United States Census Bureau, last modified July 2014, https://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bureau-Definitions-of-Race-and-Ethnicity.pdf.
 
 **Artist Ethnicity** = I recorded the ethnicity of the artist as listed by the text. Similarly to race, I categorized ethnicity based on the guidelines of the US Census.[^methodology-2] In the case the ethnicity of the artist was not listed, I would do a quick google search to further research their ethnicity. If I couldn't find their ethnicity, I listed such as N/A.
 
-[^methodology-2]: https://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bureau-Definitions-of-Race-and-Ethnicity.pdf#:\~:text=Definition%3A%20The%20U.S.%20Census%20Bureau%20adheres%20to%20the,Hispanics%20and%20Latinos%20may%20be%20of%20any%20race.
+[^methodology-2]: United States Census Bureau, "U.S. Census Bureau Definitions of Race and Ethnicity."
 
 ##### **Identifying Variables:**
 
@@ -145,7 +143,7 @@ I have limited my data collecting in *Janson's History of Art* and *Gardner's Ar
 
 #### Scope
 
-My second research question is looking at if / how an artist's inclusion in museums exhibitions impacts the amount of total area an artist is given in a particular book. I initially began this research as a group project for a class titled, "Art Markets." In order to collect information regarding museum exhibitions, my colleague, David Smoot ('21), web scraped the MoMA's website for the entirety of its catalog history from when its doors first opened in 1929 through the date he scraped the MoMA's website which was March 14th, 2021. He did the same thing with The Whitney's website and web scraped their exhibition history from 1933 through when he scraped the website, March 30th, 2021. There was a total of 10,630 observations in the MoMA data set and 13,736 at The Whitney. An observation is an appearance of an artist in an exhibition.
+My second research question is looking at if and or how an artist's inclusion in museums exhibitions impacts the amount of total area an artist is given in a particular book. I initially began this research as a group project for a class titled, "Art Markets." In order to collect information regarding museum exhibitions, my colleague, David Smoot ('21), web scraped the MoMA's website for the entirety of its catalog history from when its doors first opened in 1929 through the date he scraped the MoMA's website which was March 14th, 2021. He did the same thing with The Whitney's website and web scraped their exhibition history from 1933 through when he scraped the website, March 30th, 2021. There was a total of 10,630 observations in the MoMA data set and 13,736 at The Whitney. An observation is an appearance of an artist in an exhibition.
 
 #### Selection
 

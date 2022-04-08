@@ -197,26 +197,6 @@ The distribution of the residuals is approximately normal.
 
 \pagebreak
 
-### Linearity
-
-```{r}
-#| label: fig-linearitymoma
-#| fig-cap: "enter figure caption here"
-
-ggplot(lmm_aug, aes(x = moma_count_to_year, y = .resid)) +
-  geom_point(position = position_jitter(h = 0.1, w = 0.1), alpha = 0.5, size = 1) +
-  geom_smooth(method = "lm", se = FALSE) +
-  labs(
-    title = "Linearity Assumption Satisfied",
-    x = "MoMA Count to Year",
-    y = "Residuals"
-  )
-```
-
-There is no unexpected pattern left behind and the residuals are randomly and symmetrically scattered about the x-axis therefore linearity is satisfied. There is a linear relationship between the response and predictor variables.
-
-\pagebreak
-
 ### Independence
 
 Since we cannot assume that each row in our data set is independent from another, because we expect an artist effect, we added a random effect at the artist level. Between artists, we expect the observations to be independent.
