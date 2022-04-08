@@ -331,6 +331,8 @@ gardner_black <- gardnerjanson_museums %>%
 
 ```
 
+\pagebreak
+
 ### Ethnicity Through Editions
 
 Helen Gardner's third edition published in 1959 was the most ethnically diverse of all 25 textbooks, as shown in @fig-gardnerethnicitythroughtime. This edition was published after her death, but she has passed with the intention of her book being a representation of the world's history of art. Her efforts are evident in the percentage of artists of Hispanic and Latino origin which is just under 22%. It is clear that her succeeding authors did not continue with such an ethnically diverse selection of artists, which has remained under 9% in every other publication. Artists of Hispanic or Latino origin increases until the third edition in 1959, then begin to decrease through time and remain stagnant at just under 7% through the latest edition published in 2020.
@@ -477,10 +479,6 @@ iqr_space <- IQR(gardnerjanson_museums$space_ratio_per_page_total)
 
 Interestingly enough, as displayed above in @fig-genderallbooks the median of the total ratio of space per page for female artists is .349, not far below the median of the total ratio of space per page in centimeters for male artists, .420, through all 25 varying textbooks*.* This indicates that even though the percentage of female artists as compared to male artists is 10.82%, the average amount of space allotted to a female artist is comparable to that of a male.
 
-That said, there are far more male artists that are given a total ratio of space per page of over 1, meaning over a page of information regarding their work or works. No female has a total ratio of space per page of over 1. The closest female artist to having a page of area given to them is Hannah Höch as shown in @tbl-female. In fact, she holds the top three spots of the most area given to a woman in three separate editions: The seventh (2007) and eighth (2011) editions of *Janson's History of Art* and the eleventh edition (2001) of *Gardner's Art Through the Ages.* Her work included as displayed by @fig-hoch, *Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany,* stands as an example of a photomontage introducing the illogical and chaotic Dadaism.
-
-![Hannah Höch. Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany. 1919-1920. Photomontage, 114.3 x 90.17 cm. Neue Nationalgalerie, Staatliche Museen, Berlin.](images/hoch-knife.png){#fig-hoch alt="Hannah Höch. Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany. 1919-1920. Photomontage, 114.3 x 90.17 cm. Neue Nationalgalerie, Staatliche Museen, Berlin." height="299"}
-
 ```{r}
 #| label: fig-genderallbooks
 #| fig-cap: "Ratio of Space per Page per Artist per Edition by Gender, n = 3162, (Source: All artists of two-dimensional works made after c. 1750 in Gardner's Art Through the Ages and Janson's History of Art, 1926-2020)."
@@ -525,6 +523,12 @@ artists_female %>%
   slice_head(n = 5) %>%
   kable(col.names = c("Artist", "Edition", "Book", "Total Space Ratio per Page"))
 ```
+
+![ Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany. 1919-1920. Photomontage, 114.3 x 90.17 cm. Neue Nationalgalerie, Staatliche Museen, Berlin.](images/hoch-knife.png){alt="Hannah Höch. Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany. 1919-1920. Photomontage, 114.3 x 90.17 cm. Neue Nationalgalerie, Staatliche Museen, Berlin." height="299"}
+
+That said, there are far more male artists that are given a total ratio of space per page of over 1, meaning over a page of information regarding their work or works. No female has a total ratio of space per page of over 1. The closest female artist to having a page of area given to them is Hannah Höch as shown in @tbl-female. In fact, she holds the top three spots of the most area given to a woman in three separate editions: The seventh (2007) and eighth (2011) editions of *Janson's History of Art* and the eleventh edition (2001) of *Gardner's Art Through the Ages.* Her work included, as displayed by @fig-hoch, *Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany,* stands as an example of a photomontage introducing the illogical and chaotic Dadaism.
+
+\pagebreak
 
 ### Total Space Ratio Per Page vs. Artist Race
 
@@ -595,6 +599,8 @@ gjdes %>%
   kable(col.names = c("Artist", "Edition", "Book", "Total Space Ratio per Page"))
 ```
 
+\pagebreak
+
 ### Total Space Ratio Per Page vs. Artist Ethnicity
 
 Interestingly, the median for total space ratio per page for artists who are of Hispanic or Latino origin, .488 is higher than those who are not of Hispanic or Latino origin, .406, as shown in @fig-ethnicityallbooks. There are 158 observations of artists per edition who are of Hispanic and Latino origin and there are 2,946 observations of artists per edition who are not of Hispanic or Latino origin. Artists such as Pablo Picasso and Francisco Goya play a large role in such, as they are of Hispanic or Latino origin and accounts for many of the outlying larger observations for total space ratio per page.
@@ -627,6 +633,8 @@ artists_NHL <- gardnerjanson_museums %>%
 
 median_NHL <- median(artists_NHL$space_ratio_per_page_total)
 ```
+
+\pagebreak
 
 ### Total Space Ratio Per Page vs. Artist Nationality
 
