@@ -178,7 +178,7 @@ gard_male <- nrow(gardner_male)/nrow(artists_gardner)
 
 The breakdown of artists' gender through editions of *Janson's History of Art,* has never dipped below 86% male, which is what the horizontal line denotes. Additionally, @fig-jansongenderthroughtime shows that the first two editions (the first three books cataloged: edition 1, first printing, edition 1, second printing, and edition 2) written by H. W. Janson and Dora Jane Janson, contain no women. Anthony Janson, who took over authorship for the third edition in 1986, began including discourse surrounding female artists. Notably, he was extremely proud of himself for diversifying his family's art history survey text.[^results-1]
 
-[^results-1]: anthony janson interview
+[^results-1]: Janson, "Interview with Anthony F. Janson," 9.
 
 The overall percentage of male artists through all books of *Janson's History of Art* is 89.99%. Through time, gender diversity grows, yet remains stagnant at just above 86% male. Female artists are dramatically underrepresented in the story of art as told in *Janson's History Art.*
 
@@ -219,7 +219,7 @@ The first named Asian artist in any edition of *Gardner's Art Through the Ages* 
 
 The first black artists who produced two-dimensional works after c.1750 were added in the ninth edition (1991). The only two black artists to be included in all editions from then on are Aaron Douglas and Henry Ossawa Tanner. Douglas' work *Noak's Ark* is highlighted in @fig-ark, he incorporates African motifs and sculpture into Synthetic Cubism through the use of silhouettes and pushing the boundary of flatness. There is only one clause in the paragraph describing Douglas in Gardner's eleventh edition that comments on his demographic, "Encouraged by the German artist Winold Reiss to create art that would express the cultural history of his race..."[^results-2] There is far less discourse about the artist as a minority but rather more regarding the artist and his work. Though *Gardner's* still discusses Douglas through the lens of a white male artist, Winold Reiss, *Gardner's* does comparably much better in regard to including as well as in regard to how they include in this particular example, black artists.
 
-[^results-2]: gardner 11, page 1030
+[^results-2]: Fred S. Kleiner, Christin J. Mamiya and Richard G. Tansey, *Gardner's Art Through the Ages,* Eleventh Edition (Fort Worth: Harcourt College Publishers, 2001), 1030.
 
 ![Aaron Douglas. Noah's Ark. c. 1927. Oil on masonite, 121.92 x 91.44 cm. Fisk University Galleries, Nashville, Tennessee.](images/noaks-ark.jpeg){#fig-ark height="320"}
 
@@ -277,29 +277,29 @@ When Anthony Janson took over authorship, he included a handful of black artists
 
 Anthony Janson states in the fifth edition that Walkingstick combines "Neo-Expressionism and Neo-Abstraction in a particularly fruitful way..."[^results-3] The work in @fig-kay was brought forth after the death of her husband in 1989, as she outpours her grief onto the canvas. The left panel, as Janson writes, is "built up in thick coats of paint applied mainly by her hands," with a fan shape in the center which suggests a manmade feature in a primitive landscape and also acts as a sign, investing the canvas mysterious emblematic significance. The right half was painted in an Expressionist style and releases anger through the various layers of color. Walkingstick's diptych display aspects of nature as a spiritual center, of calm contemplation, powerful emotion, and order in chaos. [^results-4]
 
-[^results-3]: Janson edition 5, 834
+[^results-3]: H. W. Janson, and Anthony F. Janson, *History of Art,* Fifth Edition (New York: Harry N. Abrams, New Jersey: Prentice Hall, 1995), 834.
 
-[^results-4]: Janson fifther edition, 835
+[^results-4]: H. W. Janson, and Anthony F. Janson, *History of Art,* Fifth Edition, 835.
 
 ![Kay WalkingStick, *On The Edge*, 1989. Acrylic and wax and oil on canvas, 81 x 162 ½  cm. Private collection.](images/on-the-edge.png){#fig-kay width="400"}
 
 Interestingly, the black artists who are included have frequent turnover. The only black artist that enters *Janson's History of Art* in the third edition (1986) and remains through the latest edition (2011) is painter Henry Ossawa Tanner (1859-1937). Notably, in the fifth edition by Anthony Janson, he begins his discourse on Tanner with,
 
-Thanks in large part to \[Thomas\] Eakins' enlightened attitude, Philadelphia became the leading center of minority artists in the United States. Eakins encouraged women and blacks to study art seriously at a time when professional careers were closed to them. African-Americans has no chance to enter the arts before Emancipation, and after the Civil War the situation improved only gradually. [^results-5]
+Thanks in large part to \[Thomas\] Eakins' enlightened attitude, Philadelphia became the leading center of minority artists in the United States. Eakins encouraged women and blacks to study art seriously at a time when professional careers were closed to them. African-Americans has no chance to enter the arts before Emancipation, and after the Civil War the situation improved only gradually.[^results-5]
 
-[^results-5]: Janson's fifth edition, 724.
+[^results-5]: H. W. Janson, and Anthony F. Janson, *History of Art,* Fifth Edition, 724.
 
 Janson is seemingly distracted by Tanner's race and how Thomas Eakins provided space for him rather than beginning discourse directly about the aesthetics and significance of Tanner's work itself. He only mentions Tanner's name in the following sentence, allotting only half of the area of text to the history of the artist and the work itself.
 
 In the fifth edition of Janson's History of Art, Anthony Janson chose to include, @fig-banjo *The Banjo Lesson,* which he painted after he moved permenantly to Paris, which "bears Eakins' unmistakable influence."[^results-6] Tanner, who is described as the "first important black painter" is given space in the text, yet is not properly and independently discussed.
 
-[^results-6]: Janson fifth edition, 724.
+[^results-6]: H. W. Janson, and Anthony F. Janson, *History of Art,* Fifth Edition, 724.
 
 ![Henry Ossawa Tanner, The Banjo Lesson, c. 1893. Oil on canvas, 121.9 x 88.9 cm. Hampton University Museum, Hampton, Virginia.](images/the-banjo-lesson.png){#fig-banjo height="263"}
 
 In the seventh and eighth editions, there was an Asian artist introduced, Ando Hiroshige, a Japanese male painter who was used as a reference when discussing Edgar Degas. In Janson's eighth edition, the group of six authors highlights the use of flatness in Hiroshige's composition as shown in @fig-ando. The flatness he employs is used to discuss how the "spatial contraction of Japanese prints certainly influence Degas and Manet..."[^results-7] Similarly to the example of Tanner, Hiroshige stands as another example of a minority artist included to be compared to the work of a white male artist.
 
-[^results-7]: Janson Edition 8, 871.
+[^results-7]: Penelope J.E. Davies, Walter B. Denny, Frima Fox Hofrichter, Joseph F. Jacobs, Ann S. Roberts, David L. Simon, *Janson's History of Art,* Eighth Edition (New Jersey: Pearson Prentice Hall, 2011), 871.
 
 ![Ando Hiroshige, Plum Estate, Kamiedo, from the series One Hundred Famous Views of Edo. 1857. Woodblock print, 34 x 22.6 cm. Brooklyn Museum of Art, New York.](images/plum-estate.png){#fig-ando height="261"}
 
@@ -704,7 +704,7 @@ nonother_total <- (1 - (nrow(other) / nrow(gardnerjanson_museums)))
 ```
 
 | Artist Nationality | Percent of Total Count Through all 25 Books | Median Total Ratio of Space per Page |
-|-------------------|-----------------------------|-------------------------|
+|-------------------|----------------------------|-------------------------|
 | American           | 28.72%                                      | 0.377                                |
 | British            | 10.03%                                      | 0.372                                |
 | French             | 27.51%                                      | 0.535                                |
