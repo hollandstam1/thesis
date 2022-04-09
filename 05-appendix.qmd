@@ -131,7 +131,7 @@ Other variables:
 
 ```{r}
 #| label: fig-logspaceratioperpagetotal
-#| fig-cap: "enter figure caption here"
+#| fig-cap: "Distribution of the Log of Total Space Ratio per Page, n = 3162, (Source: All artists of two-dimensional works made after c. 1750 in Gardner's Art Through the Ages and Janson's History of Art, 1926-2020)."
 
 ggplot(
   gardnerjanson_museums,
@@ -156,7 +156,7 @@ In order to create less skew in our outcome variable, it is evident that log tra
 
 ```{r}
 #| label: fig-residuals
-#| fig-cap: "enter figure caption here"
+#| fig-cap: "Constant Variance Assumption of the Residuals"
 
 plot(resid(lmm, type = "pearson") ~ fitted(lmm), 
      main = "Constant Variance Assumption Satisfied", 
@@ -172,7 +172,7 @@ The very low values of the predicted values have very low variability for residu
 
 ```{r}
 #| label: fig-density-histogram
-#| fig-cap: "enter figure caption here"
+#| fig-cap: "Normality Assumption of the Residuals"
 
 lmm_aug <- broom.mixed::augment(lmm, gardnerjanson_museums_mod)
 
@@ -205,7 +205,7 @@ Since we cannot assume that each row in our data set is independent from another
 
 ```{r}
 #| label: collinearity
-#| tbl-cap: "add caption here"
+#| tbl-cap: "Collinearity Test"
 
 vif(lmm)
 ```

@@ -127,8 +127,6 @@ ggplot(gardnerjanson_museums %>% filter(book == "Gardner"), aes(x = year))+
   ylim(0, 200)
 ```
 
-In @fig-jansoncountthroughtime, the shape of the overall count of works by artists in *Janson's History of Art* is left-skewed, unimodal and asymmetrical. Such highlights how through time, more works are added to *Janson's History of Art* that are two-dimensional and made after c. 1750. There is then a drop-off of works included in the seventh (published in 2007 with 163 works) and eighth (published in 2011 with 153 works) editions, when new authorship took over. Within edition five (published 1995) and edition six (published in 2001), both written by Anthony Janson, there are the same number of works, the maximum amount included in the text throughout time, 185, as compared to the count of works in the first edition, first printing, 62, and first edition, second printing, 76.
-
 ```{r fig.height= 3}
 #| label: fig-jansoncountthroughtime
 #| fig-cap: "Overall Count of Artists in Janson's History of Art, n= 1634. (Source: All two-dimensional works after c. 1750 through all editions of Janson's History of Art, 1963-2011)."
@@ -145,6 +143,8 @@ ggplot(gardnerjanson_museums %>% filter(book == "Janson"), aes(x = year))+
             size = 4)+
   ylim(0, 200)
 ```
+
+In @fig-jansoncountthroughtime, the shape of the overall count of works by artists in *Janson's History of Art* is left-skewed, unimodal, and asymmetrical. Such highlights how through time, more works are added to *Janson's History of Art* that are two-dimensional and made after c. 1750. There is then a drop-off of works included in the seventh (published in 2007 with 163 works) and eighth (published in 2011 with 153 works) editions, when new authorship took over. Within edition five (published 1995) and edition six (published in 2001), both written by Anthony Janson, there are the same number of works, the maximum amount included in the text throughout time, 185, as compared to the count of works in the first edition, first printing, 62, and first edition, second printing, 76.
 
 ### Gender Through Editions
 
@@ -221,7 +221,7 @@ The first black artists who produced two-dimensional works after c.1750 were add
 
 [^results-2]: Fred S. Kleiner, Christin J. Mamiya and Richard G. Tansey, *Gardner's Art Through the Ages,* Eleventh Edition (Fort Worth: Harcourt College Publishers, 2001), 1030.
 
-![Aaron Douglas. Noah's Ark. c. 1927. Oil on masonite, 121.92 x 91.44 cm. Fisk University Galleries, Nashville, Tennessee.](images/noaks-ark.jpeg){#fig-ark height="320"}
+![Aaron Douglas. *Noah's Ark*. c. 1927. Oil on masonite, 121.92 x 91.44 cm. Fisk University Galleries, Nashville, Tennessee.](images/noaks-ark.jpeg){#fig-ark height="320"}
 
 ```{r fig.height= 3}
 #| label: fig-gardnerracethroughtime
@@ -295,13 +295,13 @@ In the fifth edition of Janson's History of Art, Anthony Janson chose to include
 
 [^results-6]: H. W. Janson, and Anthony F. Janson, *History of Art,* Fifth Edition, 724.
 
-![Henry Ossawa Tanner, The Banjo Lesson, c. 1893. Oil on canvas, 121.9 x 88.9 cm. Hampton University Museum, Hampton, Virginia.](images/the-banjo-lesson.png){#fig-banjo height="263"}
+![Henry Ossawa Tanner, *The Banjo Lesson,* c. 1893. Oil on canvas, 121.9 x 88.9 cm. Hampton University Museum, Hampton, Virginia.](images/the-banjo-lesson.png){#fig-banjo height="263"}
 
 In the seventh and eighth editions, there was an Asian artist introduced, Ando Hiroshige, a Japanese male painter who was used as a reference when discussing Edgar Degas. In Janson's eighth edition, the group of six authors highlights the use of flatness in Hiroshige's composition as shown in @fig-ando. The flatness he employs is used to discuss how the "spatial contraction of Japanese prints certainly influence Degas and Manet..."[^results-7] Similarly to the example of Tanner, Hiroshige stands as another example of a minority artist included to be compared to the work of a white male artist.
 
 [^results-7]: Penelope J.E. Davies, Walter B. Denny, Frima Fox Hofrichter, Joseph F. Jacobs, Ann S. Roberts, David L. Simon, *Janson's History of Art,* Eighth Edition (New Jersey: Pearson Prentice Hall, 2011), 871.
 
-![Ando Hiroshige, Plum Estate, Kamiedo, from the series One Hundred Famous Views of Edo. 1857. Woodblock print, 34 x 22.6 cm. Brooklyn Museum of Art, New York.](images/plum-estate.png){#fig-ando height="261"}
+![Ando Hiroshige, *Plum Estate, Kamiedo, from the series One Hundred Famous Views of Edo.* 1857. Woodblock print, 34 x 22.6 cm. Brooklyn Museum of Art, New York.](images/plum-estate.png){#fig-ando height="261"}
 
 ```{r}
 #| label: gardner-white
@@ -524,7 +524,7 @@ artists_female %>%
   kable(col.names = c("Artist", "Edition", "Book", "Total Space Ratio per Page"))
 ```
 
-![ Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany. 1919-1920. Photomontage, 114.3 x 90.17 cm. Neue Nationalgalerie, Staatliche Museen, Berlin.](images/hoch-knife.png){alt="Hannah Höch. Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany. 1919-1920. Photomontage, 114.3 x 90.17 cm. Neue Nationalgalerie, Staatliche Museen, Berlin." height="299"}
+![Hannah Höch, *Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany.* 1919-1920. Photomontage, 114.3 x 90.17 cm. Neue Nationalgalerie, Staatliche Museen, Berlin.](images/hoch-knife.png){#fig-hoch alt="Hannah Höch. Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany. 1919-1920. Photomontage, 114.3 x 90.17 cm. Neue Nationalgalerie, Staatliche Museen, Berlin." height="299"}
 
 That said, there are far more male artists that are given a total ratio of space per page of over 1, meaning over a page of information regarding their work or works. No female has a total ratio of space per page of over 1. The closest female artist to having a page of area given to them is Hannah Höch as shown in @tbl-female. In fact, she holds the top three spots of the most area given to a woman in three separate editions: The seventh (2007) and eighth (2011) editions of *Janson's History of Art* and the eleventh edition (2001) of *Gardner's Art Through the Ages.* Her work included, as displayed by @fig-hoch, *Cut with the Kitchen Knife Dada through the Last Weimar Beer Belly Cultural Epoch of Germany,* stands as an example of a photomontage introducing the illogical and chaotic Dadaism.
 
@@ -712,7 +712,7 @@ nonother_total <- (1 - (nrow(other) / nrow(gardnerjanson_museums)))
 ```
 
 | Artist Nationality | Percent of Total Count Through all 25 Books | Median Total Ratio of Space per Page |
-|-------------------|----------------------------|-------------------------|
+|-----------------|------------------------------|-------------------------|
 | American           | 28.72%                                      | 0.377                                |
 | British            | 10.03%                                      | 0.372                                |
 | French             | 27.51%                                      | 0.535                                |
