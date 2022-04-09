@@ -712,7 +712,7 @@ nonother_total <- (1 - (nrow(other) / nrow(gardnerjanson_museums)))
 ```
 
 | Artist Nationality | Percent of Total Count Through all 25 Books | Median Total Ratio of Space per Page |
-|-----------------|------------------------------|-------------------------|
+|--------------------|---------------------------------------------|--------------------------------------|
 | American           | 28.72%                                      | 0.377                                |
 | British            | 10.03%                                      | 0.372                                |
 | French             | 27.51%                                      | 0.535                                |
