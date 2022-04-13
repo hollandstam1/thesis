@@ -99,7 +99,7 @@ lmm <- lmer(log(space_ratio_per_page_total) ~ artist_nationality_other
 
 Outcome:
 
-`space_ratio_per_page_total` = The area in centimeters squared of both the text and the figure of a particular artist in a given edition of *Janson's History of Art* divided by the area in centimeters squared of a single page of the respective edition.
+`space_ratio_per_page_total` = The area in centimeters squared of both the text and the figure of a particular artist in a given edition of *Janson's History of Art* or *Gardner's Art Through the Ages* divided by the area in centimeters squared of a single page of the respective edition.
 
 Potential Predictors:
 
@@ -126,6 +126,8 @@ Other variables:
 `book` = Which book, either Janson or Gardner the particular artist at that particular time was included.
 
 `artist_unique_id` = A unique identifying number assigned to artists across books and editions denoted in alphabetical order.
+
+`artist_name` = The name of the artist.
 
 ## Log Transformation: Total Space Ratio per Page
 

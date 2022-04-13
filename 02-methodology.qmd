@@ -113,13 +113,13 @@ Total Space Ratio per Page = I measured with a ruler with centimeters, the lengt
 
 **Artist Nationality** = I recorded the nationality of the artist as listed by the text. In the case the nationality of the artist was not listed, I would do a quick google search to further research their nationality. If I couldn't find their nationality, I listed such as N/A.
 
-**Artist Race** = I recorded the race of the artist as listed by the text. I categorized race based on the guidelines of the US Census.[^methodology-1] In the case the race of the artist was not listed, I would do a quick google search to further research their race. If I couldn't find their race, I listed such as N/A.
+**Artist Race** = I recorded the race of the artist as listed by the text. I categorized race based on the guidelines of the US Census.[^1] In the case the race of the artist was not listed, I would do a quick google search to further research their race. If I couldn't find their race, I listed such as N/A.
 
-[^methodology-1]: "U.S. Census Bureau Definitions of Race and Ethnicity," United States Census Bureau, last modified July 2014, https://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bureau-Definitions-of-Race-and-Ethnicity.pdf.
+[^1]: "U.S. Census Bureau Definitions of Race and Ethnicity," United States Census Bureau, last modified July 2014, https://www.mobap.edu/wp-content/uploads/2013/01/US-Census-Bureau-Definitions-of-Race-and-Ethnicity.pdf.
 
-**Artist Ethnicity** = I recorded the ethnicity of the artist as listed by the text. Similarly to race, I categorized ethnicity based on the guidelines of the US Census.[^methodology-2] In the case the ethnicity of the artist was not listed, I would do a quick google search to further research their ethnicity. If I couldn't find their ethnicity, I listed such as N/A.
+**Artist Ethnicity** = I recorded the ethnicity of the artist as listed by the text. Similarly to race, I categorized ethnicity based on the guidelines of the US Census.[^2] In the case the ethnicity of the artist was not listed, I would do a quick google search to further research their ethnicity. If I couldn't find their ethnicity, I listed such as N/A.
 
-[^methodology-2]: United States Census Bureau, "U.S. Census Bureau Definitions of Race and Ethnicity."
+[^2]: United States Census Bureau, "U.S. Census Bureau Definitions of Race and Ethnicity."
 
 ##### **Identifying Variables:**
 
