@@ -22,6 +22,7 @@ format:
     theme: cosmo
   pdf:
     documentclass: scrreprt
+    keep-tex: true
 
 editor: visual
 
